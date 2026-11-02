@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate: #0f172a;
+  --color-slate-soft: #1e293b;
+  --color-paper: #f8fafc;
+  --color-card: #ffffff;
+  --color-teal: #0284c7;
+  --color-teal-ink: #0369a1;
+  --color-amber: #d97706;
+  --color-amber-ink: #b45309;
+  --color-muted: #475569;
+  --color-rule: #e2e8f0;
+
+  --font-serif: var(--font-newsreader), "Georgia", serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-slate);
+    scroll-padding-top: 5rem;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-slate);
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    background: var(--color-teal);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 3px;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: color 200ms ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35rem;
+  height: 2px;
+  background: var(--color-teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms var(--ease-out-strong);
+}
+.nav-link:hover,
+.nav-link[aria-current="page"] {
+  color: var(--color-slate);
+}
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.8s var(--ease-out-strong) both;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+}
