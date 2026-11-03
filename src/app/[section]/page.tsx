@@ -24,16 +24,16 @@ export default async function SectionPage({ params }: PageProps<"/[section]">) {
     <>
       <section className="border-b border-rule bg-card">
         <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
-          <p className="eyebrow text-teal-ink">Observatorio</p>
-          <h1 className="mt-4 font-serif text-[clamp(2.25rem,4.5vw,3.75rem)] leading-tight font-medium text-slate">{page.title}</h1>
+          <p className="eyebrow text-blue">Observatorio</p>
+          <h1 className="mt-4 font-serif text-[clamp(2.25rem,4.5vw,3.75rem)] leading-tight font-medium text-navy">{page.title}</h1>
           <p className="mt-4 max-w-2xl text-lg text-muted">{page.lead}</p>
         </div>
       </section>
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-        <div className="max-w-xl border-l-2 border-amber pl-6">
-          <p className="font-serif text-2xl text-slate">Contenido en preparación.</p>
+        <div className="max-w-xl border-l-2 border-gold pl-6">
+          <p className="font-serif text-2xl text-navy">Contenido en preparación.</p>
           <p className="mt-3 text-muted">Esta sección se publicará con documentos y datos verificados, con fuente y fecha.</p>
-          <Link href="/" className="mt-6 inline-block text-sm font-semibold text-teal-ink underline-offset-4 hover:underline">
+          <Link href="/" className="mt-6 inline-block text-sm font-semibold text-blue underline-offset-4 hover:underline">
             Volver al inicio
           </Link>
         </div>

@@ -22,14 +22,19 @@ Website of the Observatorio del Derecho del Trabajo y la Seguridad Social "Hugo 
 
 ## Visual system
 
+Palette sampled from the official logo (`assets-cliente/logo-observatorio-original.png`). Tokens in `src/app/globals.css`.
+
 | Token | Hex | Use |
 |---|---|---|
-| `slate` | `#0F172A` | Text, header, dark surfaces |
-| `teal` | `#0284C7` | Charts, large headings, accents. As body text on paper it is 3.9:1 (fails AA): use `teal-ink` `#0369A1` (5.7:1) for links and small text. |
-| `paper` | `#F8FAFC` | Page background |
-| `amber` | `#D97706` | Alerts, highlights, chart emphasis. As small text on paper it is 3.0:1: use `amber-ink` `#B45309` for text. |
+| `navy` | `#062265` | Wordmark color. Text, header, dark surfaces |
+| `navy-deep` | `#03174A` | Footer |
+| `blue` | `#1870C7` | Links, accents (4.9:1 on white, AA) |
+| `sky` | `#9CC9F5` | Blue text on navy |
+| `gold` | `#FCC833` | Rules, highlights on navy. Never text on white |
+| `heritage` | `#8E2B14` | Honoree name only (logo script color) |
 
-- Type: `Newsreader` (headlines, papers, long reading) + `Plus Jakarta Sans` (UI, data labels, tables), via `next/font/google`. Use tabular numerals for figures.
+- Logo: emblem crop in `public/brand/emblema-{320,960}.webp` via `Mark`; wordmark is HTML. Emblem has a white background: place it on white only (or a white plate on navy).
+- Type: `Newsreader` (headlines) + `Plus Jakarta Sans` (UI), via `next/font/google`. Tabular numerals for figures.
 - Feel: research portal, clear data hierarchy, tables and charts first-class.
 
 ## Key sections
@@ -39,7 +44,7 @@ Working papers and labor-reform analysis; research lines (collective bargaining,
 ## Content rules
 
 - Never invent researchers, papers, court cases, docket numbers or data. Unknown items: `[PENDIENTE CONFIRMACIÓN]`.
-- Contacts: none confirmed yet. Do not reuse Montenegro & Asociados' contacts unless the client confirms them.
+- Contacts confirmed in the 2026-11-03 brief (`contact` in config). Official name from the logo: ASDTSS; brief says ASUDETS, pending confirmation.
 - All copy and datasets live in `src/content/` and `src/data/`, with source and date per dataset.
 
 ## Stack

@@ -1,67 +1,66 @@
 import Link from "next/link";
 import { indicators, observatorio, researchLines } from "@/config/observatorio";
+import { Mark } from "@/components/brand/Mark";
 
 export function Hero() {
   return (
     <>
-      <section aria-labelledby="hero-title" className="border-b border-rule">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-14 sm:py-20 lg:grid-cols-12 lg:items-end lg:gap-10 lg:px-8 lg:py-24">
+      <section aria-labelledby="hero-title" className="bg-card">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 pt-12 pb-14 sm:pt-16 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8 lg:py-20">
           <div className="rise lg:col-span-7">
-            <p className="eyebrow flex items-center gap-3 text-teal-ink">
-              <span aria-hidden className="size-2 bg-amber" />
+            <p className="flex items-center gap-3 text-sm font-semibold text-blue">
+              <span aria-hidden className="h-0.5 w-10 bg-gold" />
               {observatorio.shortName}
             </p>
             <h1
               id="hero-title"
-              className="mt-6 font-serif text-[clamp(2.4rem,5.4vw,4.6rem)] leading-[1.02] font-medium tracking-[-0.02em] text-balance text-slate"
+              className="mt-6 font-serif text-[clamp(2.4rem,5.2vw,4.4rem)] leading-[1.04] font-medium tracking-[-0.02em] text-balance text-navy"
             >
-              Investigación y datos para el debate laboral.
+              Derecho del Trabajo y de la Seguridad Social, estudiado desde Sudamérica.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              {observatorio.mission} Documentos de trabajo, análisis de jurisprudencia e intervenciones en política pública.
+              {observatorio.mission} Webinars, publicaciones y análisis con la memoria de {observatorio.honoree}.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/documentos"
-                className="inline-flex items-center justify-center gap-2 rounded-sm bg-teal-ink px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-slate"
+                className="inline-flex items-center justify-center rounded-sm bg-navy px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue"
               >
-                Documentos de trabajo <span aria-hidden>→</span>
+                Ver publicaciones
               </Link>
               <Link
                 href="/datos"
-                className="inline-flex items-center justify-center rounded-sm border border-slate/25 px-6 py-3.5 text-sm font-semibold text-slate transition-colors duration-200 hover:border-slate"
+                className="inline-flex items-center justify-center rounded-sm border border-navy/25 px-6 py-3.5 text-sm font-semibold text-navy transition-colors duration-200 hover:border-navy"
               >
                 Explorar datos laborales
               </Link>
             </div>
           </div>
 
-          <aside aria-label="Indicadores del Observatorio" className="rise bg-slate p-6 text-paper [animation-delay:120ms] sm:p-8 lg:col-span-5">
-            <div className="flex items-baseline justify-between gap-4 border-b border-paper/15 pb-4">
-              <h2 className="eyebrow text-paper">Indicadores</h2>
-              <span className="eyebrow text-[0.625rem] text-paper/55">Fuente y fecha por dato</span>
-            </div>
-            <dl className="divide-y divide-paper/10">
-              {indicators.map((d) => (
-                <div key={d.label} className="flex items-end justify-between gap-6 py-5">
-                  <dt className="max-w-[14rem] text-sm text-paper/75">{d.label}</dt>
-                  <dd className="text-right">
-                    {d.value ? (
-                      <>
-                        <span className="block font-serif text-4xl tabular-nums">{d.value}</span>
-                        <span className="text-[0.7rem] text-paper/50">{d.source}</span>
-                      </>
-                    ) : (
-                      <span className="inline-block border border-amber/60 px-2 py-1 text-[0.7rem] font-semibold tracking-wide text-amber">
-                        Datos pendientes
-                      </span>
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </aside>
+          <div className="rise order-first mx-auto w-full max-w-[19rem] [animation-delay:120ms] sm:max-w-sm lg:order-none lg:col-span-5 lg:max-w-none">
+            <Mark className="h-auto w-full" priority large />
+          </div>
         </div>
+      </section>
+
+      <section aria-label="Indicadores del Observatorio" className="bg-navy text-paper">
+        <dl className="mx-auto grid max-w-7xl divide-y divide-paper/10 px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-8">
+          {indicators.map((d) => (
+            <div key={d.label} className="flex flex-col-reverse gap-2 py-7 sm:px-6 sm:first:pl-0">
+              <dt className="text-sm text-paper/75">{d.label}</dt>
+              <dd>
+                {d.value ? (
+                  <>
+                    <span className="font-serif text-5xl text-gold tabular-nums">{d.value}</span>
+                    <span className="ml-3 text-xs text-paper/60">Fuente: {d.source}</span>
+                  </>
+                ) : (
+                  <span className="inline-block border border-gold/60 px-2 py-1 text-xs font-semibold text-gold">Dato pendiente</span>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section aria-labelledby="lineas-title" className="bg-card">
@@ -73,10 +72,10 @@ export function Hero() {
             {researchLines.map((l, i) => (
               <li key={l.slug} className="bg-card">
                 <Link href={`/investigacion#${l.slug}`} className="group flex h-full flex-col gap-8 p-6 transition-colors hover:bg-paper">
-                  <span className="text-xs font-semibold tabular-nums text-amber-ink">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-xs font-semibold tabular-nums text-blue">{String(i + 1).padStart(2, "0")}</span>
                   <span className="flex items-end justify-between gap-4">
-                    <span className="font-serif text-2xl leading-tight text-slate">{l.title}</span>
-                    <span aria-hidden className="text-teal-ink transition-transform duration-200 group-hover:translate-x-1">→</span>
+                    <span className="font-serif text-2xl leading-tight text-navy">{l.title}</span>
+                    <span aria-hidden className="text-blue transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </span>
                 </Link>
               </li>

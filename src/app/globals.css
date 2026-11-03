@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
+/* Palette sampled from the client logo (assets-cliente/logo-observatorio-original.png). */
 @theme {
-  --color-slate: #0f172a;
-  --color-slate-soft: #1e293b;
-  --color-paper: #f8fafc;
+  --color-navy: #062265; /* wordmark "OBSERVATORIO": text, dark surfaces (14.6:1 on white) */
+  --color-navy-deep: #03174a; /* footer, deepest surface */
+  --color-blue: #1870c7; /* logo rules and globe: links, accents (4.9:1 on white, AA) */
+  --color-sky: #9cc9f5; /* blue for text on navy (8.6:1) */
+  --color-gold: #fcc833; /* logo sun and rules: highlights on navy, decorative rules on white (never text on white) */
+  --color-heritage: #8e2b14; /* script "Hugo Roberto Mansueti": honoree name only */
+  --color-paper: #f5f8fc;
   --color-card: #ffffff;
-  --color-teal: #0284c7;
-  --color-teal-ink: #0369a1;
-  --color-amber: #d97706;
-  --color-amber-ink: #b45309;
-  --color-muted: #475569;
-  --color-rule: #e2e8f0;
+  --color-muted: #4a5878; /* 6.9:1 on white */
+  --color-rule: #dce3ee;
+  --color-success: #1b7a43;
+  --color-danger: #c42b1c; /* logo red, live/"en vivo" state */
 
   --font-serif: var(--font-newsreader), "Georgia", serif;
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
@@ -20,20 +23,20 @@
 
 @layer base {
   html {
-    background: var(--color-slate);
+    background: var(--color-navy-deep);
     scroll-padding-top: 5rem;
   }
   body {
     background: var(--color-paper);
-    color: var(--color-slate);
+    color: var(--color-navy);
     font-family: var(--font-sans);
   }
   ::selection {
-    background: var(--color-teal);
+    background: var(--color-blue);
     color: #fff;
   }
   :focus-visible {
-    outline: 2px solid var(--color-teal);
+    outline: 2px solid var(--color-blue);
     outline-offset: 3px;
   }
 }
@@ -60,14 +63,14 @@
   right: 0;
   bottom: -0.35rem;
   height: 2px;
-  background: var(--color-teal);
+  background: var(--color-blue);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 300ms var(--ease-out-strong);
 }
 .nav-link:hover,
 .nav-link[aria-current="page"] {
-  color: var(--color-slate);
+  color: var(--color-navy);
 }
 .nav-link:hover::after,
 .nav-link[aria-current="page"]::after {

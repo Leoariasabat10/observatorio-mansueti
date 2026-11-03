@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { asociacion, legal, nav, observatorio, researchLines, social } from "@/config/observatorio";
+import { asociacion, contact, legal, nav, observatorio, researchLines, social } from "@/config/observatorio";
 import { Mark } from "@/components/brand/Mark";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 
@@ -8,14 +8,16 @@ const link = "text-sm text-paper/80 transition-colors hover:text-paper";
 
 export function Footer() {
   return (
-    <footer className="bg-slate text-paper">
+    <footer className="border-t-4 border-gold bg-navy-deep text-paper">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:px-8">
         <div className="sm:col-span-2 lg:col-span-4">
-          <div className="flex items-center gap-3">
-            <Mark className="size-11 shrink-0" inverted />
+          <div className="flex items-center gap-4">
+            <span className="shrink-0 rounded-sm bg-card p-2">
+              <Mark className="h-12 w-auto" />
+            </span>
             <div className="leading-tight">
-              <p className="text-sm font-semibold">{observatorio.name}</p>
-              <p className="font-serif text-lg text-sky-300 italic">{observatorio.honoree}</p>
+              <p className="text-sm font-semibold text-balance">{observatorio.name}</p>
+              <p className="mt-1 font-serif text-lg text-gold italic">{observatorio.honoree}</p>
             </div>
           </div>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-paper/70">{observatorio.mission}</p>
@@ -25,7 +27,7 @@ export function Footer() {
                 <a
                   href={s.href}
                   aria-label={s.label}
-                  className="grid size-10 place-items-center border border-paper/20 transition-colors hover:border-teal hover:text-sky-300"
+                  className="grid size-10 place-items-center border border-paper/20 transition-colors hover:border-blue hover:text-sky"
                 >
                   <SocialIcon id={s.id} />
                 </a>
@@ -62,15 +64,19 @@ export function Footer() {
 
         <div className="lg:col-span-2">
           <h2 className={heading}>Contacto</h2>
-          <p className="mt-5 text-sm text-paper/80">
-            {observatorio.email ? (
-              <a href={`mailto:${observatorio.email}`} className={link}>
-                {observatorio.email}
-              </a>
-            ) : (
-              "[Pendiente: correo oficial]"
-            )}
-          </p>
+          <address className="mt-5 space-y-3 text-sm text-paper/80 not-italic">
+            <p>
+              {contact.address.map((l) => (
+                <span key={l} className="block">{l}</span>
+              ))}
+            </p>
+            <p>
+              <a href={contact.whatsapp} className={link}>WhatsApp {contact.phoneDisplay}</a>
+            </p>
+            <p>
+              <a href={`mailto:${contact.email}`} className={`${link} break-all`}>{contact.email}</a>
+            </p>
+          </address>
           <a href={asociacion.url} target="_blank" rel="noopener" className={`${link} mt-4 inline-block underline underline-offset-4`}>
             {asociacion.label}
           </a>

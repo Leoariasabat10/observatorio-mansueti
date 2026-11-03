@@ -1,16 +1,19 @@
+import Image from "next/image";
 import { observatorio } from "@/config/observatorio";
 
-// Placeholder mark until the observatory supplies its logo: rising data bars over a baseline.
-export function Mark({ className = "size-10", inverted = false }: { className?: string; inverted?: boolean }) {
-  const bg = inverted ? "#F8FAFC" : "#0F172A";
-  const fg = inverted ? "#0F172A" : "#F8FAFC";
+// Official emblem (scales, South America, globe) cropped from the client logo; the wordmark is set in HTML so it stays sharp.
+// Source 1001×683. Pre-sized files: 320w for the header/footer (2x of 160px), 960w for the hero; Next's optimizer is skipped.
+export function Mark({ className = "h-11 w-auto", priority = false, large = false }: { className?: string; priority?: boolean; large?: boolean }) {
   return (
-    <svg viewBox="0 0 40 40" className={className} role="img" aria-label={`Logotipo del ${observatorio.shortName}`}>
-      <rect width="40" height="40" fill={bg} />
-      <rect x="9" y="22" width="5" height="9" fill={fg} />
-      <rect x="17.5" y="16" width="5" height="15" fill={fg} />
-      <rect x="26" y="9" width="5" height="22" fill="#0284C7" />
-      <rect x="9" y="32.5" width="22" height="1.5" fill="#D97706" />
-    </svg>
+    <Image
+      src={large ? "/brand/emblema-960.webp" : "/brand/emblema-320.webp"}
+      width={large ? 960 : 320}
+      height={large ? 655 : 218}
+      alt={`Emblema del ${observatorio.shortName}: balanza con mazo y casco sobre el mapa de Sudamérica`}
+      className={className}
+      priority={priority}
+      unoptimized
+    />
   );
 }
+

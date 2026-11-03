@@ -1,20 +1,28 @@
-// Single source for everything the client still has to confirm (meeting 2026-11-02).
-// See docs/cliente/2026-11-01-audios-juana.md. Change values here; no component edits needed.
+// Single source for names, contacts and anything the client still has to confirm.
+// Change values here; no component edits needed.
 
 const PENDING = "[PENDIENTE CONFIRMACIÓN]";
 
-// PENDIENTE 1 — official spelling: "Mansueti" or "Mansuetti" (client's chat).
-const surname: "Mansueti" | "Mansuetti" = "Mansueti";
+// Final domain of the client. Change here only (metadata, sitemap, Open Graph read it).
+export const siteUrl = "https://observatorio-mansueti.vercel.app";
 
-// PENDIENTE 2 — exact name. The chat says "Observatorio del Derecho del Trabajo y la Seguridad Social";
-// the voice note says "Observatorio de la Asociación Suramericana…".
+// Name and honoree as written in the official logo (assets-cliente/logo-observatorio-original.png).
+// PENDIENTE: the logo reads "ASDTSS"; the brief says "ASUDETS". Logo spelling kept until confirmed.
 export const observatorio = {
-  name: "Observatorio del Derecho del Trabajo y la Seguridad Social",
-  honoree: `Hugo ${surname}`,
-  shortName: `Observatorio ${`Hugo ${surname}`}`,
-  mission: "Análisis, datos e investigación sobre el Derecho del Trabajo y la Seguridad Social.",
-  email: null as string | null, // PENDIENTE: official contact
+  name: "Observatorio de la Asociación Sudamericana de Derecho del Trabajo y la Seguridad Social",
+  acronym: "ASDTSS",
+  honoree: "Hugo Roberto Mansueti",
+  shortName: "Observatorio ASDTSS",
+  mission: "Análisis, investigación y formación en Derecho del Trabajo y de la Seguridad Social en Sudamérica.",
   copyrightYear: 2026,
+};
+
+export const contact = {
+  email: "hugorobertomansueti@gmail.com",
+  phoneDisplay: "314 407 5302",
+  phoneHref: "tel:+573144075302",
+  whatsapp: "https://wa.me/573144075302",
+  address: ["Carrera 7 # 17-57, oficina 705", "Bogotá, Colombia, 111221"],
 };
 
 // PENDIENTE 3 — link with the Asociación (Project 2).
@@ -23,11 +31,9 @@ export const asociacion = {
   url: "https://asociacion-mansueti.vercel.app",
 };
 
-// PENDIENTE 4 — official social profiles.
+// Only confirmed profiles. Add Instagram/LinkedIn here when the client confirms them.
 export const social = [
-  { id: "facebook", label: "Facebook", href: "#" },
-  { id: "instagram", label: "Instagram", href: "#" },
-  { id: "linkedin", label: "LinkedIn", href: "#" },
+  { id: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61595918491051" },
 ] as const;
 
 // PENDIENTE 5 — research team.
