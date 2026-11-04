@@ -1,0 +1,6 @@
+[
+  { "slug": "boletines", "nombre": "Boletines", "singular": "Boletín", "descripcion": "Resumen periódico de novedades laborales y de seguridad social en la región." },
+  { "slug": "documentos", "nombre": "Documentos de trabajo", "singular": "Documento de trabajo", "descripcion": "Análisis extensos sobre reformas, jurisprudencia y políticas públicas." },
+  { "slug": "intervenciones", "nombre": "Intervenciones judiciales", "singular": "Intervención judicial", "descripcion": "Conceptos e intervenciones del Observatorio ante altas cortes." },
+  { "slug": "datos", "nombre": "Datos y análisis", "singular": "Nota de datos", "descripcion": "Indicadores del mercado laboral y de la seguridad social, con fuente y fecha." }
+]

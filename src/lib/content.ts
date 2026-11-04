@@ -35,28 +35,42 @@ export type Webinar = {
 
 const DIR = path.join(process.cwd(), "src/content/webinars");
 
-function parse(file: string): Webinar {
+/** Shared reader for one Markdown file: front matter, body, and field helpers that fail with the file name. */
+export function leerMarkdown(dir: string, file: string) {
   const slug = file.replace(/\.md$/, "");
-  const { data: d, content } = matter(fs.readFileSync(path.join(DIR, file), "utf8"));
+  const { data: d, content } = matter(fs.readFileSync(path.join(process.cwd(), dir, file), "utf8"));
   const fail = (msg: string): never => {
-    throw new Error(`src/content/webinars/${file}: ${msg}`);
+    throw new Error(`${dir}/${file}: ${msg}`);
   };
   const str = (k: string, required = false) => {
     const v = d[k];
     if (v == null || v === "") return required ? fail(`falta el campo "${k}"`) : undefined;
     return String(v).trim();
   };
+  const fecha = () => {
+    const f = d.fecha instanceof Date ? d.fecha.toISOString().slice(0, 10) : str("fecha", true)!;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(f)) fail(`"fecha" debe ser AAAA-MM-DD, llegó "${f}"`);
+    return f;
+  };
+  const ejesDe = () => {
+    const list: string[] = Array.isArray(d.ejes) ? d.ejes : [];
+    if (!list.length) fail(`"ejes" necesita al menos un eje`);
+    for (const e of list) if (!ejePorSlug(e)) fail(`eje desconocido "${e}". Válidos: ${ejes.map((x) => x.slug).join(", ")}`);
+    return list;
+  };
+  const html = () => marked.parse(content, { async: false });
+  return { slug, d, fail, str, fecha, ejesDe, html };
+}
 
-  const fecha = d.fecha instanceof Date ? d.fecha.toISOString().slice(0, 10) : str("fecha", true)!;
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) fail(`"fecha" debe ser AAAA-MM-DD, llegó "${fecha}"`);
+function parse(file: string): Webinar {
+  const { slug, d, fail, str, fecha: leerFecha, ejesDe, html } = leerMarkdown("src/content/webinars", file);
+  const fecha = leerFecha();
   const hora = str("hora", true)!;
   if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(hora)) fail(`"hora" debe ser HH:MM en 24 h, llegó "${hora}"`);
   const duracionMin = Number(d.duracionMin ?? 90);
   if (!(duracionMin > 0)) fail(`"duracionMin" debe ser un número de minutos`);
 
-  const ejesW: string[] = Array.isArray(d.ejes) ? d.ejes : [];
-  if (!ejesW.length) fail(`"ejes" necesita al menos un eje`);
-  for (const e of ejesW) if (!ejePorSlug(e)) fail(`eje desconocido "${e}". Válidos: ${ejes.map((x) => x.slug).join(", ")}`);
+  const ejesW = ejesDe();
 
   const modalidad = (str("modalidad") ?? "virtual") as Modalidad;
   if (!["virtual", "presencial", "hibrida"].includes(modalidad)) fail(`"modalidad" debe ser virtual, presencial o hibrida`);
@@ -91,7 +105,7 @@ function parse(file: string): Webinar {
     inscripcion: str("inscripcion"),
     grabacion: str("grabacion"),
     ejemplo: d.ejemplo === true,
-    html: marked.parse(content, { async: false }),
+    html: html(),
   };
 }
 

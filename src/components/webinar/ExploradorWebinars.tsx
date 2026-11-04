@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useSyncExternalStore } from "react";
-import { flushSync } from "react-dom";
 import { ArrowUpRight, PlayCircle } from "lucide-react";
 import type { WebinarResumen } from "@/lib/content";
 import { ejePorSlug, ejes } from "@/lib/ejes";
 import { estadoDe, fechaDia, fechaMes, fechaMesAnio, horaBogota, modalidadTexto, type Estado } from "@/lib/webinar-time";
+import { useFiltrosUrl } from "@/components/ui/useFiltrosUrl";
 import { Afiche } from "./Afiche";
 import { EjemploTag, EjeTag, EstadoBadge } from "./Etiquetas";
 import { useAhora } from "./useAhora";
@@ -21,18 +20,6 @@ const FILTROS: { id: Filtro; label: string }[] = [
 
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-// Filters live in the URL (?estado=pasados&eje=seguridad-social): shareable links, back button friendly.
-const EVENTO = "filtros-webinars";
-function suscribirUrl(cb: () => void) {
-  window.addEventListener("popstate", cb);
-  window.addEventListener(EVENTO, cb);
-  return () => {
-    window.removeEventListener("popstate", cb);
-    window.removeEventListener(EVENTO, cb);
-  };
-}
-const leerUrl = () => window.location.search;
-
 function entra(estado: Estado, f: Filtro) {
   if (f === "todos") return true;
   if (f === "pasados") return estado === "pasado";
@@ -40,16 +27,9 @@ function entra(estado: Estado, f: Filtro) {
   return estado !== "pasado";
 }
 
-// Filter changes morph the list with the View Transitions API (native, no animation library).
-function transicion(fn: () => void) {
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!document.startViewTransition || reduce) return fn();
-  document.startViewTransition(() => flushSync(fn));
-}
-
 export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarResumen[]; buildNow: number }) {
   const now = useAhora(buildNow);
-  const q = new URLSearchParams(useSyncExternalStore(suscribirUrl, leerUrl, () => ""));
+  const { params: q, actualizar: setUrl } = useFiltrosUrl();
   const fq = q.get("estado");
   const filtro = FILTROS.some((f) => f.id === fq) ? (fq as Filtro) : null;
   const jq = q.get("eje");
@@ -75,18 +55,7 @@ export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarRe
     else grupos.push({ mes, items: [x] });
   }
 
-  const actualizar = (f: Filtro | null, j: string | null) => {
-    const nq = new URLSearchParams(window.location.search);
-    if (f) nq.set("estado", f);
-    else nq.delete("estado");
-    if (j) nq.set("eje", j);
-    else nq.delete("eje");
-    const s = nq.toString();
-    transicion(() => {
-      window.history.replaceState(null, "", s ? "?" + s : window.location.pathname);
-      window.dispatchEvent(new Event(EVENTO));
-    });
-  };
+  const actualizar = (f: Filtro | null, j: string | null) => setUrl({ estado: f, eje: j });
 
   return (
     <section aria-labelledby="explorador-titulo" className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
