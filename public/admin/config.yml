@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# Editor at /admin. Fields mirror the validator in src/lib/content.ts (see README, "Campos").
+# The eje and país lists repeat src/content/ejes.json and src/lib/paises.ts: change both together
+# (the build fails with a clear message if they drift).
+
+backend:
+  name: github
+  repo: ORGANIZACION/observatorio-asdtss # change when the repo is created
+  branch: main
+
+media_folder: /public/afiches
+public_folder: /afiches
+
+collections:
+  - name: webinars
+    label: Webinars
+    label_singular: Webinar
+    folder: /src/content/webinars
+    extension: md
+    format: frontmatter
+    create: true
+    identifier_field: titulo
+    slug:
+      template: "{{fecha}}-{{slug}}"
+      editable: [create]
+    summary: "{{fecha}} · {{titulo}}"
+    sortable_fields: [fecha, titulo]
+    fields:
+      - { label: Título, name: titulo, widget: string }
+      - { label: Fecha (hora de Bogotá), name: fecha, widget: datetime, type: date }
+      - { label: "Hora de inicio (24 h, Bogotá)", name: hora, widget: string, pattern: ['^([01]\d|2[0-3]):[0-5]\d$', "Formato HH:MM, por ejemplo 18:00"] }
+      - { label: Duración (minutos), name: duracionMin, widget: number, value_type: int, default: 90, min: 15 }
+      - label: Ejes temáticos
+        name: ejes
+        widget: select
+        multiple: true
+        min: 1
+        options:
+          - { label: "Negociación colectiva", value: negociacion-colectiva }
+          - { label: "Seguridad social", value: seguridad-social }
+          - { label: "Trabajo en plataformas digitales", value: plataformas-digitales }
+          - { label: "Género y trabajo", value: genero-y-trabajo }
+      - label: Modalidad
+        name: modalidad
+        widget: select
+        default: virtual
+        options:
+          - { label: Virtual, value: virtual }
+          - { label: Presencial, value: presencial }
+          - { label: Híbrida, value: hibrida }
+      - { label: Plataforma, name: plataforma, widget: string, required: false, hint: "Zoom, YouTube…" }
+      - { label: Lugar, name: lugar, widget: string, required: false, hint: Solo para presencial o híbrida }
+      - { label: Resumen, name: resumen, widget: text, hint: Una o dos frases. Se ve en la lista y al compartir. }
+      - label: Ponentes
+        name: ponentes
+        widget: list
+        min: 1
+        summary: "{{nombre}} ({{pais}})"
+        fields:
+          - { label: Nombre, name: nombre, widget: string }
+          - { label: Rol, name: rol, widget: string, required: false, hint: "Ponente, Moderación…" }
+          - { label: Cargo, name: cargo, widget: string, required: false }
+          - { label: Institución, name: institucion, widget: string, required: false }
+          - label: País
+            name: pais
+            widget: select
+            options:
+              - { label: "Argentina", value: AR }
+              - { label: "Bolivia", value: BO }
+              - { label: "Brasil", value: BR }
+              - { label: "Chile", value: CL }
+              - { label: "Colombia", value: CO }
+              - { label: "Ecuador", value: EC }
+              - { label: "Guyana", value: GY }
+              - { label: "Paraguay", value: PY }
+              - { label: "Perú", value: PE }
+              - { label: "Surinam", value: SR }
+              - { label: "Uruguay", value: UY }
+              - { label: "Venezuela", value: VE }
+              - { label: "México", value: MX }
+              - { label: "España", value: ES }
+              - { label: "Italia", value: IT }
+              - { label: "Panamá", value: PA }
+              - { label: "Costa Rica", value: CR }
+              - { label: "Estados Unidos", value: US }
+      - { label: Afiche, name: afiche, widget: image, required: false, hint: "Proporción 4:5, mínimo 800×1000 px" }
+      - { label: Descripción del afiche, name: aficheAlt, widget: string, required: false, hint: Obligatoria si hay afiche (para lectores de pantalla) }
+      - { label: Enlace de inscripción o transmisión, name: inscripcion, widget: string, required: false }
+      - { label: Enlace de la grabación, name: grabacion, widget: string, required: false }
+      - { label: Contenido de ejemplo, name: ejemplo, widget: boolean, default: false, required: false }
+      - { label: Descripción, name: body, widget: markdown }
+
+  - name: datos
+    label: Cifras del Inicio
+    files:
+      - name: cifras
+        label: Cifras destacadas
+        file: /src/content/cifras.json
+        format: json
+        fields:
+          - label: Cifras
+            name: cifras
+            widget: list
+            summary: "{{label}}: {{valor}}"
+            fields:
+              - { label: Qué se mide, name: label, widget: string }
+              - { label: Valor, name: valor, widget: number, value_type: int, required: false, hint: "Vacío = se muestra «Dato pendiente»" }
+              - { label: Fuente, name: fuente, widget: string, required: false, hint: "Obligatoria si hay valor. Ej.: registros de Zoom" }
+              - { label: Fecha del dato, name: fecha, widget: datetime, type: date, required: false }
