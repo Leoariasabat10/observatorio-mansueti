@@ -75,7 +75,7 @@ export default function Publicaciones() {
                 ))}
                 {boletin.ejemplo && <EjemploTag inverse />}
               </div>
-              <h2 id="boletin-titulo" className="mt-5 font-display text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] text-balance">
+              <h2 id="boletin-titulo" className="mt-5 font-display text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] font-medium text-balance">
                 <Link href={`/publicaciones/${boletin.slug}`} className="decoration-gold decoration-2 underline-offset-[0.2em] hover:underline">
                   {boletin.titulo}
                 </Link>
@@ -116,7 +116,7 @@ export default function Publicaciones() {
               <Mail className="size-4" aria-hidden />
               Pedir por correo
             </a>
-            <a href={contact.whatsapp} target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-2 rounded-sm border border-navy/30 px-6 py-3.5 text-sm font-semibold text-navy transition-colors hover:border-navy">
+            <a href={contact.whatsapp} target="_blank" rel="noopener" className="enlace inline-flex items-center gap-2 self-center text-sm font-semibold text-navy">
               <MessageCircle className="size-4" aria-hidden />
               Pedir por WhatsApp
             </a>

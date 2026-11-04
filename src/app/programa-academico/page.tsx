@@ -75,7 +75,7 @@ export default function ProgramaAcademico() {
             <MessageCircle className="size-4" aria-hidden />
             Escribir por WhatsApp
           </a>
-          <a href={`mailto:${contact.email}?subject=Propuesta%20para%20el%20programa%20acad%C3%A9mico`} className="inline-flex items-center justify-center gap-2 rounded-sm border border-navy/30 px-6 py-3.5 text-sm font-semibold text-navy transition-colors duration-200 hover:border-navy">
+          <a href={`mailto:${contact.email}?subject=Propuesta%20para%20el%20programa%20acad%C3%A9mico`} className="enlace inline-flex items-center gap-2 self-center text-sm font-semibold text-navy">
             <Mail className="size-4" aria-hidden />
             Enviar un correo
           </a>

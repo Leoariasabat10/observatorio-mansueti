@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { ArrowUpRight, CalendarPlus } from "lucide-react";
 import type { WebinarResumen } from "@/lib/content";
 import { paises } from "@/lib/paises";
@@ -37,7 +38,9 @@ export function WebinarDestacado({ webinars, buildNow }: { webinars: WebinarResu
       <Reticula className="pointer-events-none absolute top-1/2 -right-[22rem] w-[52rem] -translate-y-1/2 max-lg:hidden" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:py-16 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-8 lg:py-20">
         <Link href={href} className="group order-last block w-full max-w-[17rem] sm:max-w-xs lg:order-none lg:col-span-5 lg:max-w-none" tabIndex={-1} aria-hidden>
-          <Afiche w={w} priority className="sombra-larga transition-transform duration-500 ease-[cubic-bezier(.23,1,.32,1)] group-hover:-translate-y-1" />
+          <ViewTransition name={`afiche-${w.slug}`} share="morph" default="none">
+            <Afiche w={w} priority className="sombra-larga transition-transform duration-500 ease-[cubic-bezier(.23,1,.32,1)] group-hover:-translate-y-1" />
+          </ViewTransition>
         </Link>
 
         <div className="lg:col-span-7">
@@ -50,7 +53,7 @@ export function WebinarDestacado({ webinars, buildNow }: { webinars: WebinarResu
             {w.ejemplo && <EjemploTag inverse />}
           </div>
 
-          <h2 id="destacado-titulo" className="mt-5 max-w-2xl font-display text-[clamp(2rem,4.2vw,3.4rem)] leading-[1.05] text-balance">
+          <h2 id="destacado-titulo" className="mt-5 max-w-2xl font-display text-[clamp(2rem,4.2vw,3.4rem)] leading-[1.05] font-medium text-balance">
             <Link href={href} className="decoration-gold decoration-2 underline-offset-[0.2em] hover:underline">
               {w.titulo}
             </Link>
@@ -106,7 +109,7 @@ export function WebinarDestacado({ webinars, buildNow }: { webinars: WebinarResu
             )}
             <Link
               href={href}
-              className="inline-flex items-center justify-center gap-2 rounded-sm border border-paper/30 px-6 py-3.5 text-sm font-semibold transition-colors duration-200 hover:border-paper"
+              className="enlace inline-flex items-center gap-2 self-center text-sm font-semibold text-paper"
             >
               {estado === "proximo" && <CalendarPlus className="size-4" aria-hidden />}
               {estado === "proximo" ? "Detalles y calendario" : "Ver detalles"}

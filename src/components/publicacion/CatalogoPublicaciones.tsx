@@ -26,7 +26,7 @@ export function CatalogoPublicaciones({ publicaciones }: { publicaciones: Public
   return (
     <section aria-labelledby="catalogo-titulo" className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
       <p className="eyebrow text-blue">Catálogo</p>
-      <h2 id="catalogo-titulo" className="mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
+      <h2 id="catalogo-titulo" className="titular mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
         Todas las publicaciones
       </h2>
 

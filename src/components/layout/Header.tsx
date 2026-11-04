@@ -31,7 +31,7 @@ export function Header() {
           </a>
         </div>
       </div>
-      <header className="sticky top-0 z-40 border-b border-rule bg-card/95 backdrop-blur" onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)}>
+      <header style={{ viewTransitionName: "site-header" }} className="sticky top-0 z-40 border-b border-rule bg-card/95 backdrop-blur" onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8">
           <Link href="/" className="flex min-w-0 items-center gap-3" aria-label={`${observatorio.shortName}, inicio`}>
             <Mark className="h-10 w-auto shrink-0 sm:h-12" priority />

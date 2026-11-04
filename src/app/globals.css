@@ -330,3 +330,112 @@
   font-optical-sizing: none;
   font-variation-settings: "opsz" 34;
 }
+
+/* Odometer digits */
+.odometro-ventana {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  line-height: 1;
+}
+.odometro-columna {
+  display: flex;
+  flex-direction: column;
+}
+.odometro-columna > span {
+  height: 1em;
+  line-height: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .odometro-columna {
+    transition: transform 900ms var(--ease-out-strong);
+  }
+}
+
+/* Logbook poster preview (desktop, fine pointer). */
+.vista-previa {
+  opacity: 0;
+  scale: 0.96;
+}
+.vista-previa[data-visible] {
+  opacity: 1;
+  scale: 1;
+}
+@media not ((hover: hover) and (pointer: fine)) {
+  .vista-previa {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .vista-previa {
+    transition:
+      opacity 200ms var(--ease-out-strong),
+      scale 200ms var(--ease-out-strong),
+      transform 260ms var(--ease-out-strong);
+  }
+}
+
+/* Page transitions: the header stays put; everything is still under reduced motion. */
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Axis bars grow once as they scroll in. */
+    .barra-eje {
+      animation: crecer var(--ease-out-strong) both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+    @keyframes crecer {
+      from {
+        scale: 0 1;
+      }
+    }
+
+    /* Section titles rise out of a mask, line block by line block. */
+    .titular {
+      animation: titular var(--ease-out-strong) both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 70%;
+    }
+    @keyframes titular {
+      from {
+        clip-path: inset(0 0 100% 0);
+        translate: 0 0.35em;
+      }
+      to {
+        clip-path: inset(0 0 -10% 0);
+      }
+    }
+  }
+}
+
+/* Globe base layer fades in once injected. */
+.globo-base {
+  opacity: 0;
+}
+.globo-base[data-listo] {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .globo-base {
+    transition: opacity 900ms var(--ease-out-strong);
+  }
+}
+
+/* Sections below the first screen: the browser skips their layout until they near the viewport. */
+.diferido {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}

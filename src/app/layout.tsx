@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ViewTransition } from "react";
 import { Bodoni_Moda, Schibsted_Grotesk } from "next/font/google";
 import { observatorio } from "@/config/observatorio";
 import { siteConfig } from "@site";
@@ -36,7 +37,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <Header />
         <main id="main" className="flex-1">
-          {children}
+          {/* Route changes crossfade (React ViewTransition); off under reduced motion via CSS. */}
+          <ViewTransition>{children}</ViewTransition>
         </main>
         <Footer />
       </body>

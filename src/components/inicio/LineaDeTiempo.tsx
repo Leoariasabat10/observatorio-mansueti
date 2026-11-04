@@ -20,11 +20,19 @@ export function LineaDeTiempo({ webinars, buildNow }: { webinars: WebinarResumen
   const scroller = useRef<HTMLDivElement>(null);
 
   // On narrow screens the axis scrolls: open it centered on "hoy", where the upcoming sessions are.
+  // Measured only when the chart first comes into view, so it never forces layout of offscreen content.
   useEffect(() => {
     const el = scroller.current;
-    const hoy = el?.querySelector<SVGLineElement>("[data-hoy]");
-    if (!el || !hoy || el.scrollWidth <= el.clientWidth) return;
-    el.scrollLeft = hoy.getBoundingClientRect().left - el.getBoundingClientRect().left - el.clientWidth / 2;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      io.disconnect();
+      const hoy = el.querySelector<SVGLineElement>("[data-hoy]");
+      if (!hoy || el.scrollWidth <= el.clientWidth) return;
+      el.scrollLeft = hoy.getBoundingClientRect().left - el.getBoundingClientRect().left - el.clientWidth / 2;
+    });
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   if (!webinars.length) return null;

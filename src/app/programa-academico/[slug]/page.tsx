@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { notFound } from "next/navigation";
 import { CalendarPlus, ChevronLeft, Share2 } from "lucide-react";
 import { siteConfig } from "@site";
@@ -126,7 +127,9 @@ export default async function WebinarPage({ params }: PageProps<"/programa-acade
 
           <div className="flex flex-col gap-6 lg:col-span-5">
             <PanelEstado w={resumen} buildNow={BUILD_NOW} />
-            <Afiche w={w} priority className="max-lg:max-w-sm" />
+            <ViewTransition name={`afiche-${w.slug}`} share="morph" default="none">
+              <Afiche w={w} priority className="sombra-larga max-lg:max-w-sm" />
+            </ViewTransition>
           </div>
         </div>
       </header>

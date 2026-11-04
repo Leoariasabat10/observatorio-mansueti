@@ -9,6 +9,7 @@ import { useFiltrosUrl } from "@/components/ui/useFiltrosUrl";
 import { Afiche } from "./Afiche";
 import { EjemploTag, EjeTag, EstadoBadge } from "./Etiquetas";
 import { useAhora } from "./useAhora";
+import { useVistaPrevia } from "./useVistaPrevia";
 
 type Filtro = "proximos" | "en-vivo" | "pasados" | "todos";
 const FILTROS: { id: Filtro; label: string }[] = [
@@ -56,18 +57,20 @@ export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarRe
   }
 
   const actualizar = (f: Filtro | null, j: string | null) => setUrl({ estado: f, eje: j });
+  const { ref: vistaRef, slug: vistaSlug, fila, titulo } = useVistaPrevia();
+  const enVista = webinars.find((w) => w.slug === vistaSlug);
 
   return (
     <section aria-labelledby="explorador-titulo" className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
       <div>
         <div>
           <p className="eyebrow text-blue">Bitácora del programa</p>
-          <h2 id="explorador-titulo" className="mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
+          <h2 id="explorador-titulo" className="titular mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
             Todos los webinars
           </h2>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4 border-y border-rule py-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-8 flex flex-col gap-4 border-y border-rule py-4">
           <div role="group" aria-label="Filtrar por estado">
             <div className="grid grid-cols-4 rounded-sm border border-rule bg-card p-1 sm:inline-flex">
               {FILTROS.map((f) => {
@@ -93,7 +96,7 @@ export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarRe
             </div>
           </div>
 
-          <div role="group" aria-label="Filtrar por eje temático" className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0 xl:flex-nowrap xl:justify-end">
+          <div role="group" aria-label="Filtrar por eje temático" className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0">
             {[{ slug: null, nombre: "Todos los ejes", color: "" }, ...ejes].map((e) => {
               const on = eje === e.slug;
               return (
@@ -140,27 +143,34 @@ export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarRe
               <h3 className="mb-2 font-display text-3xl text-navy/70 italic">{g.mes}</h3>
               <ol>
                 {g.items.map(({ w, estado }) => (
-                  <FilaWebinar key={w.slug} w={w} estado={estado} />
+                  <FilaWebinar key={w.slug} w={w} estado={estado} fila={fila} titulo={titulo} />
                 ))}
               </ol>
             </section>
           ))}
         </div>
       )}
+
+      <div ref={vistaRef} aria-hidden className="vista-previa pointer-events-none fixed top-0 left-0 z-30 w-64" data-visible={enVista ? "" : undefined}>
+        {enVista && <Afiche w={enVista} className="sombra-larga" />}
+      </div>
     </section>
   );
 }
 
-function FilaWebinar({ w, estado }: { w: WebinarResumen; estado: Estado }) {
+type Vista = ReturnType<typeof useVistaPrevia>;
+
+function FilaWebinar({ w, estado, fila, titulo }: { w: WebinarResumen; estado: Estado; fila: Vista["fila"]; titulo: Vista["titulo"] }) {
   const href = `/programa-academico/${w.slug}`;
   const pasado = estado === "pasado";
   return (
     <li
+      {...fila(w.slug)}
       style={{ viewTransitionName: `w-${w.slug}` }}
-      className="revelar group relative grid grid-cols-[4rem_1fr] gap-x-5 border-t border-rule py-7 sm:grid-cols-[5.5rem_1fr] lg:grid-cols-[6.5rem_1fr_5.5rem_12rem] lg:gap-x-8"
+      className="revelar group relative grid grid-cols-[4rem_1fr] gap-x-5 border-t border-rule py-8 transition-colors duration-300 sm:grid-cols-[5.5rem_1fr] lg:grid-cols-[7rem_1fr_12rem] lg:gap-x-10 lg:hover:bg-card/70"
     >
       <time dateTime={new Date(w.start).toISOString()} className={`flex flex-col ${pasado ? "text-muted" : "text-navy"}`}>
-        <span className="tnum font-display text-5xl leading-[0.82] lg:text-6xl">{fechaDia(w.start)}</span>
+        <span className="tnum font-display text-5xl leading-[0.82] lg:text-7xl">{fechaDia(w.start)}</span>
         <span className="mt-2 text-sm font-semibold">{fechaMes(w.start)}</span>
         <span className="tnum text-xs text-muted">{horaBogota(w.start)} h</span>
       </time>
@@ -173,7 +183,7 @@ function FilaWebinar({ w, estado }: { w: WebinarResumen; estado: Estado }) {
           ))}
         </div>
         <h4 className="mt-3 font-serif text-xl leading-snug text-balance text-navy lg:text-[1.4rem]">
-          <Link href={href} className="decoration-blue/40 decoration-1 underline-offset-4 group-hover:underline hover:decoration-blue">
+          <Link href={href} {...titulo(w.slug)} className="decoration-blue/40 decoration-1 underline-offset-4 group-hover:underline hover:decoration-blue">
             {w.titulo}
           </Link>
         </h4>
@@ -184,9 +194,6 @@ function FilaWebinar({ w, estado }: { w: WebinarResumen; estado: Estado }) {
         </p>
       </div>
 
-      <Link href={href} tabIndex={-1} aria-hidden className="hidden self-start lg:block">
-        <Afiche w={w} size="thumb" className="transition-transform duration-300 ease-[cubic-bezier(.23,1,.32,1)] group-hover:-translate-y-0.5" />
-      </Link>
 
       <div className="col-start-2 mt-5 flex flex-wrap gap-2 lg:col-start-auto lg:mt-0 lg:flex-col lg:justify-center">
         {!pasado && w.inscripcion && (

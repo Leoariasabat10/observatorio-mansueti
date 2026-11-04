@@ -6,9 +6,12 @@ import { categoriaPorSlug, fechaPublicacion } from "@/lib/categorias";
 import { cifrasInicio } from "@/lib/cifras";
 import { BUILD_NOW, resumenes } from "@/lib/content";
 import { ejes } from "@/lib/ejes";
+import { paises } from "@/lib/paises";
 import { resumenesPublicaciones } from "@/lib/publicaciones";
 import { AgendaBreve } from "@/components/inicio/AgendaBreve";
+import { BarrasEjes } from "@/components/inicio/BarrasEjes";
 import { LineaDeTiempo } from "@/components/inicio/LineaDeTiempo";
+import { MapaPonentes } from "@/components/mapa/MapaPonentes";
 import { Globo } from "@/components/inicio/Globo";
 import { ProximaObservacion } from "@/components/inicio/ProximaObservacion";
 import { Contador } from "@/components/ui/Contador";
@@ -43,6 +46,10 @@ export default function Inicio() {
   const publicaciones = resumenesPublicaciones();
   const cifras = cifrasInicio(webinars, BUILD_NOW);
   const ejemplo = webinars.some((w) => w.ejemplo);
+  const ponentesPais = new Map(webinars.flatMap((w) => w.ponentes).map((p) => [p.nombre, p.pais]));
+  const porPais = new Map<string, number>();
+  for (const p of ponentesPais.values()) porPais.set(p, (porPais.get(p) ?? 0) + 1);
+  const conteoPaises = [...porPais].map(([codigo, ponentes]) => ({ codigo, ponentes })).sort((x, y) => y.ponentes - x.ponentes);
 
   return (
     <>
@@ -127,30 +134,61 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section aria-labelledby="linea-tiempo" className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
-        <div className="revelar grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-6">
-            <p className="eyebrow text-blue">Bitácora</p>
-            <h2 id="linea-tiempo" className="mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
-              El programa en el tiempo
-            </h2>
+      {/* Observatory dashboard */}
+      <section aria-labelledby="tablero" className="diferido graticula border-y border-rule bg-paper">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="eyebrow text-blue">Tablero</p>
+              <h2 id="tablero" className="titular mt-5 max-w-2xl font-display text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.02] text-balance text-navy">
+                El programa, observado
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm leading-relaxed text-muted">
+              Calendario, temas y procedencia de los ponentes, calculados con el contenido publicado en este sitio.
+              {ejemplo && " Hoy muestra contenido de ejemplo."}
+            </p>
           </div>
-          <p className="max-w-md text-muted lg:col-span-6 lg:justify-self-end">
-            Cada punto es un webinar. El color indica su eje y el relleno, si ya se realizó. Seleccione un punto para abrir la sesión.
-          </p>
-        </div>
-        <div className="mt-10">
-          <LineaDeTiempo webinars={webinars} buildNow={BUILD_NOW} />
+
+          <div className="mt-14 grid gap-6 lg:grid-cols-12">
+            <div className="revelar min-w-0 rounded-sm border border-rule bg-card p-6 sm:p-8 lg:col-span-12">
+              <h3 className="text-sm font-semibold text-navy">Línea de tiempo</h3>
+              <p className="mt-1 text-xs text-muted">Cada punto es un webinar: relleno si ya se realizó, con anillo si está por venir. Seleccione uno para abrirlo.</p>
+              <div className="mt-8">
+                <LineaDeTiempo webinars={webinars} buildNow={BUILD_NOW} />
+              </div>
+            </div>
+
+            <div className="revelar min-w-0 rounded-sm border border-rule bg-card p-6 sm:p-8 lg:col-span-5">
+              <h3 className="text-sm font-semibold text-navy">Actividad por eje</h3>
+              <p className="mt-1 mb-8 text-xs text-muted">Webinars y publicaciones que tratan cada eje.</p>
+              <BarrasEjes items={[...webinars, ...publicaciones]} />
+            </div>
+
+            <figure className="revelar min-w-0 rounded-sm border border-rule bg-card p-6 sm:p-8 lg:col-span-7">
+              <figcaption className="text-sm font-semibold text-navy">Procedencia de los ponentes</figcaption>
+              <div className="mt-6 grid items-center gap-6 sm:grid-cols-[1fr_12rem]">
+                <MapaPonentes conteo={conteoPaises} />
+                <ul className="text-sm text-muted">
+                  {conteoPaises.map((c) => (
+                    <li key={c.codigo} className="flex justify-between gap-3 border-b border-rule/70 py-1.5">
+                      <span>{paises[c.codigo]?.nombre}</span>
+                      <span className="tnum font-semibold text-navy">{c.ponentes}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 
       {/* Mission and axes */}
-      <section aria-labelledby="mision" className="border-y border-rule bg-card">
+      <section aria-labelledby="mision" className="diferido border-y border-rule bg-card">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:py-36 lg:grid-cols-12 lg:gap-16 lg:px-8">
           <div className="lg:col-span-5">
             <p className="eyebrow text-blue">Qué es el Observatorio</p>
-            <h2 id="mision" className="mt-6 font-display text-[clamp(2.6rem,5.6vw,5rem)] leading-[0.98] tracking-[-0.02em] text-balance text-navy lg:sticky lg:top-28">
+            <h2 id="mision" className="titular mt-6 font-display text-[clamp(2.6rem,5.6vw,5rem)] leading-[0.98] tracking-[-0.02em] text-balance text-navy lg:sticky lg:top-28">
               Un telescopio sobre el trabajo en la región
             </h2>
           </div>
@@ -194,7 +232,7 @@ export default function Inicio() {
       <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:gap-12 lg:px-8">
         <section aria-labelledby="agenda" className="lg:col-span-7">
           <div className="flex items-end justify-between gap-6">
-            <h2 id="agenda" className="font-display text-[clamp(1.9rem,3.2vw,2.6rem)] leading-[1.05] text-navy">
+            <h2 id="agenda" className="titular font-display text-[clamp(1.9rem,3.2vw,2.6rem)] leading-[1.05] text-navy">
               Agenda
             </h2>
             <Link href="/programa-academico" className="text-sm font-semibold text-blue hover:underline">
@@ -208,7 +246,7 @@ export default function Inicio() {
 
         <section aria-labelledby="publicaciones-inicio" className="lg:col-span-5">
           <div className="flex items-end justify-between gap-6">
-            <h2 id="publicaciones-inicio" className="font-display text-[clamp(1.9rem,3.2vw,2.6rem)] leading-[1.05] text-navy">
+            <h2 id="publicaciones-inicio" className="titular font-display text-[clamp(1.9rem,3.2vw,2.6rem)] leading-[1.05] text-navy">
               Publicaciones
             </h2>
             <Link href="/publicaciones" className="text-sm font-semibold text-blue hover:underline">
@@ -241,7 +279,7 @@ export default function Inicio() {
       </div>
 
       {/* Contact */}
-      <section aria-labelledby="escribanos" className="border-t border-rule bg-paper">
+      <section aria-labelledby="escribanos" className="diferido border-t border-rule bg-paper">
         <div className="revelar mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:px-8">
           <div className="lg:col-span-6">
             <p className="eyebrow text-blue">Contacto</p>
@@ -261,11 +299,11 @@ export default function Inicio() {
               <MessageCircle className="size-4" aria-hidden />
               WhatsApp {contact.phoneDisplay}
             </a>
-            <a href={`mailto:${contact.email}`} className="inline-flex items-center justify-center gap-2 rounded-sm border border-navy/30 px-5 py-3.5 text-sm font-semibold text-navy transition-colors hover:border-navy">
+            <a href={`mailto:${contact.email}`} className="enlace inline-flex items-center gap-2 self-center text-sm font-semibold text-navy">
               <Mail className="size-4" aria-hidden />
               Correo
             </a>
-            <a href={mapa} target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-2 rounded-sm border border-navy/30 px-5 py-3.5 text-sm font-semibold text-navy transition-colors hover:border-navy">
+            <a href={mapa} target="_blank" rel="noopener" className="enlace inline-flex items-center gap-2 self-center text-sm font-semibold text-navy">
               <MapPin className="size-4" aria-hidden />
               Cómo llegar
             </a>

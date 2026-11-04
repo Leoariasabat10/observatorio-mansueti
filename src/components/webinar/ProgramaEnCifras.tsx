@@ -24,11 +24,11 @@ export function ProgramaEnCifras({ webinars }: { webinars: WebinarResumen[] }) {
   ];
 
   return (
-    <section aria-labelledby="cifras-titulo" className="graticula border-y border-rule bg-paper">
+    <section aria-labelledby="cifras-titulo" className="diferido graticula border-y border-rule bg-paper">
       <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:gap-12 lg:px-8">
         <div className="lg:col-span-6">
           <p className="eyebrow text-blue">El programa en cifras</p>
-          <h2 id="cifras-titulo" className="mt-4 max-w-md font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
+          <h2 id="cifras-titulo" className="titular mt-4 max-w-md font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
             Ponentes de toda la región, una cita desde Bogotá
           </h2>
           <p className="mt-5 max-w-md text-muted">

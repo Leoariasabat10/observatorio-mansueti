@@ -2,7 +2,6 @@ import Link from "next/link";
 import { siteConfig } from "@site";
 import { asociacion, contact, legal, nav, observatorio, social } from "@/config/observatorio";
 import { ejes } from "@/lib/ejes";
-import { Mark } from "@/components/brand/Mark";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 
 const heading = "eyebrow text-paper/70";
@@ -10,19 +9,20 @@ const link = "text-sm text-paper/80 transition-colors hover:text-paper";
 
 export function Footer() {
   return (
-    <footer id="contacto" className="scroll-mt-20 border-t-4 border-gold bg-navy-deep text-paper">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:px-8">
+    <footer id="contacto" className="diferido noche grano relative scroll-mt-20 overflow-hidden text-paper">
+      {/* Editorial wordmark: the name set large across the page, honoree below. */}
+      <div className="mx-auto max-w-7xl px-5 pt-20 pb-14 lg:px-8 lg:pt-28">
+        <p className="font-display text-[clamp(3.25rem,11.5vw,10.5rem)] leading-[0.82] font-medium tracking-[-0.035em]" aria-hidden>
+          Observatorio <span className="text-sky">{observatorio.acronym}</span>
+        </p>
+        <div className="mt-8 flex flex-col gap-3 border-t border-paper/15 pt-6 sm:flex-row sm:items-baseline sm:justify-between">
+          <p className="font-display text-2xl text-gold italic sm:text-3xl">{observatorio.honoree}</p>
+          <p className="max-w-md text-sm text-paper/70">{observatorio.name}</p>
+        </div>
+      </div>
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-16 sm:grid-cols-2 lg:grid-cols-12 lg:px-8">
         <div className="sm:col-span-2 lg:col-span-4">
-          <div className="flex items-center gap-4">
-            <span className="shrink-0 rounded-sm bg-card p-2">
-              <Mark className="h-12 w-auto" />
-            </span>
-            <div className="leading-tight">
-              <p className="text-sm font-semibold text-balance">{observatorio.name}</p>
-              <p className="mt-1 font-display text-2xl text-gold italic">{observatorio.honoree}</p>
-            </div>
-          </div>
-          <p className="mt-6 max-w-sm text-sm leading-relaxed text-paper/70">{observatorio.mission}</p>
+          <p className="max-w-sm text-sm leading-relaxed text-paper/70">{observatorio.mission}</p>
           <ul className="mt-6 flex gap-3">
             {social.map((s) => (
               <li key={s.id}>
@@ -91,7 +91,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-paper/10">
+      <div className="relative border-t border-paper/10">
         <div className="mx-auto grid max-w-7xl gap-5 px-5 py-8 text-xs leading-relaxed text-paper/60 lg:grid-cols-12 lg:px-8">
           <p className="lg:col-span-5">{legal.disclaimer}</p>
           <p className="lg:col-span-5">

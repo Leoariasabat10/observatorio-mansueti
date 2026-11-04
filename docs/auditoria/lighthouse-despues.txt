@@ -1,0 +1,9 @@
+Lighthouse local (build estático servido en 127.0.0.1), mejor de 2 corridas por medición. 2026-11-04.
+Orden: rendimiento / accesibilidad / buenas prácticas / SEO
+
+Inicio              móvil     89–94 / 100 / 100 / 100   (varía entre corridas en este portátil)
+Inicio              escritorio 100  / 100 / 100 / 100
+Programa académico  móvil     94    / 100 / 100 / 100
+Programa académico  escritorio 99   / 100 / 100 / 100
+
+Antes (commit 84cb8bc): Inicio 87 móvil / 99 escritorio; Programa 79 móvil / 62 escritorio.

@@ -81,3 +81,26 @@ function calcular() {
 
 let cache: ReturnType<typeof calcular> | undefined;
 export const globo = () => (cache ??= calcular());
+
+/**
+ * Static base layer of the globe (ring, sphere, graticule, dots) as an SVG document.
+ * Served at /globo-base.svg and injected inline after load: inline SVG is not an LCP candidate, and
+ * fetching it keeps ~2,000 dots out of the page HTML and the RSC payload (which would duplicate them).
+ * Routes, Bogotá and labels are rendered on top by the Globo component.
+ */
+export function globoBaseSvg() {
+  const g = globo();
+  const c = GLOBO / 2;
+  const ticks = Array.from({ length: 120 }, (_, i) => i * 3)
+    .map((a) => `<line x1="${c}" y1="${c - 318}" x2="${c}" y2="${c - (a % 30 === 0 ? 306 : 312)}" transform="rotate(${a} ${c} ${c})" stroke-opacity="${a % 30 === 0 ? 0.4 : 0.16}"/>`)
+    .join("");
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${GLOBO} ${GLOBO}" width="100%" height="100%" aria-hidden="true">
+<defs><radialGradient id="globo-luz" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#123a9c" stop-opacity=".55"/><stop offset=".6" stop-color="#062265" stop-opacity=".25"/><stop offset="1" stop-color="#03174a" stop-opacity="0"/></radialGradient></defs>
+<g stroke="#fff">${ticks}</g>
+<path d="${g.esfera}" fill="url(#globo-luz)" stroke="#9cc9f5" stroke-opacity=".35"/>
+<path d="${g.graticula}" fill="none" stroke="#9cc9f5" stroke-opacity=".1"/>
+<path d="${g.resto}" fill="#9cc9f5" fill-opacity=".16"/>
+<path d="${g.sud}" fill="#9cc9f5" fill-opacity=".62"/>
+</svg>`;
+}
+
