@@ -19,7 +19,7 @@ export function Footer() {
             </span>
             <div className="leading-tight">
               <p className="text-sm font-semibold text-balance">{observatorio.name}</p>
-              <p className="mt-1 font-serif text-lg text-gold italic">{observatorio.honoree}</p>
+              <p className="mt-1 font-display text-2xl text-gold italic">{observatorio.honoree}</p>
             </div>
           </div>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-paper/70">{observatorio.mission}</p>

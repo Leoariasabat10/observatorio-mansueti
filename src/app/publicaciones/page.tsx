@@ -25,7 +25,7 @@ export default function Publicaciones() {
         <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-14 pb-12 sm:pt-20 lg:grid-cols-12 lg:gap-10 lg:px-8 lg:pt-24 lg:pb-16">
           <div className="lg:col-span-7">
             <p className="eyebrow text-blue">Publicaciones y Boletines</p>
-            <h1 id="publicaciones-titulo" className="mt-6 font-display text-[clamp(2.9rem,7vw,5.75rem)] leading-[0.94] tracking-[-0.015em] text-balance text-navy">
+            <h1 id="publicaciones-titulo" className="mt-8 font-display text-[clamp(3rem,8.6vw,8.25rem)] leading-[0.9] tracking-[-0.025em] text-balance text-navy">
               Lo que el Observatorio publica
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
@@ -36,7 +36,7 @@ export default function Publicaciones() {
             {categorias.map((c) => (
               <div key={c.slug} className="grid grid-cols-[1fr_auto] gap-x-4 border-b border-rule py-3 last:border-0">
                 <dt>
-                  <Link href={`/publicaciones?categoria=${c.slug}`} className="font-serif text-lg text-navy hover:underline hover:decoration-blue/50 hover:underline-offset-4">
+                  <Link href={`/publicaciones?categoria=${c.slug}`} className="text-base font-semibold text-navy hover:underline hover:decoration-blue/50 hover:underline-offset-4">
                     {c.nombre}
                   </Link>
                 </dt>
@@ -57,7 +57,7 @@ export default function Publicaciones() {
       </section>
 
       {boletin && (
-        <section aria-labelledby="boletin-titulo" className="graticula-inv relative overflow-hidden bg-navy text-paper">
+        <section aria-labelledby="boletin-titulo" className="noche grano relative overflow-hidden text-paper">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:py-16 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-8">
             <div className="lg:col-span-4">
               <p className="eyebrow text-gold">Último boletín</p>

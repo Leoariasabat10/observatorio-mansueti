@@ -15,10 +15,9 @@
   --color-success: #1b7a43;
   --color-danger: #c42b1c; /* logo red, live/"en vivo" state */
 
-  /* Both families are from Argentine foundries (Impallari, Omnibus-Type), OFL licensed. */
-  --font-display: var(--font-caslon-display), "Georgia", serif; /* 40px and up: titles, big figures */
-  --font-serif: var(--font-caslon), "Georgia", serif; /* headings below 40px, quotes */
-  --font-sans: var(--font-archivo), system-ui, sans-serif; /* text, UI, data labels */
+  --font-display: var(--font-bodoni), "Didot", "Georgia", serif; /* titles, big figures, dates */
+  --font-serif: var(--font-bodoni), "Didot", "Georgia", serif; /* headings from 20px up; optical size handles contrast */
+  --font-sans: var(--font-schibsted), system-ui, sans-serif; /* text, labels, navigation, small headings */
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -194,8 +193,7 @@
 
   /* The telescope's graduated ring turns once every three minutes: the only ambient motion. */
   .reticula-giro {
-    transform-box: view-box;
-    transform-origin: 50% 50%;
+    will-change: transform;
     animation: girar 180s linear infinite;
   }
   @keyframes girar {
@@ -253,4 +251,82 @@
       box-shadow: 0 10px 30px -18px rgb(6 34 101 / 0.45);
     }
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Material: night-sky navy, film grain, long shadows. Gold stays a hairline accent.
+   --------------------------------------------------------------------------- */
+
+.noche {
+  background:
+    radial-gradient(110% 80% at 82% 18%, #0d3192 0%, rgb(13 49 146 / 0) 55%),
+    radial-gradient(90% 70% at 10% 100%, #041d5c 0%, rgb(4 29 92 / 0) 60%),
+    #03174a;
+}
+
+/* Film grain: a 160px SVG noise tile (about 1 KB), drawn under the content. */
+.grano {
+  isolation: isolate;
+}
+.grano::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.sombra-larga {
+  box-shadow:
+    0 50px 90px -50px rgb(3 23 74 / 0.55),
+    0 22px 40px -28px rgb(3 23 74 / 0.4);
+}
+
+/* Text link with a hairline that draws on hover. */
+.enlace {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 320ms var(--ease-out-strong);
+}
+@media (hover: hover) and (pointer: fine) {
+  .enlace:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Signature moment of the home page: routes drawn once from Bogotá. */
+  .rumbo {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: trazar 1.4s var(--ease-out-strong) forwards;
+    animation-delay: calc(500ms + var(--i) * 110ms);
+  }
+  .rumbo-fin {
+    opacity: 0;
+    animation: aparecer 400ms var(--ease-out-strong) forwards;
+    animation-delay: calc(1300ms + var(--i) * 110ms);
+  }
+  @keyframes trazar {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes aparecer {
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* Bodoni Moda at its largest optical size has hairlines thinner than a pixel on ordinary (1x) screens,
+   most visibly in light text on navy. Capping the optical size keeps the didone contrast but sturdier hairlines. */
+.font-display,
+.font-serif {
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 34;
 }

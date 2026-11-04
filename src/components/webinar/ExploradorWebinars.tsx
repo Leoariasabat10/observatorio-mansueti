@@ -137,7 +137,7 @@ export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarRe
         <div className="mt-10">
           {grupos.map((g) => (
             <section key={g.mes} aria-label={g.mes} className="mt-10 first:mt-0">
-              <h3 className="mb-1 font-serif text-lg text-blue italic">{g.mes}</h3>
+              <h3 className="mb-2 font-display text-3xl text-navy/70 italic">{g.mes}</h3>
               <ol>
                 {g.items.map(({ w, estado }) => (
                   <FilaWebinar key={w.slug} w={w} estado={estado} />

@@ -39,7 +39,7 @@ export function Header() {
               <span className="block text-[0.95rem] font-extrabold tracking-[0.04em] text-navy sm:text-base">
                 OBSERVATORIO {observatorio.acronym}
               </span>
-              <span className="block font-serif text-[0.9rem] text-heritage italic sm:text-[0.95rem]">{observatorio.honoree}</span>
+              <span className="block text-[0.85rem] text-heritage italic sm:text-[0.9rem]">{observatorio.honoree}</span>
             </span>
           </Link>
 
@@ -81,7 +81,7 @@ export function Header() {
           <ul className="mx-auto max-w-7xl px-5">
             {nav.map((item) => (
               <li key={item.href} className="border-b border-rule">
-                <Link href={item.href} aria-current={current(item.href)} className="block py-4 font-serif text-xl text-navy aria-[current=page]:text-blue">
+                <Link href={item.href} aria-current={current(item.href)} className="block py-4 font-display text-3xl text-navy aria-[current=page]:text-blue">
                   {item.label}
                 </Link>
               </li>

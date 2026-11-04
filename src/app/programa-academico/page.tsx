@@ -21,10 +21,10 @@ export default function ProgramaAcademico() {
   return (
     <>
       <section aria-labelledby="programa-titulo" className="border-b border-rule bg-card">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-14 pb-12 sm:pt-20 lg:grid-cols-12 lg:gap-10 lg:px-8 lg:pt-24 lg:pb-16">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-16 pb-14 sm:pt-24 lg:grid-cols-12 lg:gap-10 lg:px-8 lg:pt-32 lg:pb-20">
           <div className="lg:col-span-8">
             <p className="eyebrow text-blue">Programa académico</p>
-            <h1 id="programa-titulo" className="mt-6 font-display text-[clamp(2.9rem,7vw,5.75rem)] leading-[0.94] tracking-[-0.015em] text-balance text-navy">
+            <h1 id="programa-titulo" className="mt-8 font-display text-[clamp(3rem,8.6vw,8.25rem)] leading-[0.9] tracking-[-0.025em] text-balance text-navy">
               Webinars del Observatorio
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
@@ -36,15 +36,15 @@ export default function ProgramaAcademico() {
           <dl className="grid grid-cols-2 gap-x-6 gap-y-5 self-end border-t border-rule pt-6 text-sm sm:grid-cols-3 lg:col-span-4 lg:grid-cols-1 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
             <div>
               <dt className="text-muted">Transmisión desde</dt>
-              <dd className="mt-1 font-serif text-lg text-navy">Bogotá, Colombia</dd>
+              <dd className="mt-1 text-base font-semibold text-navy">Bogotá, Colombia</dd>
             </div>
             <div>
               <dt className="text-muted">Coordenadas de la sede</dt>
-              <dd className="tnum mt-1 font-serif text-base whitespace-nowrap text-navy sm:text-lg">4°36′ N, 74°04′ O</dd>
+              <dd className="tnum mt-1 text-base font-semibold whitespace-nowrap text-navy">4°36′ N, 74°04′ O</dd>
             </div>
             <div className="col-span-2 sm:col-span-1">
               <dt className="text-muted">Todas las horas en</dt>
-              <dd className="mt-1 font-serif text-lg text-navy">Hora de Bogotá (UTC−5)</dd>
+              <dd className="mt-1 text-base font-semibold text-navy">Hora de Bogotá (UTC−5)</dd>
             </div>
           </dl>
         </div>

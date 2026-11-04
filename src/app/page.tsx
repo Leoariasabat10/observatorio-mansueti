@@ -7,12 +7,11 @@ import { cifrasInicio } from "@/lib/cifras";
 import { BUILD_NOW, resumenes } from "@/lib/content";
 import { ejes } from "@/lib/ejes";
 import { resumenesPublicaciones } from "@/lib/publicaciones";
-import { Mark } from "@/components/brand/Mark";
 import { AgendaBreve } from "@/components/inicio/AgendaBreve";
 import { LineaDeTiempo } from "@/components/inicio/LineaDeTiempo";
-import { ProximoEnLinea } from "@/components/inicio/ProximoEnLinea";
+import { Globo } from "@/components/inicio/Globo";
+import { ProximaObservacion } from "@/components/inicio/ProximaObservacion";
 import { Contador } from "@/components/ui/Contador";
-import { EjemploTag } from "@/components/webinar/Etiquetas";
 
 const fechaCorta = (iso: string) =>
   new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(iso));
@@ -49,68 +48,81 @@ export default function Inicio() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizacion).replace(/</g, "\\u003c") }} />
 
-      {/* Hero */}
-      <section aria-labelledby="inicio-titulo" className="bg-card">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 pt-10 pb-16 sm:pt-16 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8 lg:pt-20 lg:pb-24">
-          <div className="lg:col-span-7">
-            <p className="eyebrow text-blue">Observatorio de la {asociacion.acronym}</p>
-            <h1 id="inicio-titulo" className="mt-6 font-display text-[clamp(2.9rem,6.6vw,5.6rem)] leading-[0.95] tracking-[-0.015em] text-balance text-navy">
+      {/* Hero: the one signature moment of the page */}
+      <section aria-labelledby="inicio-titulo" className="noche grano relative overflow-hidden text-paper">
+        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="relative z-10 pt-16 pb-6 sm:pt-24 lg:max-w-[46rem] lg:pt-32 lg:pb-24">
+            <p className="eyebrow text-gold">Observatorio de la {asociacion.acronym}</p>
+            <h1 id="inicio-titulo" className="mt-8 font-display text-[clamp(3rem,8vw,7.75rem)] leading-[0.9] font-medium tracking-[-0.025em] text-balance">
               Una bitácora del trabajo en Sudamérica
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
+            <p className="mt-8 max-w-[34rem] text-lg leading-relaxed text-paper/80">
               Seguimos los eventos, debates y decisiones del Derecho del Trabajo y de la Seguridad Social en Latinoamérica y Colombia, y los ordenamos por
               ejes temáticos.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href="/programa-academico" className="inline-flex items-center justify-center rounded-sm bg-navy px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue">
+            <div className="mt-11 flex flex-wrap items-center gap-x-8 gap-y-5">
+              <Link href="/programa-academico" className="inline-flex items-center gap-3 rounded-sm bg-paper px-6 py-3.5 text-sm font-semibold text-navy hover:bg-white">
                 Ver el programa académico
+                <ArrowRight className="size-4" aria-hidden />
               </Link>
-              <Link href="/publicaciones" className="inline-flex items-center justify-center rounded-sm border border-navy/25 px-6 py-3.5 text-sm font-semibold text-navy transition-colors duration-200 hover:border-navy">
+              <Link href="/publicaciones" className="enlace text-sm font-semibold text-paper">
                 Publicaciones y boletines
               </Link>
             </div>
-            <ProximoEnLinea webinars={webinars} buildNow={BUILD_NOW} />
           </div>
 
-          <figure className="mx-auto w-full max-w-[13rem] sm:max-w-xs lg:col-span-5 lg:max-w-none">
-            <Mark className="h-auto w-full" priority large />
-            <figcaption className="mt-4 text-center font-serif text-lg text-heritage italic sm:text-xl">«{observatorio.honoree}»</figcaption>
-          </figure>
+          <div className="pointer-events-none relative -mx-[18%] -mt-4 -mb-[22%] sm:-mx-[8%] lg:absolute lg:inset-y-0 lg:right-[-14%] lg:m-0 lg:flex lg:w-[min(58rem,66vw)] lg:items-center">
+            <Globo className="h-auto w-full" />
+          </div>
+        </div>
+
+        <div className="relative z-10 border-t border-paper/15">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <ProximaObservacion webinars={webinars} buildNow={BUILD_NOW} />
+          </div>
         </div>
       </section>
 
-      {/* Featured figures */}
-      <section aria-labelledby="cifras-inicio" className="graticula-inv relative bg-navy text-paper">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
-          <div className="revelar grid gap-6 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-7">
-              <p className="eyebrow text-gold">El Observatorio en cifras</p>
-              <h2 id="cifras-inicio" className="mt-4 font-display text-[clamp(2rem,3.8vw,3rem)] leading-[1.05] text-balance">
-                Lo que el programa ha reunido hasta hoy
-              </h2>
-            </div>
-            <div className="text-sm text-paper/75 lg:col-span-5">
-              <p>Cada cifra indica su fuente y su fecha. Las que aún no tienen fuente aparecen como dato pendiente.</p>
-              {ejemplo && <EjemploTag inverse className="mt-3" />}
-            </div>
+      {/* Featured figures: numbers as the graphic element */}
+      <section aria-labelledby="cifras-inicio" className="bg-card">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8">
+          <div className="revelar flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <h2 id="cifras-inicio" className="max-w-xl font-display text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.02] text-balance text-navy">
+              Lo que el programa ha reunido hasta hoy
+            </h2>
+            <p className="max-w-sm text-sm leading-relaxed text-muted">
+              Cada cifra indica su fuente y su fecha. Las que aún no tienen fuente se muestran como dato pendiente.
+              {ejemplo && " Las tres primeras se calculan con el contenido de ejemplo."}
+            </p>
           </div>
 
-          <dl className="revelar-hijos mt-12 grid grid-cols-2 gap-px border-y border-paper/15 bg-paper/15 lg:grid-cols-3">
-            {cifras.map((c) => (
-              <div key={c.label} className="flex flex-col gap-3 bg-navy px-3 py-7 sm:px-6 sm:py-8 lg:[&:nth-child(3n+1)]:pl-0 max-lg:[&:nth-child(odd)]:pl-0">
-                <dt className="order-2 text-sm text-paper/90 sm:text-[0.9375rem]">{c.label}</dt>
-                <dd className="order-3 -mt-2 text-[0.6875rem] leading-snug text-paper/55 sm:text-xs">
-                  {c.fuente ? `Fuente: ${c.fuente}${c.fecha ? `, ${fechaCorta(c.fecha)}` : ""}${c.ejemplo ? " (datos de ejemplo)" : ""}` : "Fuente pendiente"}
-                </dd>
-                <dd className="order-1 font-display text-[clamp(2.9rem,7vw,5.25rem)] leading-[0.85] text-gold">
-                  {c.valor == null ? (
-                    <span className="inline-block rounded-sm border border-dashed border-gold/50 px-2.5 py-1 font-sans text-sm font-semibold">Dato pendiente</span>
-                  ) : (
-                    <Contador valor={c.valor} />
-                  )}
-                </dd>
-              </div>
-            ))}
+          <dl className="revelar-hijos mt-16 grid border-t border-navy sm:grid-cols-3">
+            {cifras
+              .filter((c) => c.valor != null)
+              .map((c) => (
+                <div key={c.label} className="flex flex-col border-b border-rule py-8 sm:border-b-0 sm:border-l sm:px-8 sm:first:border-l-0 sm:first:pl-0">
+                  <dd className="order-1 font-display text-[clamp(5rem,11vw,9.5rem)] leading-[0.78] tracking-[-0.03em] text-navy">
+                    <Contador valor={c.valor!} />
+                  </dd>
+                  <dt className="order-2 mt-6 text-base font-medium text-navy">{c.label}</dt>
+                  <dd className="order-3 mt-1.5 text-xs leading-snug text-muted">
+                    {c.fuente}
+                    {c.fecha ? `, ${fechaCorta(c.fecha)}` : ""}
+                    {c.ejemplo ? " (datos de ejemplo)" : ""}
+                  </dd>
+                </div>
+              ))}
+          </dl>
+
+          <dl className="mt-4 grid gap-x-8 border-t border-rule sm:grid-cols-3">
+            {cifras
+              .filter((c) => c.valor == null)
+              .map((c) => (
+                <div key={c.label} className="flex items-baseline justify-between gap-4 border-b border-rule py-4">
+                  <dt className="text-sm text-navy">{c.label}</dt>
+                  <dd className="shrink-0 text-xs font-semibold text-muted">Dato pendiente</dd>
+                </div>
+              ))}
           </dl>
         </div>
       </section>
@@ -135,10 +147,10 @@ export default function Inicio() {
 
       {/* Mission and axes */}
       <section aria-labelledby="mision" className="border-y border-rule bg-card">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:py-24 lg:grid-cols-12 lg:gap-16 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:py-36 lg:grid-cols-12 lg:gap-16 lg:px-8">
           <div className="lg:col-span-5">
             <p className="eyebrow text-blue">Qué es el Observatorio</p>
-            <h2 id="mision" className="mt-5 font-display text-[clamp(2.25rem,4.4vw,3.6rem)] leading-[1.02] text-balance text-navy lg:sticky lg:top-28">
+            <h2 id="mision" className="mt-6 font-display text-[clamp(2.6rem,5.6vw,5rem)] leading-[0.98] tracking-[-0.02em] text-balance text-navy lg:sticky lg:top-28">
               Un telescopio sobre el trabajo en la región
             </h2>
           </div>
@@ -211,7 +223,7 @@ export default function Inicio() {
                     <span className="text-xs font-semibold text-blue">
                       {categoriaPorSlug(p.categoria)?.singular}, {fechaPublicacion(p.fecha)}
                     </span>
-                    <span className="mt-1.5 block font-serif text-lg leading-snug text-navy decoration-blue/40 underline-offset-4 group-hover:underline">{p.titulo}</span>
+                    <span className="mt-1.5 block text-base font-semibold leading-snug text-navy decoration-blue/40 underline-offset-4 group-hover:underline">{p.titulo}</span>
                   </Link>
                 </li>
               ))}

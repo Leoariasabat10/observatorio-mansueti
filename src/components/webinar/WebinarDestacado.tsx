@@ -33,11 +33,11 @@ export function WebinarDestacado({ webinars, buildNow }: { webinars: WebinarResu
   const href = `/programa-academico/${w.slug}`;
 
   return (
-    <section aria-labelledby="destacado-titulo" className="relative overflow-hidden bg-navy text-paper">
+    <section aria-labelledby="destacado-titulo" className="noche grano relative overflow-hidden text-paper">
       <Reticula className="pointer-events-none absolute top-1/2 -right-[22rem] w-[52rem] -translate-y-1/2 max-lg:hidden" />
       <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:py-16 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-8 lg:py-20">
         <Link href={href} className="group order-last block w-full max-w-[17rem] sm:max-w-xs lg:order-none lg:col-span-5 lg:max-w-none" tabIndex={-1} aria-hidden>
-          <Afiche w={w} priority className="shadow-[0_30px_60px_-30px_rgb(0_0_0/0.6)] transition-transform duration-500 ease-[cubic-bezier(.23,1,.32,1)] group-hover:-translate-y-1" />
+          <Afiche w={w} priority className="sombra-larga transition-transform duration-500 ease-[cubic-bezier(.23,1,.32,1)] group-hover:-translate-y-1" />
         </Link>
 
         <div className="lg:col-span-7">
@@ -73,7 +73,7 @@ export function WebinarDestacado({ webinars, buildNow }: { webinars: WebinarResu
           <ul className="mt-9 grid gap-x-8 gap-y-3 border-t border-paper/15 pt-6 sm:grid-cols-2">
             {w.ponentes.map((p) => (
               <li key={p.nombre} className="leading-snug">
-                <span className="block font-serif text-lg">{p.nombre}</span>
+                <span className="block text-base font-semibold">{p.nombre}</span>
                 <span className="text-sm text-paper/70">
                   {[p.rol, p.institucion, paises[p.pais]?.nombre].filter(Boolean).join(", ")}
                 </span>

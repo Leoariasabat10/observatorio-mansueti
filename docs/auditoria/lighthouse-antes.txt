@@ -1,0 +1,6 @@
+/ [mobile] 87/100/100/100 LCP 1.6 s TBT 490 ms CLS 0
+/ [desktop] 99/100/100/100 LCP 0.7 s TBT 30 ms CLS 0
+/programa-academico [mobile] 79/100/100/100 LCP 2.0 s TBT 750 ms CLS 0
+/programa-academico [desktop] 62/100/100/100 LCP 1.1 s TBT 1,000 ms CLS 0
+
+[exited with code 0]
