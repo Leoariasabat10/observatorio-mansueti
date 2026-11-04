@@ -34,19 +34,27 @@ Palette sampled from the official logo (`assets-cliente/logo-observatorio-origin
 | `heritage` | `#8E2B14` | Honoree name only (logo script color) |
 
 - Logo: emblem crop in `public/brand/emblema-{320,960}.webp` via `Mark`; wordmark is HTML. Emblem has a white background: place it on white only (or a white plate on navy).
-- Type: `Newsreader` (headlines) + `Plus Jakarta Sans` (UI), via `next/font/google`. Tabular numerals for figures.
+- Type: `Libre Caslon Display` (40px+ titles, big figures), `Libre Caslon Text` (smaller headings), `Archivo` (text, UI). All OFL, Argentine foundries. Option 2 shown to the client: Alegreya + Alegreya Sans. Tabular numerals (`.tnum`) for figures.
+- Eje colors (from the logo map, CVD-validated): see `src/content/ejes.json`. Always with the axis name next to the dot. Red `danger` is reserved for "en vivo".
+- Concept: the Observatorio is a telescope, a "bitácora" of regional events. Visual system: coordinate grid (`.graticula`), reticle (`Reticula`), map of speakers with courses from Bogotá. One bold element per page.
 - Feel: research portal, clear data hierarchy, tables and charts first-class.
 
-## Key sections
+## Pages
 
-Working papers and labor-reform analysis; research lines (collective bargaining, social security, digital platforms, gender and work); court interventions (Corte Constitucional, Corte Suprema de Justicia); labor data dashboards.
+1. `/programa-academico` (priority): featured webinar with countdown, filters in the URL (`?estado=&eje=`), logbook list, figures + map. `/programa-academico/[slug]`: detail with Event JSON-LD.
+2. `/` Inicio / Observatorio (Phase 3).
+3. `/publicaciones` Publicaciones y Boletines (Phase 4, same one-file-per-item system).
+
+Old sections (líneas, documentos, intervenciones, datos) became ejes and publication categories; `vercel.json` redirects the old URLs.
 
 ## Content rules
 
 - Never invent researchers, papers, court cases, docket numbers or data. Unknown items: `[PENDIENTE CONFIRMACIÓN]`.
-- Contacts confirmed in the 2026-11-03 brief (`contact` in config). Official name from the logo: ASDTSS; brief says ASUDETS, pending confirmation.
+- Contacts confirmed in the 2026-11-03 brief (`contact` in config). Official name: ASDTSS (confirmed 2026-11-03). The ASDTSS is the parent entity; mention it as such.
 - All copy and datasets live in `src/content/` and `src/data/`, with source and date per dataset.
 
 ## Stack
 
-Next.js 16 App Router, React 19, Tailwind v4 (`@theme` tokens), TypeScript. Its own git repo and its own Vercel project. Charts library is decided in its own plan, when real data exists. Checks: `npm run lint`, `npm run build`.
+Next.js 16 App Router with `output: "export"` (static, no server, no DB), React 19, Tailwind v4 (`@theme` tokens), TypeScript. Content: Markdown + YAML front matter in `src/content/`, read and validated at build by `src/lib/content.ts`. Time-dependent UI (status, countdown) uses `useSyncExternalStore` clocks, never setState in effects (lint rule). Deploy settings only in `site.config.ts` (`@site` alias). Checks: `npm run lint`, `npm run check`, `npm run build` (postbuild flattens segment prefetch files, see `scripts/flatten-segments.mjs`).
+
+CMS: Keystatic is NOT compatible with static export (verified 2026-11-03: needs a server API route for GitHub OAuth). Pending decision; recommended Sveltia CMS (static admin, Decap-compatible).
