@@ -15,8 +15,10 @@
   --color-success: #1b7a43;
   --color-danger: #c42b1c; /* logo red, live/"en vivo" state */
 
-  --font-serif: var(--font-newsreader), "Georgia", serif;
-  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  /* Both families are from Argentine foundries (Impallari, Omnibus-Type), OFL licensed. */
+  --font-display: var(--font-caslon-display), "Georgia", serif; /* 40px and up: titles, big figures */
+  --font-serif: var(--font-caslon), "Georgia", serif; /* headings below 40px, quotes */
+  --font-sans: var(--font-archivo), system-ui, sans-serif; /* text, UI, data labels */
 
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -41,12 +43,61 @@
   }
 }
 
+/* Section label: sentence case, preceded by a short gold rule (the rules in the logo). */
 .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Coordinate grid, the observatory's chart paper. Decorative only. */
+.graticula {
+  background-image:
+    linear-gradient(to right, rgb(6 34 101 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(6 34 101 / 0.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+.graticula-inv {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Markdown body of a webinar. */
+.prosa {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-navy);
+}
+.prosa > * + * {
+  margin-top: 1.1em;
+}
+.prosa a {
+  color: var(--color-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prosa ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.prosa strong {
+  font-weight: 600;
 }
 
 .nav-link {
@@ -86,5 +137,25 @@
       opacity: 0;
       transform: translateY(10px);
     }
+  }
+  /* Live dot: the only looping motion on the site, it signals a broadcast in progress. */
+  .pulso::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: inherit;
+    animation: pulso 1.8s var(--ease-out-strong) infinite;
+  }
+  @keyframes pulso {
+    to {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+  /* Filter changes in the webinar list (View Transitions API, no library). */
+  ::view-transition-group(*) {
+    animation-duration: 320ms;
+    animation-timing-function: var(--ease-out-strong);
   }
 }

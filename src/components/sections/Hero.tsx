@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { indicators, observatorio, researchLines } from "@/config/observatorio";
+import { indicators, observatorio } from "@/config/observatorio";
+import { ejes } from "@/lib/ejes";
 import { Mark } from "@/components/brand/Mark";
 
 export function Hero() {
@@ -23,16 +24,16 @@ export function Hero() {
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/documentos"
+                href="/programa-academico"
                 className="inline-flex items-center justify-center rounded-sm bg-navy px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue"
               >
-                Ver publicaciones
+                Ver programa académico
               </Link>
               <Link
-                href="/datos"
+                href="/publicaciones"
                 className="inline-flex items-center justify-center rounded-sm border border-navy/25 px-6 py-3.5 text-sm font-semibold text-navy transition-colors duration-200 hover:border-navy"
               >
-                Explorar datos laborales
+                Publicaciones y boletines
               </Link>
             </div>
           </div>
@@ -66,15 +67,15 @@ export function Hero() {
       <section aria-labelledby="lineas-title" className="bg-card">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
           <h2 id="lineas-title" className="eyebrow text-muted">
-            Líneas de investigación
+            Ejes temáticos
           </h2>
           <ol className="mt-6 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
-            {researchLines.map((l, i) => (
+            {ejes.map((l) => (
               <li key={l.slug} className="bg-card">
-                <Link href={`/investigacion#${l.slug}`} className="group flex h-full flex-col gap-8 p-6 transition-colors hover:bg-paper">
-                  <span className="text-xs font-semibold tabular-nums text-blue">{String(i + 1).padStart(2, "0")}</span>
+                <Link href={`/programa-academico?eje=${l.slug}`} className="group flex h-full flex-col gap-8 p-6 transition-colors hover:bg-paper">
+                  <span aria-hidden className="size-2.5 rounded-full" style={{ background: l.color }} />
                   <span className="flex items-end justify-between gap-4">
-                    <span className="font-serif text-2xl leading-tight text-navy">{l.title}</span>
+                    <span className="font-serif text-2xl leading-tight text-navy">{l.nombre}</span>
                     <span aria-hidden className="text-blue transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </span>
                 </Link>

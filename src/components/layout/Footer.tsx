@@ -1,14 +1,16 @@
 import Link from "next/link";
-import { asociacion, contact, legal, nav, observatorio, researchLines, social } from "@/config/observatorio";
+import { siteConfig } from "@site";
+import { asociacion, contact, legal, nav, observatorio, social } from "@/config/observatorio";
+import { ejes } from "@/lib/ejes";
 import { Mark } from "@/components/brand/Mark";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 
-const heading = "eyebrow text-paper/55";
+const heading = "eyebrow text-paper/70";
 const link = "text-sm text-paper/80 transition-colors hover:text-paper";
 
 export function Footer() {
   return (
-    <footer className="border-t-4 border-gold bg-navy-deep text-paper">
+    <footer id="contacto" className="scroll-mt-20 border-t-4 border-gold bg-navy-deep text-paper">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:px-8">
         <div className="sm:col-span-2 lg:col-span-4">
           <div className="flex items-center gap-4">
@@ -36,7 +38,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <nav aria-label="Observatorio" className="lg:col-span-3">
+        <nav aria-label="Observatorio" className="lg:col-span-2">
           <h2 className={heading}>Observatorio</h2>
           <ul className="mt-5 space-y-3">
             {nav.map((item) => (
@@ -49,20 +51,20 @@ export function Footer() {
           </ul>
         </nav>
 
-        <nav aria-label="Líneas de investigación" className="lg:col-span-3">
-          <h2 className={heading}>Líneas</h2>
+        <nav aria-label="Ejes temáticos" className="lg:col-span-3">
+          <h2 className={heading}>Ejes temáticos</h2>
           <ul className="mt-5 space-y-3">
-            {researchLines.map((l) => (
-              <li key={l.slug}>
-                <Link href={`/investigacion#${l.slug}`} className={link}>
-                  {l.title}
+            {ejes.map((e) => (
+              <li key={e.slug}>
+                <Link href={`/programa-academico?eje=${e.slug}`} className={link}>
+                  {e.nombre}
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="lg:col-span-2">
+        <div className="sm:col-span-2 lg:col-span-3">
           <h2 className={heading}>Contacto</h2>
           <address className="mt-5 space-y-3 text-sm text-paper/80 not-italic">
             <p>
@@ -71,15 +73,21 @@ export function Footer() {
               ))}
             </p>
             <p>
-              <a href={contact.whatsapp} className={link}>WhatsApp {contact.phoneDisplay}</a>
+              <a href={contact.whatsapp} target="_blank" rel="noopener" className={link}>WhatsApp {contact.phoneDisplay}</a>
             </p>
             <p>
               <a href={`mailto:${contact.email}`} className={`${link} break-all`}>{contact.email}</a>
             </p>
           </address>
-          <a href={asociacion.url} target="_blank" rel="noopener" className={`${link} mt-4 inline-block underline underline-offset-4`}>
-            {asociacion.label}
-          </a>
+          <h2 className={`${heading} mt-10`}>Entidad matriz</h2>
+          <p className="mt-4 text-sm leading-relaxed text-paper/80">
+            <a href={asociacion.url} target="_blank" rel="noopener" className={`${link} underline underline-offset-4`}>
+              {asociacion.name}
+            </a>
+            <span className="mt-1 block">
+              <a href={asociacion.facebook} target="_blank" rel="noopener" className={link}>Facebook de la {asociacion.acronym}</a>
+            </span>
+          </p>
         </div>
       </div>
 
@@ -92,6 +100,11 @@ export function Footer() {
           </p>
           <p className="lg:col-span-2 lg:text-right">
             © {observatorio.copyrightYear} {observatorio.shortName}
+            {siteConfig.agency.name && !siteConfig.agency.name.startsWith("AGENCIA_") && (
+              <a href={siteConfig.agency.url} target="_blank" rel="noopener" className="mt-1 block hover:text-paper">
+                Sitio: {siteConfig.agency.name}
+              </a>
+            )}
           </p>
         </div>
       </div>

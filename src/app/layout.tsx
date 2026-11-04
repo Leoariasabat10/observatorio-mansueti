@@ -1,23 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
-import { observatorio, siteUrl } from "@/config/observatorio";
+import { Archivo, Libre_Caslon_Display, Libre_Caslon_Text } from "next/font/google";
+import { observatorio } from "@/config/observatorio";
+import { siteConfig } from "@site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-});
+const caslonDisplay = Libre_Caslon_Display({ variable: "--font-caslon-display", subsets: ["latin"], weight: "400" });
+const caslon = Libre_Caslon_Text({ variable: "--font-caslon", subsets: ["latin"], weight: ["400", "700"], style: ["normal", "italic"] });
+const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: `${observatorio.shortName} | ${observatorio.name}`,
     template: `%s | ${observatorio.shortName}`,
@@ -32,7 +26,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es-CO" className={`${newsreader.variable} ${jakarta.variable} antialiased`}>
+    <html lang="es-CO" className={`${caslonDisplay.variable} ${caslon.variable} ${archivo.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#main"
