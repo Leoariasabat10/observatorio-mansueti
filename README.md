@@ -108,6 +108,40 @@ Afiches en `public/afiches/`, en WebP, de unos 800×1000 px (proporción 4:5). U
 
 Agregar `?ahora=2026-11-12T18:30` a cualquier dirección del programa simula ese momento (en hora de Bogotá).
 
+## Cómo agregar una publicación
+
+Crear un archivo en `src/content/publicaciones/` con el nombre `AAAA-MM-DD-tema-corto.md` (o usar el editor, sección *Publicaciones*):
+
+```md
+---
+titulo: "Título de la publicación"
+fecha: 2026-11-20
+categoria: documentos
+ejes: [seguridad-social]
+autores:
+  - { nombre: "Nombre Apellido", institucion: "Universidad" }
+resumen: "Dos o tres frases."
+pdf: /publicaciones/2026-11-20-tema-corto.pdf
+---
+Texto o presentación de la publicación (opcional).
+```
+
+| Campo | Obligatorio | Formato |
+|---|---|---|
+| `titulo` | sí | Texto |
+| `fecha` | sí | `AAAA-MM-DD` |
+| `categoria` | sí | `boletines`, `documentos`, `intervenciones` o `datos` (lista en `src/content/categorias.json`) |
+| `numero` | no | Número del boletín |
+| `ejes` | sí | Uno o más ejes de `src/content/ejes.json` |
+| `autores` | sí | Lista con `nombre` y, opcional, `institucion` |
+| `resumen` | sí | Dos o tres frases |
+| `pdf` | no | Ruta del PDF en `public/publicaciones/`. El tamaño se calcula solo; si el archivo no existe, la compilación avisa |
+| `enlace` | no | Fuente original externa |
+| `portada` / `portadaAlt` | no | Imagen de portada y su descripción (obligatoria si hay portada) |
+| `ejemplo` | no | `true` marca contenido de prueba |
+
+Las intervenciones judiciales deben citar el tribunal, el número de expediente y la fecha tal como constan en el proceso.
+
 ## Cifras pendientes (pedir a la clienta, cada una con fuente y fecha)
 
 1. Webinars realizados desde el inicio del programa
@@ -148,7 +182,7 @@ El código no depende de cuentas personales. Para entregarlo: transferir el repo
 
 ```
 site.config.ts             dominio, zona horaria, agencia
-src/content/               contenido editable (webinars, ejes)
+src/content/               contenido editable (webinars, publicaciones, ejes, categorías, cifras)
 src/config/observatorio.ts datos institucionales y menú
 src/lib/                   lectura y validación del contenido, reglas de hora
 src/components/webinar/    piezas del programa académico

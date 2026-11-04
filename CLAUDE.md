@@ -43,7 +43,7 @@ Palette sampled from the official logo (`assets-cliente/logo-observatorio-origin
 
 1. `/programa-academico` (priority): featured webinar with countdown, filters in the URL (`?estado=&eje=`), logbook list, figures + map. `/programa-academico/[slug]`: detail with Event JSON-LD.
 2. `/` Inicio: hero, figures (`src/lib/cifras.ts` + `src/content/cifras.json`), timeline, mission + ejes, agenda, publications teaser, contact, Organization JSON-LD.
-3. `/publicaciones` Publicaciones y Boletines (Phase 4, same one-file-per-item system).
+3. `/publicaciones`: latest boletín, catalog with filters in the URL (`?categoria=&eje=&anio=`), detail `/publicaciones/[slug]` with ScholarlyArticle JSON-LD. Content in `src/content/publicaciones/`, categories in `src/content/categorias.json`, PDFs in `public/publicaciones/`.
 
 Old sections (líneas, documentos, intervenciones, datos) became ejes and publication categories; `vercel.json` redirects the old URLs.
 
