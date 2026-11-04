@@ -39,7 +39,7 @@ Los datos institucionales (nombre, contacto, redes, entidad matriz, menú) está
 
 ## Editor visual (para la clienta)
 
-En `/admin` (por ejemplo `https://dominio/admin`) hay un editor visual, Sveltia CMS (licencia MIT, gratuito). Permite crear y editar webinars, subir afiches y actualizar las cifras del Inicio con formularios, sin tocar código. Cada cambio queda guardado como un commit en el repositorio y Vercel publica el sitio en uno o dos minutos.
+En `/admin` (por ejemplo `https://dominio/admin`; página `public/admin.html`, configuración `public/admin/config.yml`) hay un editor visual, Sveltia CMS (licencia MIT, gratuito). Permite crear y editar webinars, subir afiches y actualizar las cifras del Inicio con formularios, sin tocar código. Cada cambio queda guardado como un commit en el repositorio y Vercel publica el sitio en uno o dos minutos.
 
 Configuración inicial (una sola vez):
 
