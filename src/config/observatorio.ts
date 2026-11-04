@@ -51,13 +51,6 @@ export const nav = [
   { label: "Contacto", href: "#contacto" },
 ] as const;
 
-// Home indicators. No figures until the client sends real, cited data (see README, "Cifras pendientes").
-export const indicators = [
-  { label: "Webinars realizados", value: null as string | null, source: null as string | null },
-  { label: "Ponentes invitados", value: null as string | null, source: null as string | null },
-  { label: "Países representados", value: null as string | null, source: null as string | null },
-];
-
 export const legal = {
   disclaimer:
     "El Observatorio es una iniciativa académica. Sus análisis tienen fines de investigación y difusión y no constituyen asesoría jurídica.",
