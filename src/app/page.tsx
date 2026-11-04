@@ -2,9 +2,11 @@ import Link from "next/link";
 import { ArrowRight, Mail, MapPin, MessageCircle } from "lucide-react";
 import { siteConfig } from "@site";
 import { asociacion, contact, observatorio, social } from "@/config/observatorio";
+import { categoriaPorSlug, fechaPublicacion } from "@/lib/categorias";
 import { cifrasInicio } from "@/lib/cifras";
 import { BUILD_NOW, resumenes } from "@/lib/content";
 import { ejes } from "@/lib/ejes";
+import { resumenesPublicaciones } from "@/lib/publicaciones";
 import { Mark } from "@/components/brand/Mark";
 import { AgendaBreve } from "@/components/inicio/AgendaBreve";
 import { LineaDeTiempo } from "@/components/inicio/LineaDeTiempo";
@@ -39,6 +41,7 @@ const organizacion = {
 
 export default function Inicio() {
   const webinars = resumenes();
+  const publicaciones = resumenesPublicaciones();
   const cifras = cifrasInicio(webinars, BUILD_NOW);
   const ejemplo = webinars.some((w) => w.ejemplo);
 
@@ -192,17 +195,36 @@ export default function Inicio() {
         </section>
 
         <section aria-labelledby="publicaciones-inicio" className="lg:col-span-5">
-          <h2 id="publicaciones-inicio" className="font-display text-[clamp(1.9rem,3.2vw,2.6rem)] leading-[1.05] text-navy">
-            Publicaciones
-          </h2>
-          <div className="graticula mt-6 rounded-sm border border-rule bg-card p-7">
-            <p className="font-serif text-xl leading-snug text-navy">Los primeros boletines y documentos de trabajo se publicarán aquí.</p>
-            <p className="mt-3 text-sm text-muted">Boletines, documentos de trabajo, intervenciones judiciales y análisis de datos laborales.</p>
-            <Link href="/publicaciones" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blue hover:underline">
-              Ir a Publicaciones y Boletines
-              <ArrowRight className="size-3.5" aria-hidden />
+          <div className="flex items-end justify-between gap-6">
+            <h2 id="publicaciones-inicio" className="font-display text-[clamp(1.9rem,3.2vw,2.6rem)] leading-[1.05] text-navy">
+              Publicaciones
+            </h2>
+            <Link href="/publicaciones" className="text-sm font-semibold text-blue hover:underline">
+              Ver todas
             </Link>
           </div>
+          {publicaciones.length ? (
+            <ul className="graticula mt-6 rounded-sm border border-rule bg-card px-6">
+              {publicaciones.slice(0, 3).map((p) => (
+                <li key={p.slug} className="border-b border-rule last:border-0">
+                  <Link href={`/publicaciones/${p.slug}`} className="group block py-5">
+                    <span className="text-xs font-semibold text-blue">
+                      {categoriaPorSlug(p.categoria)?.singular}, {fechaPublicacion(p.fecha)}
+                    </span>
+                    <span className="mt-1.5 block font-serif text-lg leading-snug text-navy decoration-blue/40 underline-offset-4 group-hover:underline">{p.titulo}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="graticula mt-6 rounded-sm border border-rule bg-card p-7">
+              <p className="font-serif text-xl leading-snug text-navy">Los primeros boletines y documentos de trabajo se publicarán aquí.</p>
+              <Link href="/publicaciones" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blue hover:underline">
+                Ir a Publicaciones y Boletines
+                <ArrowRight className="size-3.5" aria-hidden />
+              </Link>
+            </div>
+          )}
         </section>
       </div>
 

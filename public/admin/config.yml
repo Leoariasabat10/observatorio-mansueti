@@ -90,6 +90,59 @@ collections:
       - { label: Contenido de ejemplo, name: ejemplo, widget: boolean, default: false, required: false }
       - { label: Descripción, name: body, widget: markdown }
 
+  - name: publicaciones
+    label: Publicaciones
+    label_singular: Publicación
+    folder: /src/content/publicaciones
+    extension: md
+    format: frontmatter
+    create: true
+    identifier_field: titulo
+    media_folder: /public/publicaciones
+    public_folder: /publicaciones
+    slug:
+      template: "{{fecha}}-{{slug}}"
+      editable: [create]
+    summary: "{{fecha}} · {{titulo}}"
+    sortable_fields: [fecha, titulo]
+    fields:
+      - { label: Título, name: titulo, widget: string }
+      - { label: Fecha de publicación, name: fecha, widget: datetime, type: date }
+      - label: Categoría
+        name: categoria
+        widget: select
+        options:
+          - { label: Boletín, value: boletines }
+          - { label: Documento de trabajo, value: documentos }
+          - { label: Intervención judicial, value: intervenciones }
+          - { label: Datos y análisis, value: datos }
+      - { label: Número (solo boletines), name: numero, widget: number, value_type: int, required: false }
+      - label: Ejes temáticos
+        name: ejes
+        widget: select
+        multiple: true
+        min: 1
+        options:
+          - { label: "Negociación colectiva", value: negociacion-colectiva }
+          - { label: "Seguridad social", value: seguridad-social }
+          - { label: "Trabajo en plataformas digitales", value: plataformas-digitales }
+          - { label: "Género y trabajo", value: genero-y-trabajo }
+      - label: Autores
+        name: autores
+        widget: list
+        min: 1
+        summary: "{{nombre}}"
+        fields:
+          - { label: Nombre, name: nombre, widget: string }
+          - { label: Institución, name: institucion, widget: string, required: false }
+      - { label: Resumen, name: resumen, widget: text, hint: "Dos o tres frases. Se ve en el catálogo y al compartir." }
+      - { label: PDF, name: pdf, widget: file, required: false, hint: "Archivo PDF de la publicación" }
+      - { label: Enlace a la fuente original, name: enlace, widget: string, required: false }
+      - { label: Portada, name: portada, widget: image, required: false, hint: "Proporción 3:4" }
+      - { label: Descripción de la portada, name: portadaAlt, widget: string, required: false, hint: "Obligatoria si hay portada" }
+      - { label: Contenido de ejemplo, name: ejemplo, widget: boolean, default: false, required: false }
+      - { label: Texto, name: body, widget: markdown }
+
   - name: datos
     label: Cifras del Inicio
     files:
