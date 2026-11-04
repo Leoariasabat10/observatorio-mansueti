@@ -14,7 +14,7 @@ export function AgendaBreve({ webinars, buildNow }: { webinars: WebinarResumen[]
   const lista = [...proximos, ...(ultimo ? [ultimo] : [])];
 
   return (
-    <ol className="border-t border-rule">
+    <ol className="revelar-hijos border-t border-rule">
       {lista.map((w) => {
         const estado = estadoDe(w.start, w.duracionMin, now);
         return (

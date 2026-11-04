@@ -36,7 +36,7 @@ export function ProgramaEnCifras({ webinars }: { webinars: WebinarResumen[] }) {
           </p>
           {ejemplo && <EjemploTag className="mt-4" />}
 
-          <dl className="mt-10 grid grid-cols-2 border-t border-rule">
+          <dl className="revelar-hijos mt-10 grid grid-cols-2 border-t border-rule">
             {cifras.map((c, i) => (
               <div key={c.label} className={`flex flex-col-reverse gap-2 border-b border-rule py-6 ${i % 2 ? "pl-6" : "pr-6"}`}>
                 <dt className="text-sm text-muted">{c.label}</dt>
@@ -54,7 +54,7 @@ export function ProgramaEnCifras({ webinars }: { webinars: WebinarResumen[] }) {
           </dl>
         </div>
 
-        <figure className="lg:col-span-6">
+        <figure className="revelar lg:col-span-6">
           <div className="rounded-sm border border-rule bg-card p-4 sm:p-6">
             <MapaPonentes conteo={conteo} />
           </div>

@@ -125,7 +125,7 @@ function FilaPublicacion({ p }: { p: PublicacionResumen }) {
   const cat = categoriaPorSlug(p.categoria)!;
   const href = `/publicaciones/${p.slug}`;
   return (
-    <li style={{ viewTransitionName: `p-${p.slug}` }} className="group grid gap-x-8 gap-y-3 border-t border-rule py-7 lg:grid-cols-[11rem_1fr_13rem]">
+    <li style={{ viewTransitionName: `p-${p.slug}` }} className="revelar group grid gap-x-8 gap-y-3 border-t border-rule py-7 lg:grid-cols-[11rem_1fr_13rem]">
       <div className="flex items-baseline gap-3 lg:flex-col lg:gap-1">
         <span className="text-sm font-semibold text-blue">
           {cat.singular}

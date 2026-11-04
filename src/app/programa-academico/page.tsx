@@ -63,7 +63,7 @@ export default function ProgramaAcademico() {
       <ExploradorWebinars webinars={webinars} buildNow={buildNow} />
       <ProgramaEnCifras webinars={webinars} />
 
-      <section aria-labelledby="proponer-titulo" className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:px-8">
+      <section aria-labelledby="proponer-titulo" className="revelar mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:px-8">
         <div className="lg:col-span-7">
           <h2 id="proponer-titulo" className="font-display text-[clamp(1.9rem,3.4vw,2.75rem)] leading-[1.08] text-balance text-navy">
             ¿Quiere proponer un tema o participar como ponente?

@@ -37,6 +37,7 @@ Palette sampled from the official logo (`assets-cliente/logo-observatorio-origin
 - Type: `Libre Caslon Display` (40px+ titles, big figures), `Libre Caslon Text` (smaller headings), `Archivo` (text, UI). All OFL, Argentine foundries. Option 2 shown to the client: Alegreya + Alegreya Sans. Tabular numerals (`.tnum`) for figures.
 - Eje colors (from the logo map, CVD-validated): see `src/content/ejes.json`. Always with the axis name next to the dot. Red `danger` is reserved for "en vivo".
 - Concept: the Observatorio is a telescope, a "bitácora" of regional events. Visual system: coordinate grid (`.graticula`), reticle (`Reticula`), map of speakers with courses from Bogotá. One bold element per page.
+- Motion (globals.css, "Motion" block): press feedback (scale .97, 160ms), scroll reveals via native scroll-driven animations (`.revelar`, `.revelar-hijos`), timeline points in order (`.ldt`/`.ldt-punto`), sticky header shadow, slow reticle rotation (only ambient loop), mobile menu entry. All behind reduced-motion; reveals behind @supports. No animation library. Rejected on purpose: animated filters beyond View Transitions, countdown digit motion, card hover lifts, Lenis.
 - Feel: research portal, clear data hierarchy, tables and charts first-class.
 
 ## Pages

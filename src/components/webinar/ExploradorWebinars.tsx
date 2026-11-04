@@ -157,7 +157,7 @@ function FilaWebinar({ w, estado }: { w: WebinarResumen; estado: Estado }) {
   return (
     <li
       style={{ viewTransitionName: `w-${w.slug}` }}
-      className="group relative grid grid-cols-[4rem_1fr] gap-x-5 border-t border-rule py-7 sm:grid-cols-[5.5rem_1fr] lg:grid-cols-[6.5rem_1fr_5.5rem_12rem] lg:gap-x-8"
+      className="revelar group relative grid grid-cols-[4rem_1fr] gap-x-5 border-t border-rule py-7 sm:grid-cols-[5.5rem_1fr] lg:grid-cols-[6.5rem_1fr_5.5rem_12rem] lg:gap-x-8"
     >
       <time dateTime={new Date(w.start).toISOString()} className={`flex flex-col ${pasado ? "text-muted" : "text-navy"}`}>
         <span className="tnum font-display text-5xl leading-[0.82] lg:text-6xl">{fechaDia(w.start)}</span>

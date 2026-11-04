@@ -82,7 +82,7 @@ export default function Inicio() {
       {/* Featured figures */}
       <section aria-labelledby="cifras-inicio" className="graticula-inv relative bg-navy text-paper">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+          <div className="revelar grid gap-6 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">
               <p className="eyebrow text-gold">El Observatorio en cifras</p>
               <h2 id="cifras-inicio" className="mt-4 font-display text-[clamp(2rem,3.8vw,3rem)] leading-[1.05] text-balance">
@@ -95,7 +95,7 @@ export default function Inicio() {
             </div>
           </div>
 
-          <dl className="mt-12 grid grid-cols-2 gap-px border-y border-paper/15 bg-paper/15 lg:grid-cols-3">
+          <dl className="revelar-hijos mt-12 grid grid-cols-2 gap-px border-y border-paper/15 bg-paper/15 lg:grid-cols-3">
             {cifras.map((c) => (
               <div key={c.label} className="flex flex-col gap-3 bg-navy px-3 py-7 sm:px-6 sm:py-8 lg:[&:nth-child(3n+1)]:pl-0 max-lg:[&:nth-child(odd)]:pl-0">
                 <dt className="order-2 text-sm text-paper/90 sm:text-[0.9375rem]">{c.label}</dt>
@@ -117,7 +117,7 @@ export default function Inicio() {
 
       {/* Timeline */}
       <section aria-labelledby="linea-tiempo" className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
-        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+        <div className="revelar grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-6">
             <p className="eyebrow text-blue">Bitácora</p>
             <h2 id="linea-tiempo" className="mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
@@ -143,7 +143,7 @@ export default function Inicio() {
             </h2>
           </div>
           <div className="lg:col-span-7">
-            <div className="max-w-[36em] space-y-5 text-[1.0625rem] leading-relaxed text-navy">
+            <div className="revelar max-w-[36em] space-y-5 text-[1.0625rem] leading-relaxed text-navy">
               <p>
                 El Observatorio de la {asociacion.name} sigue los eventos, debates y decisiones que marcan el mundo del trabajo en Latinoamérica y en
                 Colombia, y los registra en una bitácora abierta.
@@ -159,7 +159,7 @@ export default function Inicio() {
             </div>
 
             <h3 className="mt-14 text-sm font-semibold text-navy">Ejes temáticos</h3>
-            <ul className="mt-4 border-t border-rule">
+            <ul className="revelar-hijos mt-4 border-t border-rule">
               {ejes.map((e) => (
                 <li key={e.slug} className="border-b border-rule">
                   <Link href={`/programa-academico?eje=${e.slug}`} className="group flex items-center gap-4 py-4">
@@ -204,7 +204,7 @@ export default function Inicio() {
             </Link>
           </div>
           {publicaciones.length ? (
-            <ul className="graticula mt-6 rounded-sm border border-rule bg-card px-6">
+            <ul className="revelar-hijos graticula mt-6 rounded-sm border border-rule bg-card px-6">
               {publicaciones.slice(0, 3).map((p) => (
                 <li key={p.slug} className="border-b border-rule last:border-0">
                   <Link href={`/publicaciones/${p.slug}`} className="group block py-5">
@@ -230,7 +230,7 @@ export default function Inicio() {
 
       {/* Contact */}
       <section aria-labelledby="escribanos" className="border-t border-rule bg-paper">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:px-8">
+        <div className="revelar mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:px-8">
           <div className="lg:col-span-6">
             <p className="eyebrow text-blue">Contacto</p>
             <h2 id="escribanos" className="mt-4 font-display text-[clamp(2rem,3.8vw,3rem)] leading-[1.05] text-navy">

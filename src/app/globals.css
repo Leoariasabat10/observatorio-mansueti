@@ -159,3 +159,98 @@
     animation-timing-function: var(--ease-out-strong);
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Motion. Every rule answers one job (feedback, spatial story, explanation) and
+   respects reduced motion. Scroll effects use native scroll-driven animations:
+   no JavaScript, and browsers without support simply show the content.
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Press feedback on buttons and button-like links (unlayered, so it wins over utility transitions). */
+  a.inline-flex,
+  button {
+    transition-property: color, background-color, border-color, opacity, scale;
+    transition-duration: 160ms;
+    transition-timing-function: var(--ease-out-strong);
+  }
+  a.inline-flex:active,
+  button:not(:disabled):active {
+    scale: 0.97;
+  }
+
+  /* Mobile menu slides down from the header instead of appearing at once. */
+  #menu-movil {
+    transition:
+      opacity 220ms var(--ease-out-strong),
+      translate 220ms var(--ease-out-strong);
+  }
+  @starting-style {
+    #menu-movil:not([hidden]) {
+      opacity: 0;
+      translate: 0 -8px;
+    }
+  }
+
+  /* The telescope's graduated ring turns once every three minutes: the only ambient motion. */
+  .reticula-giro {
+    transform-box: view-box;
+    transform-origin: 50% 50%;
+    animation: girar 180s linear infinite;
+  }
+  @keyframes girar {
+    to {
+      rotate: 1turn;
+    }
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Scroll reveal: each element rises into place as it enters, so lists stagger naturally. */
+    .revelar,
+    .revelar-hijos > * {
+      animation: revelar var(--ease-out-strong) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+    @keyframes revelar {
+      from {
+        opacity: 0;
+        translate: 0 28px;
+      }
+    }
+
+    /* Timeline points appear in chronological order as the figure scrolls in. */
+    .ldt {
+      view-timeline-name: --ldt;
+    }
+    .ldt-punto {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: punto var(--ease-out-strong) both;
+      animation-timeline: --ldt;
+      animation-range: entry calc(25% + var(--i) * 8%) entry calc(55% + var(--i) * 8%);
+    }
+    @keyframes punto {
+      from {
+        opacity: 0;
+        scale: 0.4;
+      }
+    }
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  /* Sticky header gains a shadow once content scrolls under it. */
+  header.sticky {
+    animation: sombra linear both;
+    animation-timeline: scroll();
+    animation-range: 0 120px;
+  }
+  @keyframes sombra {
+    to {
+      box-shadow: 0 10px 30px -18px rgb(6 34 101 / 0.45);
+    }
+  }
+}
