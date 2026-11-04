@@ -4,7 +4,7 @@
 const PENDING = "[PENDIENTE CONFIRMACIÓN]";
 
 // Final domain of the client. Change here only (metadata, sitemap, Open Graph read it).
-export const siteUrl = "https://observatorio-mansueti.vercel.app";
+// Domain lives in site.config.ts.
 
 // Name and honoree as written in the official logo (assets-cliente/logo-observatorio-original.png).
 // PENDIENTE: the logo reads "ASDTSS"; the brief says "ASUDETS". Logo spelling kept until confirmed.
@@ -25,57 +25,38 @@ export const contact = {
   address: ["Carrera 7 # 17-57, oficina 705", "Bogotá, Colombia, 111221"],
 };
 
-// PENDIENTE 3 — link with the Asociación (Project 2).
+// Parent entity. The Observatorio belongs to the ASDTSS (confirmed 2026-11-03).
 export const asociacion = {
-  label: "Asociación Hugo Mansueti",
-  url: "https://asociacion-mansueti.vercel.app",
+  name: "Asociación Sudamericana de Derecho del Trabajo y de la Seguridad Social",
+  acronym: "ASDTSS",
+  url: "https://asociacion-mansueti.vercel.app", // ASDTSS website (Project 2)
+  facebook: "https://www.facebook.com/ASDTSS",
 };
 
-// Only confirmed profiles. Add Instagram/LinkedIn here when the client confirms them.
+// Only confirmed profiles. Add Instagram here when the client sends the link.
 export const social = [
-  { id: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61595918491051" },
+  { id: "facebook", label: "Facebook del Observatorio", href: "https://www.facebook.com/profile.php?id=61595918491051" },
 ] as const;
 
-// PENDIENTE 5 — research team.
+// PENDIENTE — research team.
 export const team = [
   { name: "Dra. Juana Montenegro", role: PENDING },
   { name: PENDING, role: PENDING },
 ];
 
-export const researchLines = [
-  { slug: "negociacion-colectiva", title: "Negociación colectiva" },
-  { slug: "seguridad-social", title: "Seguridad social" },
-  { slug: "plataformas-digitales", title: "Trabajo en plataformas digitales" },
-  { slug: "genero-y-trabajo", title: "Género y trabajo" },
-];
-
 export const nav = [
-  {
-    label: "Líneas de investigación",
-    href: "/investigacion",
-    children: researchLines.map((l) => ({ label: l.title, href: `/investigacion#${l.slug}` })),
-  },
-  { label: "Documentos de trabajo", href: "/documentos" },
-  { label: "Intervenciones judiciales", href: "/intervenciones" },
-  { label: "Datos laborales", href: "/datos" },
-  { label: asociacion.label, href: asociacion.url, external: true },
+  { label: "Programa académico", href: "/programa-academico" },
+  { label: "Observatorio", href: "/" },
+  { label: "Publicaciones y Boletines", href: "/publicaciones" },
+  { label: "Contacto", href: "#contacto" },
 ] as const;
 
-export const primaryCta = { label: "Ver documentos", href: "/documentos" };
-
-// Hero indicators. No figures until a real, cited dataset exists.
+// Home indicators. No figures until the client sends real, cited data (see README, "Cifras pendientes").
 export const indicators = [
-  { label: "Documentos de trabajo publicados", value: null as string | null, source: null as string | null },
-  { label: "Intervenciones ante altas cortes", value: null as string | null, source: null as string | null },
-  { label: "Líneas de investigación activas", value: String(researchLines.length), source: "Observatorio" },
+  { label: "Webinars realizados", value: null as string | null, source: null as string | null },
+  { label: "Ponentes invitados", value: null as string | null, source: null as string | null },
+  { label: "Países representados", value: null as string | null, source: null as string | null },
 ];
-
-export const sections = {
-  investigacion: { title: "Líneas de investigación", lead: "Negociación colectiva, seguridad social, plataformas digitales, género y trabajo." },
-  documentos: { title: "Documentos de trabajo", lead: "Análisis de la reforma laboral, working papers y notas técnicas." },
-  intervenciones: { title: "Intervenciones judiciales", lead: "Conceptos e intervenciones ante la Corte Constitucional y la Corte Suprema de Justicia." },
-  datos: { title: "Datos laborales", lead: "Tableros e indicadores del mercado laboral, con fuente y fecha." },
-} as const;
 
 export const legal = {
   disclaimer:

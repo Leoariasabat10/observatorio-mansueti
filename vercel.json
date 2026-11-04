@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/investigacion", "destination": "/programa-academico", "permanent": true },
+    { "source": "/documentos", "destination": "/publicaciones?categoria=documentos", "permanent": true },
+    { "source": "/intervenciones", "destination": "/publicaciones?categoria=intervenciones", "permanent": true },
+    { "source": "/datos", "destination": "/publicaciones?categoria=datos", "permanent": true }
+  ]
+}

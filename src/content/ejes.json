@@ -1,0 +1,6 @@
+[
+  { "slug": "negociacion-colectiva", "nombre": "Negociación colectiva", "color": "#C25E00" },
+  { "slug": "seguridad-social", "nombre": "Seguridad social", "color": "#0189B4" },
+  { "slug": "plataformas-digitales", "nombre": "Trabajo en plataformas digitales", "color": "#4F8A0B" },
+  { "slug": "genero-y-trabajo", "nombre": "Género y trabajo", "color": "#8E2B14" }
+]

@@ -1,0 +1,21 @@
+// ISO 3166-1 alpha-2 → Spanish name and numeric code (the id used by world-atlas for the map).
+export const paises: Record<string, { nombre: string; id: string; sudamerica?: true }> = {
+  AR: { nombre: "Argentina", id: "032", sudamerica: true },
+  BO: { nombre: "Bolivia", id: "068", sudamerica: true },
+  BR: { nombre: "Brasil", id: "076", sudamerica: true },
+  CL: { nombre: "Chile", id: "152", sudamerica: true },
+  CO: { nombre: "Colombia", id: "170", sudamerica: true },
+  EC: { nombre: "Ecuador", id: "218", sudamerica: true },
+  GY: { nombre: "Guyana", id: "328", sudamerica: true },
+  PY: { nombre: "Paraguay", id: "600", sudamerica: true },
+  PE: { nombre: "Perú", id: "604", sudamerica: true },
+  SR: { nombre: "Surinam", id: "740", sudamerica: true },
+  UY: { nombre: "Uruguay", id: "858", sudamerica: true },
+  VE: { nombre: "Venezuela", id: "862", sudamerica: true },
+  MX: { nombre: "México", id: "484" },
+  ES: { nombre: "España", id: "724" },
+  IT: { nombre: "Italia", id: "380" },
+  PA: { nombre: "Panamá", id: "591" },
+  CR: { nombre: "Costa Rica", id: "188" },
+  US: { nombre: "Estados Unidos", id: "840" },
+};
