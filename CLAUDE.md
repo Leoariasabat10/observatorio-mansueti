@@ -42,7 +42,7 @@ Palette sampled from the official logo (`assets-cliente/logo-observatorio-origin
 ## Pages
 
 1. `/programa-academico` (priority): featured webinar with countdown, filters in the URL (`?estado=&eje=`), logbook list, figures + map. `/programa-academico/[slug]`: detail with Event JSON-LD.
-2. `/` Inicio / Observatorio (Phase 3).
+2. `/` Inicio: hero, figures (`src/lib/cifras.ts` + `src/content/cifras.json`), timeline, mission + ejes, agenda, publications teaser, contact, Organization JSON-LD.
 3. `/publicaciones` Publicaciones y Boletines (Phase 4, same one-file-per-item system).
 
 Old sections (líneas, documentos, intervenciones, datos) became ejes and publication categories; `vercel.json` redirects the old URLs.
@@ -57,4 +57,4 @@ Old sections (líneas, documentos, intervenciones, datos) became ejes and public
 
 Next.js 16 App Router with `output: "export"` (static, no server, no DB), React 19, Tailwind v4 (`@theme` tokens), TypeScript. Content: Markdown + YAML front matter in `src/content/`, read and validated at build by `src/lib/content.ts`. Time-dependent UI (status, countdown) uses `useSyncExternalStore` clocks, never setState in effects (lint rule). Deploy settings only in `site.config.ts` (`@site` alias). Checks: `npm run lint`, `npm run check`, `npm run build` (postbuild flattens segment prefetch files, see `scripts/flatten-segments.mjs`).
 
-CMS: Keystatic is NOT compatible with static export (verified 2026-11-03: needs a server API route for GitHub OAuth). Pending decision; recommended Sveltia CMS (static admin, Decap-compatible).
+CMS: Sveltia CMS at `/admin` (`public/admin/config.yml`, approved 2026-11-03). Keystatic was rejected: not compatible with static export (needs a server API route for GitHub OAuth). Keep config.yml fields in sync with the validator in `src/lib/content.ts`.

@@ -37,6 +37,18 @@ npm run build
 
 Los datos institucionales (nombre, contacto, redes, entidad matriz, menú) están en `src/config/observatorio.ts`.
 
+## Editor visual (para la clienta)
+
+En `/admin` (por ejemplo `https://dominio/admin`) hay un editor visual, Sveltia CMS (licencia MIT, gratuito). Permite crear y editar webinars, subir afiches y actualizar las cifras del Inicio con formularios, sin tocar código. Cada cambio queda guardado como un commit en el repositorio y Vercel publica el sitio en uno o dos minutos.
+
+Configuración inicial (una sola vez):
+
+1. En `public/admin/config.yml`, cambiar `repo: ORGANIZACION/observatorio-asdtss` por el repositorio real.
+2. Entrar con **Iniciar sesión con un token de acceso**: en GitHub, Settings → Developer settings → Fine-grained tokens → nuevo token con acceso solo a este repositorio y permiso *Contents: Read and write*. Copiarlo en el editor. El token queda guardado en ese navegador.
+3. Opcional: para entrar con el botón de GitHub sin token, desplegar el conector gratuito [sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth) en Cloudflare Workers y añadir `base_url` en `backend`.
+
+Los campos del editor son los mismos de la tabla de abajo. Las listas de ejes y países del editor repiten `src/content/ejes.json` y `src/lib/paises.ts`: al cambiar una, cambiar la otra.
+
 ## Cómo agregar un webinar
 
 Crear un archivo nuevo en `src/content/webinars/` con el nombre `AAAA-MM-DD-tema-corto.md`. Ese nombre es también la dirección de la página (`/programa-academico/AAAA-MM-DD-tema-corto`). Plantilla:
@@ -106,7 +118,7 @@ Agregar `?ahora=2026-11-12T18:30` a cualquier dirección del programa simula ese
 6. Publicaciones y boletines editados
 7. Año de fundación del Observatorio y de la ASDTSS
 
-Las cifras del programa académico (webinars, ponentes, países de los ponentes y horas) se calculan solas a partir de los archivos de webinars. Las demás muestran "Dato pendiente" hasta tener la fuente.
+Las cifras del programa académico (webinars, ponentes, países de los ponentes y horas) se calculan solas a partir de los archivos de webinars. Las demás están en `src/content/cifras.json` (o en el editor, sección *Cifras del Inicio*): mientras `valor` esté vacío se muestra "Dato pendiente". Una cifra con valor necesita `fuente`; si falta, la compilación se detiene.
 
 ## Despliegue (Vercel)
 
