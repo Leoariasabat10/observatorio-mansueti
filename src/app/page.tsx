@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Mail, MapPin, MessageCircle } from "lucide-react";
+import { ArrowRight, ChartLine, Mail, MapPin, MessageCircle, Scale, Users } from "lucide-react";
+import ambitos from "@/content/ambitos.json";
 import { siteConfig } from "@site";
 import { asociacion, contact, observatorio, social } from "@/config/observatorio";
 import { categoriaPorSlug, fechaPublicacion } from "@/lib/categorias";
@@ -18,6 +19,8 @@ import { Contador } from "@/components/ui/Contador";
 
 const fechaCorta = (iso: string) =>
   new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(iso));
+
+const iconosAmbito = { legislacion: Scale, empleo: ChartLine, colectivo: Users };
 
 const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${contact.address.join(", ")}`)}`;
 
@@ -60,13 +63,10 @@ export default function Inicio() {
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <div className="relative z-10 pt-16 pb-6 sm:pt-24 lg:max-w-[46rem] lg:pt-32 lg:pb-24">
             <p className="eyebrow text-gold">Observatorio de la {asociacion.acronym}</p>
-            <h1 id="inicio-titulo" className="mt-8 font-display text-[clamp(3rem,8vw,7.75rem)] leading-[0.9] font-medium tracking-[-0.025em] text-balance">
-              Una bitácora del trabajo en Sudamérica
+            <h1 id="inicio-titulo" className="mt-8 font-display text-[clamp(2.75rem,7.4vw,7rem)] leading-[0.92] font-medium tracking-[-0.025em] text-balance">
+              Monitoreamos el trabajo en América Latina
             </h1>
-            <p className="mt-8 max-w-[34rem] text-lg leading-relaxed text-paper/80">
-              Seguimos los eventos, debates y decisiones del Derecho del Trabajo y de la Seguridad Social en Latinoamérica y Colombia, y los ordenamos por
-              ejes temáticos.
-            </p>
+            <p className="mt-8 max-w-[34rem] text-lg leading-relaxed text-paper/80">Legislación laboral, empleo y derecho colectivo, país por país.</p>
             <div className="mt-11 flex flex-wrap items-center gap-x-8 gap-y-5">
               <Link href="/programa-academico" className="inline-flex items-center gap-3 rounded-sm bg-paper px-6 py-3.5 text-sm font-semibold text-navy hover:bg-white">
                 Ver el programa académico
@@ -86,6 +86,44 @@ export default function Inicio() {
         <div className="relative z-10 border-t border-paper/15">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <ProximaObservacion webinars={webinars} buildNow={BUILD_NOW} />
+          </div>
+        </div>
+      </section>
+
+      {/* What the observatory monitors: the three areas, items only */}
+      <section aria-labelledby="ambitos" className="bg-paper">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8">
+          <div className="revelar flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <h2 id="ambitos" className="titular max-w-xl font-display text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.02] text-balance text-navy">
+              Lo que observamos
+            </h2>
+            <p className="max-w-sm text-base leading-relaxed text-muted">Tres ámbitos del mundo del trabajo, seguidos en los países de la región.</p>
+          </div>
+
+          <div className="revelar-hijos mt-14 grid gap-5 lg:grid-cols-3 lg:gap-6">
+            {ambitos.map((a) => {
+              const Icono = iconosAmbito[a.icono as keyof typeof iconosAmbito];
+              return (
+                <article key={a.slug} className="group relative flex flex-col overflow-hidden rounded-sm border border-rule bg-card p-7 transition-colors duration-300 hover:border-navy/30 sm:p-9">
+                  <span aria-hidden className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-blue transition-transform duration-500 ease-out group-hover:scale-x-100 motion-reduce:transition-none" />
+                  <div className="flex items-center justify-between">
+                    <span className="grid size-14 place-items-center rounded-full border border-navy/15 text-navy transition-colors duration-300 group-hover:border-navy group-hover:bg-navy group-hover:text-paper">
+                      <Icono className="size-6" strokeWidth={1.5} aria-hidden />
+                    </span>
+                    <span className="tnum text-sm text-muted">{a.temas.length} temas</span>
+                  </div>
+                  <h3 className="mt-9 font-serif text-[clamp(1.6rem,2.4vw,2rem)] leading-[1.08] text-balance text-navy lg:min-h-[2.16em]">{a.titulo}</h3>
+                  <ul className="mt-7 border-t border-rule">
+                    {a.temas.map((t) => (
+                      <li key={t} className="flex gap-3 border-b border-rule/70 py-3 text-[0.9375rem] leading-snug text-navy last:border-b-0">
+                        <span aria-hidden className="mt-[0.6em] h-px w-3 shrink-0 bg-blue" />
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

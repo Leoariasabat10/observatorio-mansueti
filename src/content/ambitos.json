@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "legislacion",
+    "titulo": "Legislación laboral",
+    "icono": "legislacion",
+    "temas": [
+      "Reformas laborales en América Latina",
+      "Evolución de los códigos y leyes del trabajo",
+      "Estabilidad laboral y protección contra el despido",
+      "Contratación laboral y nuevas modalidades de trabajo",
+      "Regulación del teletrabajo y trabajo en plataformas digitales",
+      "Derechos individuales y colectivos"
+    ]
+  },
+  {
+    "slug": "empleo",
+    "titulo": "Empleo y mercado laboral",
+    "icono": "empleo",
+    "temas": [
+      "Tasas de empleo y desempleo",
+      "Informalidad laboral",
+      "Subempleo y precarización laboral",
+      "Brechas salariales",
+      "Empleo juvenil",
+      "Participación laboral de las mujeres",
+      "Trabajo rural y migración laboral"
+    ]
+  },
+  {
+    "slug": "colectivo",
+    "titulo": "Derecho colectivo del trabajo",
+    "icono": "colectivo",
+    "temas": ["Libertad sindical", "Negociación colectiva", "Derecho de huelga", "Tasa de sindicalización"]
+  }
+]
