@@ -38,8 +38,8 @@ function jsonLd(w: Webinar) {
   const virtual = { "@type": "VirtualLocation", url: w.inscripcion ?? w.grabacion ?? url };
   const fisico = {
     "@type": "Place",
-    name: w.lugar ?? "Bogotá",
-    address: { "@type": "PostalAddress", addressLocality: "Bogotá", addressCountry: "CO" },
+    name: w.lugar ?? "Colombia",
+    address: { "@type": "PostalAddress", addressCountry: "CO" },
   };
   const modo = { virtual: "OnlineEventAttendanceMode", presencial: "OfflineEventAttendanceMode", hibrida: "MixedEventAttendanceMode" }[w.modalidad];
   return {

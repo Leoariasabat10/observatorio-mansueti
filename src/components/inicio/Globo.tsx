@@ -13,7 +13,7 @@ export function Globo({ className = "" }: { className?: string }) {
       <GloboBase />
       <svg viewBox={`0 0 ${GLOBO} ${GLOBO}`} className="relative size-full" role="img" aria-labelledby="globo-desc">
         <desc id="globo-desc">
-          Sudamérica vista desde el Observatorio: globo con el continente dibujado en puntos y líneas que parten de Bogotá (4°36′ N, 74°04′ O) hacia{" "}
+          Sudamérica vista desde el Observatorio: globo con el continente dibujado en puntos y líneas que parten de Colombia hacia{" "}
           {CAPITALES.map((k) => k.ciudad).join(", ")}.
         </desc>
         <g fill="none" stroke="#FCC833" strokeWidth="1.1" strokeLinecap="round">
@@ -27,10 +27,7 @@ export function Globo({ className = "" }: { className?: string }) {
         <circle cx={ox} cy={oy} r="12" fill="none" stroke="#FCC833" strokeOpacity="0.6" />
         <circle cx={ox} cy={oy} r="4" fill="#FCC833" />
         <text x={ox - 18} y={oy - 16} textAnchor="end" className="fill-paper text-[13px] font-semibold">
-          Bogotá
-        </text>
-        <text x={ox - 18} y={oy - 2} textAnchor="end" className="fill-paper/60 text-[10.5px]" style={{ fontVariantNumeric: "tabular-nums" }}>
-          4°36′ N, 74°04′ O
+          Colombia
         </text>
       </svg>
     </figure>

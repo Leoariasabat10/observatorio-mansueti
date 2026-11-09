@@ -22,7 +22,7 @@ export const contact = {
   phoneDisplay: "314 407 5302",
   phoneHref: "tel:+573144075302",
   whatsapp: "https://wa.me/573144075302",
-  address: ["Carrera 7 # 17-57, oficina 705", "Bogotá, Colombia, 111221"],
+  address: ["Colombia"], // Client asked (2026-11-09) to show only the country, no street address
 };
 
 // Parent entity. The Observatorio belongs to the ASDTSS (confirmed 2026-11-03).

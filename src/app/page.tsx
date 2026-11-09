@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ChartLine, Mail, MapPin, MessageCircle, Scale, Users } from "lucide-react";
+import { ArrowRight, ChartLine, Mail, MessageCircle, Scale, Users } from "lucide-react";
 import ambitos from "@/content/ambitos.json";
 import { siteConfig } from "@site";
 import { asociacion, contact, observatorio, social } from "@/config/observatorio";
@@ -22,8 +22,6 @@ const fechaCorta = (iso: string) =>
 
 const iconosAmbito = { legislacion: Scale, empleo: ChartLine, colectivo: Users };
 
-const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${contact.address.join(", ")}`)}`;
-
 const organizacion = {
   "@context": "https://schema.org",
   "@type": "ResearchOrganization",
@@ -35,9 +33,6 @@ const organizacion = {
   telephone: "+57 314 407 5302",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Carrera 7 # 17-57, oficina 705",
-    addressLocality: "Bogotá",
-    postalCode: "111221",
     addressCountry: "CO",
   },
   parentOrganization: { "@type": "Organization", name: asociacion.name, alternateName: asociacion.acronym, url: asociacion.url },
@@ -72,9 +67,9 @@ export default function Inicio() {
                 Ver el programa académico
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
-              <Link href="/publicaciones" className="enlace text-sm font-semibold text-paper">
-                Publicaciones y boletines
-              </Link>
+              <a href="#lineas" className="enlace text-sm font-semibold text-paper">
+                Qué investigamos
+              </a>
             </div>
           </div>
 
@@ -90,14 +85,14 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* What the observatory monitors: the three areas, items only */}
-      <section aria-labelledby="ambitos" className="bg-paper">
+      {/* Research lines: the three areas, items only */}
+      <section id="lineas" aria-labelledby="ambitos" className="scroll-mt-20 bg-paper">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8">
           <div className="revelar flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <h2 id="ambitos" className="titular max-w-xl font-display text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.02] text-balance text-navy">
-              Lo que observamos
+              Líneas de investigación
             </h2>
-            <p className="max-w-sm text-base leading-relaxed text-muted">Tres ámbitos del mundo del trabajo, seguidos en los países de la región.</p>
+            <p className="max-w-sm text-base leading-relaxed text-muted">Lo que el Observatorio investiga en los países de América Latina.</p>
           </div>
 
           <div className="revelar-hijos mt-14 grid gap-5 lg:grid-cols-3 lg:gap-6">
@@ -340,10 +335,6 @@ export default function Inicio() {
             <a href={`mailto:${contact.email}`} className="enlace inline-flex items-center gap-2 self-center text-sm font-semibold text-navy">
               <Mail className="size-4" aria-hidden />
               Correo
-            </a>
-            <a href={mapa} target="_blank" rel="noopener" className="enlace inline-flex items-center gap-2 self-center text-sm font-semibold text-navy">
-              <MapPin className="size-4" aria-hidden />
-              Cómo llegar
             </a>
           </div>
         </div>

@@ -33,16 +33,12 @@ export default function ProgramaAcademico() {
             </p>
           </div>
 
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-5 self-end border-t border-rule pt-6 text-sm sm:grid-cols-3 lg:col-span-4 lg:grid-cols-1 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-5 self-end border-t border-rule pt-6 text-sm lg:col-span-4 lg:grid-cols-1 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
             <div>
               <dt className="text-muted">Transmisión desde</dt>
-              <dd className="mt-1 text-base font-semibold text-navy">Bogotá, Colombia</dd>
+              <dd className="mt-1 text-base font-semibold text-navy">Colombia</dd>
             </div>
             <div>
-              <dt className="text-muted">Coordenadas de la sede</dt>
-              <dd className="tnum mt-1 text-base font-semibold whitespace-nowrap text-navy">4°36′ N, 74°04′ O</dd>
-            </div>
-            <div className="col-span-2 sm:col-span-1">
               <dt className="text-muted">Todas las horas en</dt>
               <dd className="mt-1 text-base font-semibold text-navy">Hora de Bogotá (UTC−5)</dd>
             </div>

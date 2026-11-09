@@ -29,7 +29,7 @@ export function ProgramaEnCifras({ webinars }: { webinars: WebinarResumen[] }) {
         <div className="lg:col-span-6">
           <p className="eyebrow text-blue">El programa en cifras</p>
           <h2 id="cifras-titulo" className="titular mt-4 max-w-md font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
-            Ponentes de toda la región, una cita desde Bogotá
+            Ponentes de toda la región, una cita desde Colombia
           </h2>
           <p className="mt-5 max-w-md text-muted">
             Las cuatro primeras cifras se calculan con los webinars publicados en este sitio. Las otras dos llegarán con los registros de inscripción.

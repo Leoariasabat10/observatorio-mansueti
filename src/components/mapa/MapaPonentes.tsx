@@ -40,7 +40,7 @@ export function MapaPonentes({ conteo }: { conteo: ConteoPais[] }) {
     <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby="mapa-titulo mapa-desc" className="h-auto w-full">
       <title id="mapa-titulo">Mapa de Sudamérica con los países de origen de los ponentes</title>
       <desc id="mapa-desc">
-        {conteo.map((c) => `${paises[c.codigo]?.nombre}: ${c.ponentes}`).join("; ")}. Las líneas parten de Bogotá, sede del Observatorio.
+        {conteo.map((c) => `${paises[c.codigo]?.nombre}: ${c.ponentes}`).join("; ")}. Las líneas parten de Colombia, sede del Observatorio.
       </desc>
 
       <path d={path(grat) ?? ""} fill="none" stroke="#062265" strokeOpacity=".07" />
@@ -86,10 +86,7 @@ export function MapaPonentes({ conteo }: { conteo: ConteoPais[] }) {
       <circle cx={origen[0]} cy={origen[1]} r={11} fill="none" stroke="#FCC833" strokeWidth={1.5} />
       <circle cx={origen[0]} cy={origen[1]} r={5} fill="#FCC833" stroke="#062265" strokeWidth={1.5} />
       <text x={origen[0] + 16} y={origen[1] - 6} className="fill-navy text-[13px] font-semibold">
-        Bogotá
-      </text>
-      <text x={origen[0] + 16} y={origen[1] + 9} className="fill-muted text-[10px]" style={{ fontVariantNumeric: "tabular-nums" }}>
-        4°36′ N, 74°04′ O
+        Colombia
       </text>
     </svg>
   );

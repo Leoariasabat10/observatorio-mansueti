@@ -6,7 +6,7 @@ duracionMin: 120
 ejes: [plataformas-digitales, seguridad-social]
 modalidad: hibrida
 plataforma: Zoom
-lugar: "Carrera 7 # 17-57, oficina 705, Bogotá"
+lugar: "Colombia"
 resumen: "Contenido de ejemplo. Cómo están respondiendo los tribunales y los legisladores al trabajo por aplicaciones."
 ponentes:
   - { nombre: "Ponente de ejemplo 5", rol: "Ponente", institucion: "Universidad por confirmar", pais: BR }

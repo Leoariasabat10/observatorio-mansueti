@@ -5,7 +5,7 @@ hora: "18:00"
 duracionMin: 90
 ejes: [negociacion-colectiva]
 modalidad: presencial
-lugar: "Bogotá, sede por confirmar"
+lugar: "Colombia"
 resumen: "Contenido de ejemplo. Encuentro presencial con mesa de expertos y espacio de preguntas."
 ponentes:
   - { nombre: "Ponente de ejemplo 12", rol: "Ponente", institucion: "Universidad por confirmar", pais: CO }
