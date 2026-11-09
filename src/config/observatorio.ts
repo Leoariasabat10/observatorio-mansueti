@@ -45,8 +45,8 @@ export const team = [
 ];
 
 export const nav = [
-  { label: "Programa académico", href: "/programa-academico" },
   { label: "Observatorio", href: "/" },
+  { label: "Programa académico", href: "/programa-academico" },
   { label: "Publicaciones y Boletines", href: "/publicaciones" },
   { label: "Contacto", href: "#contacto" },
 ] as const;
