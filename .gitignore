@@ -41,3 +41,12 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# edición de video: intermedios pesados (los editables y exportes viven en video-final/)
+/video-final/work/
+/video-final/_analisis/*.wav
+/video-final/composicion/*/assets/arese-1080.mp4
+/video-final/composicion/*/.hyperframes/
+/video-final/composicion/*/node_modules/
+/video-final/exports/
+/*.mp4

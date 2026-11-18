@@ -1,0 +1,20 @@
+{
+  "_fuente": "Video grabado por el Prof. Dr. César Arese, recibido el 2026-11-17 y editado en video-final/. Transcripción local (faster-whisper) revisada; ver video-final/README.md.",
+  "titulo": "Mensaje del primer presidente de la ASDTSS",
+  "descripcion": "El Prof. Dr. César Arese invita a participar en las actividades académicas, los estudios y las publicaciones de la Asociación, y convoca a funcionarios, magistrados, abogados laboralistas y estudiosos del derecho del trabajo de los diez países que la integran.",
+  "ponente": "Prof. Dr. César Arese",
+  "cargo": "Primer presidente de la Asociación Sudamericana de Derecho del Trabajo y la Seguridad Social",
+  "fecha": "2026-11-17",
+  "duracion": "1:18",
+  "duracionIso": "PT1M18S",
+  "video": "/video/mensaje-arese.mp4",
+  "poster": "/video/mensaje-arese-poster.webp",
+  "subtitulos": "/video/mensaje-arese.vtt",
+  "transcripcion": [
+    "Soy el profesor doctor César Arese, primer presidente de la Asociación Sudamericana de Derecho del Trabajo y la Seguridad Social “Hugo Roberto Mansueti”.",
+    "Me dirijo a ustedes para exhortarlos, invitarlos a participar de nuestras actividades académicas, seguirnos en redes, participar en nuestros estudios y nuestras publicaciones.",
+    "Nuestra entidad tiene por propósito difundir el derecho del trabajo, sus valores, sus principios y su protección.",
+    "Es por ello que a partir de su fundación en agosto pasado, la Asociación Sudamericana de Derecho del Trabajo y la Seguridad Social viene trabajando para que todos los funcionarios, magistrados, abogados laboralistas y estudiosos del derecho del trabajo se incorporen a nuestra institución a partir de los 10 países que la integran y podamos trabajar en forma conjunta en pos del bien y del desarrollo del derecho del trabajo.",
+    "Muchas gracias."
+  ]
+}

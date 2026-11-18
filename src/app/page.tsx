@@ -16,6 +16,8 @@ import { MapaPonentes } from "@/components/mapa/MapaPonentes";
 import { Globo } from "@/components/inicio/Globo";
 import { ProximaObservacion } from "@/components/inicio/ProximaObservacion";
 import { Contador } from "@/components/ui/Contador";
+import { VideoMensaje } from "@/components/inicio/VideoMensaje";
+import mensaje from "@/content/video-mensaje.json";
 
 const fechaCorta = (iso: string) =>
   new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(iso));
@@ -39,6 +41,19 @@ const organizacion = {
   sameAs: [...social.map((s) => s.href), asociacion.facebook],
 };
 
+const videoMensaje = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: mensaje.titulo,
+  description: mensaje.descripcion,
+  thumbnailUrl: `${siteConfig.url}${mensaje.poster}`,
+  contentUrl: `${siteConfig.url}${mensaje.video}`,
+  uploadDate: mensaje.fecha,
+  duration: mensaje.duracionIso,
+  inLanguage: "es",
+  transcript: mensaje.transcripcion.join(" "),
+};
+
 export default function Inicio() {
   const webinars = resumenes();
   const publicaciones = resumenesPublicaciones();
@@ -52,6 +67,7 @@ export default function Inicio() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizacion).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoMensaje).replace(/</g, "\\u003c") }} />
 
       {/* Hero: the one signature moment of the page */}
       <section aria-labelledby="inicio-titulo" className="noche grano relative overflow-hidden text-paper">
@@ -81,6 +97,46 @@ export default function Inicio() {
         <div className="relative z-10 border-t border-paper/15">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <ProximaObservacion webinars={webinars} buildNow={BUILD_NOW} />
+          </div>
+        </div>
+      </section>
+
+      {/* Institutional message: video of the first president, quiet frame around it */}
+      <section aria-labelledby="mensaje" className="border-b border-rule bg-card">
+        <div className="mx-auto grid max-w-7xl gap-x-14 gap-y-10 px-5 py-20 sm:py-28 lg:grid-cols-12 lg:px-8">
+          <div className="revelar lg:col-span-4 lg:pt-6">
+            <h2 id="mensaje" className="font-display text-[clamp(2rem,3.1vw,2.875rem)] leading-[1.04] text-balance text-navy">
+              {mensaje.titulo}
+            </h2>
+            <p className="mt-6 max-w-md text-base leading-relaxed text-muted">{mensaje.descripcion}</p>
+          </div>
+
+          <div className="revelar lg:sticky lg:top-28 lg:col-span-8 lg:col-start-5 lg:row-span-2 lg:row-start-1 lg:self-start">
+            <VideoMensaje src={mensaje.video} poster={mensaje.poster} subtitulos={mensaje.subtitulos} titulo={mensaje.titulo} duracion={mensaje.duracion} />
+          </div>
+
+          <div className="lg:col-span-4 lg:self-start">
+            <dl className="border-t border-navy text-sm">
+              <div className="flex items-baseline justify-between gap-6 border-b border-rule py-3.5">
+                <dt className="text-muted">Habla</dt>
+                <dd className="text-right font-medium text-navy">{mensaje.ponente}</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-6 border-b border-rule py-3.5">
+                <dt className="text-muted">Duración</dt>
+                <dd className="tnum font-medium text-navy">{mensaje.duracion} min</dd>
+              </div>
+            </dl>
+            <details className="group/transcripcion mt-6">
+              <summary className="enlace inline-block cursor-pointer list-none text-sm font-semibold text-navy [&::-webkit-details-marker]:hidden">
+                <span className="group-open/transcripcion:hidden">Leer la transcripción</span>
+                <span className="hidden group-open/transcripcion:inline">Ocultar la transcripción</span>
+              </summary>
+              <div className="mt-5 max-h-80 space-y-4 overflow-y-auto border-l border-gold pr-2 pl-5 text-[0.9375rem] leading-relaxed text-navy">
+                {mensaje.transcripcion.map((parrafo) => (
+                  <p key={parrafo}>{parrafo}</p>
+                ))}
+              </div>
+            </details>
           </div>
         </div>
       </section>

@@ -1,0 +1,7 @@
+# Material de trabajo que no forma parte del sitio (no subir en `vercel deploy`)
+/video-final
+/flyer
+/flyers_conversatorios
+/assets-cliente
+/docs
+/*.mp4
