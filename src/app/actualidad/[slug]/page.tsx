@@ -101,7 +101,7 @@ export default async function NovedadPage({ params }: PageProps<"/actualidad/[sl
           </div>
           {n.imagen && (
             <figure className="lg:col-span-5">
-              <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={900} height={900} sizes="(min-width: 1024px) 460px, 92vw" priority className="h-auto w-full max-w-sm rounded-sm border border-rule lg:max-w-none" />
+              <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={n.imagenW ?? 900} height={n.imagenH ?? 900} sizes="(min-width: 1024px) 460px, 92vw" priority fetchPriority="high" style={{ maxWidth: n.imagenW ? `min(${n.imagenW}px, 30rem)` : "30rem" }} className="h-auto w-full rounded-sm border border-rule" />
               {n.credito && <figcaption className="mt-2 max-w-sm text-xs leading-relaxed text-muted">{n.credito}</figcaption>}
             </figure>
           )}

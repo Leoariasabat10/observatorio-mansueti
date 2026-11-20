@@ -39,7 +39,7 @@ function Destacada({ n }: { n: ActualidadResumen }) {
     <Link href={`/actualidad/${n.slug}`} className="group grid gap-x-12 gap-y-6 lg:grid-cols-12 lg:items-center">
       {n.imagen && (
         <div className="overflow-hidden rounded-sm border border-rule bg-card lg:col-span-7">
-          <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={1200} height={800} priority sizes="(min-width: 1024px) 700px, 92vw" className="aspect-[3/2] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015] motion-reduce:transition-none" />
+          <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={n.imagenW ?? 1200} height={n.imagenH ?? 800} priority fetchPriority="high" sizes="(min-width: 1024px) 700px, 92vw" className="aspect-[3/2] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015] motion-reduce:transition-none" />
         </div>
       )}
       <div className="lg:col-span-5">
@@ -60,7 +60,7 @@ function Tarjeta({ n }: { n: ActualidadResumen }) {
       <Link href={`/actualidad/${n.slug}`} className="group flex h-full flex-col">
         {n.imagen && (
           <div className="overflow-hidden rounded-sm border border-rule bg-card">
-            <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={900} height={600} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw" className="aspect-[3/2] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
+            <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={n.imagenW ?? 900} height={n.imagenH ?? 600} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw" className="aspect-[3/2] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
           </div>
         )}
         <div className="mt-5">
@@ -145,7 +145,10 @@ export function ListaActualidad({ novedades }: { novedades: ActualidadResumen[] 
             <section key={etiqueta} aria-label={etiqueta} className="mt-14">
               <h2 className="flex items-baseline gap-4 border-b border-navy pb-3 font-display text-[clamp(1.5rem,2.4vw,2rem)] leading-none text-navy">
                 {etiqueta}
-                <span className="tnum font-sans text-sm font-medium text-muted">{items.length}</span>
+                <span aria-hidden className="tnum font-sans text-sm font-medium text-muted">
+                  {items.length}
+                </span>
+                <span className="sr-only">, {items.length === 1 ? "1 entrada" : `${items.length} entradas`}</span>
               </h2>
               <ul className="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((n) => (

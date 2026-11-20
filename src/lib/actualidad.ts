@@ -22,6 +22,8 @@ export type Actualidad = {
   eje?: string;
   imagen?: string;
   imagenAlt?: string;
+  imagenW?: number; // intrinsic size, read from the file: real layout hints, and the UI never renders it larger than this
+  imagenH?: number;
   credito?: string;
   pagina: keyof typeof PAGINAS;
   urlOriginal: string;
@@ -36,6 +38,20 @@ export type Actualidad = {
 export type ActualidadResumen = Omit<Actualidad, "html">;
 
 const DIR = "src/content/actualidad";
+
+/** Intrinsic size of a WebP file (VP8, VP8L, VP8X). */
+function tamanoWebp(file: string): { w: number; h: number } | undefined {
+  const b = fs.readFileSync(file);
+  if (b.toString("ascii", 0, 4) !== "RIFF" || b.toString("ascii", 8, 12) !== "WEBP") return undefined;
+  const t = b.toString("ascii", 12, 16);
+  if (t === "VP8X") return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+  if (t === "VP8L") {
+    const v = b.readUInt32LE(21);
+    return { w: 1 + (v & 0x3fff), h: 1 + ((v >> 14) & 0x3fff) };
+  }
+  if (t === "VP8 ") return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+  return undefined;
+}
 
 function parse(file: string): Actualidad {
   const { slug, d, fail, str, html } = leerMarkdown(DIR, file);
@@ -55,9 +71,11 @@ function parse(file: string): Actualidad {
   if (eje && !ejePorSlug(eje)) fail(`eje desconocido "${eje}"`);
 
   const imagen = str("imagen");
+  let dims: { w: number; h: number } | undefined;
   if (imagen) {
     if (!str("texto_alternativo") || !str("credito")) fail(`"imagen" necesita "texto_alternativo" y "credito"`);
     if (!fs.existsSync(path.join(process.cwd(), "public", imagen))) fail(`no se encuentra la imagen "${imagen}" en public/`);
+    dims = imagen.endsWith(".webp") ? tamanoWebp(path.join(process.cwd(), "public", imagen)) : undefined;
   }
   const punt = d.puntuacion;
   if (punt != null && !(Number(punt) >= 0 && Number(punt) <= 10)) fail(`"puntuacion" debe estar entre 0 y 10`);
@@ -86,6 +104,8 @@ function parse(file: string): Actualidad {
     eje,
     imagen,
     imagenAlt: str("texto_alternativo"),
+    imagenW: dims?.w,
+    imagenH: dims?.h,
     credito: str("credito"),
     pagina,
     urlOriginal,

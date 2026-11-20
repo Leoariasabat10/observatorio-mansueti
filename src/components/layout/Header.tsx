@@ -33,13 +33,14 @@ export function Header() {
       </div>
       <header style={{ viewTransitionName: "site-header" }} className="sticky top-0 z-40 border-b border-rule bg-card/95 backdrop-blur" onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8">
-          <Link href="/" className="flex min-w-0 items-center gap-3" aria-label={`${observatorio.shortName}, inicio`}>
+          <Link href="/" className="flex min-w-0 items-center gap-3">
             <Mark className="h-10 w-auto shrink-0 sm:h-12" priority />
             <span className="min-w-0 border-l border-rule pl-3 leading-tight">
               <span className="block text-[0.95rem] font-extrabold tracking-[0.04em] text-navy sm:text-base">
                 OBSERVATORIO {observatorio.acronym}
               </span>
               <span className="block text-[0.85rem] text-heritage italic sm:text-[0.9rem]">{observatorio.honoree}</span>
+              <span className="sr-only">, inicio</span>
             </span>
           </Link>
 
