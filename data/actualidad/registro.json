@@ -1,16 +1,6 @@
 {
   "procesados": [
     {
-      "id": "obs-20261119-1716",
-      "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
-      "fecha": "2026-11-19",
-      "huella": "0e0bc2ddd0d6099a",
-      "decision": "pendiente",
-      "motivo": "Marcado para revisión: El valor informativo está en las 5 imágenes del carrusel «Latitud Sudamericana: actualización de noticias laborales, edición noviembre» (Argentina, Bolivia, Paraguay…); aún no capturadas. El texto es introductorio.",
-      "procesado": "2026-11-20T04:27:24.527Z"
-    },
-    {
       "id": "obs-20261118-0950",
       "pagina": "observatorio",
       "url": "https://www.facebook.com/profile.php?id=61595918491051",
@@ -28,16 +18,6 @@
       "huella": "1af01b3056ebd531",
       "decision": "incluido",
       "motivo": "Puntuación 7.6 ≥ 7.",
-      "procesado": "2026-11-20T04:27:24.527Z"
-    },
-    {
-      "id": "obs-20261109-1457",
-      "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
-      "fecha": "2026-11-09",
-      "huella": "55ed1de6787dd0a7",
-      "decision": "pendiente",
-      "motivo": "Marcado para revisión: Facebook marca la publicación como «Contenido de IA». Texto truncado: falta leerlo completo. Revisar antes de reutilizar texto o imagen.",
       "procesado": "2026-11-20T04:27:24.527Z"
     },
     {
@@ -61,14 +41,114 @@
       "procesado": "2026-11-20T04:27:24.527Z"
     },
     {
+      "id": "obs-20261119-1716",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-19",
+      "huella": "12a4f61ef1eba5ad",
+      "decision": "incluido",
+      "motivo": "Puntuación 8.5 ≥ 7.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261109-1457",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-09",
+      "huella": "e0f134334b752cda",
+      "decision": "pendiente",
+      "motivo": "Marcado para revisión: Facebook marca la publicación como «Contenido de IA» (sin detallar qué parte). La infografía adjunta (no capturada) afirma: «Aprobada, pero aún no vigente… entrada estimada 1 de abril de 2027, pendiente del aval de la Corte Constitucional» y cita la sentencia C-264 de 25 de agosto de 2026; el texto del post no dice eso. Contrastar antes de publicar. Firma del post: «Asociación Suramericana del Trabajo y la Seguridad Social» (sic).",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261105-1531",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-05",
+      "huella": "a399f2c8e41e8481",
+      "decision": "incluido",
+      "motivo": "Puntuación 8.2 ≥ 7.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261105-1528",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-05",
+      "huella": "c3aefd04d18dbd16",
+      "decision": "incluido",
+      "motivo": "Puntuación 8.2 ≥ 7.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261104-1253",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-04",
+      "huella": "01f55a28e13295a6",
+      "decision": "incluido",
+      "motivo": "Puntuación 7.6 ≥ 7.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261104-0917",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-04",
+      "huella": "20dd4b03b4238e4a",
+      "decision": "incluido",
+      "motivo": "Puntuación 8.2 ≥ 7.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261103-1603",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-03",
+      "huella": "75c853c947479964",
+      "decision": "descartado",
+      "motivo": "Puntuación 4.7 < 5.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261103-1414",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-03",
+      "huella": "bd013d4888d1256b",
+      "decision": "incluido",
+      "motivo": "Puntuación 7.8 ≥ 7.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261029-1648",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-10-29",
+      "huella": "0141e490f8ad55ad",
+      "decision": "incluido",
+      "motivo": "Puntuación 7.9 ≥ 7.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
+      "id": "obs-20261029-1641",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-10-29",
+      "huella": "4a3a714a4f02329a",
+      "decision": "pendiente",
+      "motivo": "Puntuación 6.3 entre 5 y 7.",
+      "procesado": "2026-11-20T04:42:17.928Z"
+    },
+    {
       "id": "asdtss-20261105-1854",
       "pagina": "asdtss",
       "url": "https://www.facebook.com/ASDTSS",
       "fecha": "2026-11-05",
-      "huella": "778141c63fe0c483",
+      "huella": "b626663d63171111",
       "decision": "pendiente",
-      "motivo": "Marcado para revisión: Publicación compartida de un tercero (transmisión en vivo de la Universidad Regional de Guatemala, 2:16:56 h). No es contenido propio: sin imagen. Texto truncado. «GT» no está en src/lib/paises.ts: añadir Guatemala o dejar sin país.",
-      "procesado": "2026-11-20T04:27:24.527Z"
+      "motivo": "Marcado para revisión: Contenido de un tercero compartido en la cronología del perfil ASDTSS: se conserva la atribución original (Universidad Regional de Guatemala) y quién lo compartió. Sin imagen. El evento ya terminó. Decidir si aporta o se descarta.",
+      "procesado": "2026-11-20T04:42:17.928Z"
     }
   ]
 }

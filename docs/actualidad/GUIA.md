@@ -14,7 +14,8 @@ En Claude Code: *"Usa el skill actualidad-facebook: revisa las novedades de las 
 ## Revisar
 1. Aprueba la tanda → el agente corre con `--escribir`: crea borradores en `src/content/actualidad/`, imágenes en `public/actualidad/` (originales en `data/actualidad/originales/`) y la bandeja `docs/actualidad/revision/index.html` (ábrela en el navegador).
 2. En cada borrador cambia `estado` a `publicado` (o usa el editor `/admin` cuando exista) para que salga en el sitio. `revision` = hay una duda anotada en `motivo_decision`.
-3. `npm run build` valida todo: un archivo mal formado detiene el build.
+3. Vista previa local de los borradores en el sitio: en PowerShell, `$env:ACTUALIDAD_VISTA_PREVIA="1"; npm run build`, y sirve la carpeta `out` (python -m http.server 4173 --bind 127.0.0.1). Muestra una franja de aviso y la etiqueta de estado. No lo uses para desplegar.
+4. `npm run build` (sin esa variable) valida todo: un archivo mal formado detiene el build.
 
 ## Imágenes
 Solo con permiso: fotos propias del Observatorio, o de la ASDTSS que la Asociación pueda reutilizar. Si es de un tercero o no está claro, la entrada queda en revisión sin imagen. Cada imagen lleva crédito y texto alternativo factual.

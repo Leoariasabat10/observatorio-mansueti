@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { getActualidad } from "@/lib/actualidad";
+import { getActualidad, VISTA_PREVIA } from "@/lib/actualidad";
 import { fechaPublicacion } from "@/lib/categorias";
 import { paises } from "@/lib/paises";
 import { EjemploTag, EjeTag } from "@/components/webinar/Etiquetas";
@@ -29,6 +29,11 @@ export default function Actualidad() {
         </div>
       </section>
 
+      {VISTA_PREVIA && (
+        <p className="border-b border-dashed border-heritage/40 bg-heritage/[0.04] px-5 py-3 text-center text-sm font-semibold text-heritage">
+          Vista previa local: se muestran borradores y entradas en revisión. No es lo que verá el público.
+        </p>
+      )}
       <section aria-label="Novedades" className="bg-paper">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
           {novedades.length === 0 ? (
@@ -39,8 +44,8 @@ export default function Actualidad() {
                 <li key={n.slug}>
                   <Link href={`/actualidad/${n.slug}`} className="group block">
                     {n.imagen && (
-                      <div className="aspect-[4/5] overflow-hidden rounded-sm border border-rule bg-card">
-                        <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={800} height={1000} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw" className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
+                      <div className="overflow-hidden rounded-sm border border-rule bg-card">
+                        <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={800} height={800} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw" className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
                       </div>
                     )}
                     <p className="mt-5 text-sm text-muted">
@@ -52,6 +57,7 @@ export default function Actualidad() {
                     <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
                       {n.eje && <EjeTag slug={n.eje} />}
                       {n.ejemplo && <EjemploTag />}
+                      {VISTA_PREVIA && n.estado !== "publicado" && <span className="rounded-sm border border-dashed border-heritage/50 px-2 py-0.5 text-[0.6875rem] font-semibold text-heritage uppercase">{n.estado}</span>}
                     </div>
                   </Link>
                 </li>

@@ -192,6 +192,7 @@ collections:
           - { label: "España", value: ES }
           - { label: "Italia", value: IT }
           - { label: "Panamá", value: PA }
+          - { label: "Guatemala", value: GT }
           - { label: "Costa Rica", value: CR }
           - { label: "Estados Unidos", value: US }
       - label: Eje temático

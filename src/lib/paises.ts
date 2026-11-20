@@ -16,6 +16,7 @@ export const paises: Record<string, { nombre: string; id: string; sudamerica?: t
   ES: { nombre: "España", id: "724" },
   IT: { nombre: "Italia", id: "380" },
   PA: { nombre: "Panamá", id: "591" },
+  GT: { nombre: "Guatemala", id: "320" },
   CR: { nombre: "Costa Rica", id: "188" },
   US: { nombre: "Estados Unidos", id: "840" },
 };

@@ -95,6 +95,12 @@
   list-style: disc;
   padding-left: 1.25rem;
 }
+.prosa img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-rule);
+  border-radius: 2px;
+}
 .prosa strong {
   font-weight: 600;
 }

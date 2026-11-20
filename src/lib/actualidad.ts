@@ -92,6 +92,9 @@ function todas(): Actualidad[] {
   return cache;
 }
 
-/** Only what is public. */
-export const getActualidad = (): Actualidad[] => todas().filter((a) => a.estado === "publicado");
+/** Local review build only (ACTUALIDAD_VISTA_PREVIA=1): drafts and entries in review are shown too. Never set it for a deploy. */
+export const VISTA_PREVIA = process.env.ACTUALIDAD_VISTA_PREVIA === "1";
+
+/** Only what is public (or everything, in the local preview build). */
+export const getActualidad = (): Actualidad[] => todas().filter((a) => VISTA_PREVIA || a.estado === "publicado");
 export const getNovedad = (slug: string) => getActualidad().find((a) => a.slug === slug);

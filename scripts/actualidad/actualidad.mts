@@ -22,6 +22,7 @@ export type Post = {
   cargo?: string;
   eje_tematico?: string;
   imagen_origen?: string; // path to the file saved from Chrome
+  imagenes_extra?: { origen: string; alt: string }[]; // more images of the same post (carousel): appended to the body
   imagen_permiso?: "propia" | "autorizada" | "tercero" | "desconocida";
   texto_alternativo?: string;
   credito?: string;
@@ -103,7 +104,7 @@ export function estadoFinal(r: Resultado, cfg: Config): "borrador" | "revision" 
 export const slugify = (t: string) => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
 const yaml = (v: string) => JSON.stringify(v);
 
-export function entrada(r: Resultado, cfg: Config, imagenWeb?: string) {
+export function entrada(r: Resultado, cfg: Config, imagenWeb?: string, extras: { web: string; alt: string }[] = []) {
   const p = r.post;
   const estado = estadoFinal(r, cfg);
   const motivo = r.imagen === "pendiente_permiso" ? `${r.motivo} Imagen sin permiso claro de reutilización: no se publica.` : r.motivo;
@@ -133,6 +134,7 @@ export function entrada(r: Resultado, cfg: Config, imagenWeb?: string) {
     "",
     p.texto.trim(),
     "",
+    ...extras.flatMap((e) => [`![${e.alt.replace(/[\[\]]/g, "")}](${e.web})`, ""]),
   ];
   return lines.filter((l) => l !== false && l !== undefined).join("\n");
 }
@@ -189,8 +191,16 @@ async function main() {
         execFileSync("python", [path.join(ROOT, "scripts/actualidad/optimizar.py"), path.join(ROOT, r.post.imagen_origen!), path.join(ROOT, dst)], { stdio: "inherit" });
         web = `/actualidad/${r.post.id_publicacion}.webp`;
       }
+      const extras: { web: string; alt: string }[] = [];
+      if (r.imagen === "ok") {
+        for (const [n, e] of (r.post.imagenes_extra ?? []).entries()) {
+          const dst = `public/actualidad/${r.post.id_publicacion}-${n + 2}.webp`;
+          execFileSync("python", [path.join(ROOT, "scripts/actualidad/optimizar.py"), path.join(ROOT, e.origen), path.join(ROOT, dst)], { stdio: "inherit" });
+          extras.push({ web: `/${dst.replace("public/", "")}`, alt: e.alt });
+        }
+      }
       const file = `src/content/actualidad/${r.post.fecha_publicacion}-${slugify(r.post.titulo ?? r.post.id_publicacion)}.md`;
-      fs.writeFileSync(path.join(ROOT, file), entrada(r, cfg, web));
+      fs.writeFileSync(path.join(ROOT, file), entrada(r, cfg, web, extras));
     }
     reg.procesados.push({ id: r.post.id_publicacion, pagina: r.post.pagina_fuente, url: r.post.url_original, fecha: r.post.fecha_publicacion, huella: r.huella, decision: r.decision, motivo: r.motivo, procesado: hoy });
   }
