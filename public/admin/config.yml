@@ -143,6 +143,82 @@ collections:
       - { label: Contenido de ejemplo, name: ejemplo, widget: boolean, default: false, required: false }
       - { label: Texto, name: body, widget: markdown }
 
+  - name: actualidad
+    label: Actualidad
+    label_singular: Novedad
+    folder: /src/content/actualidad
+    extension: md
+    format: frontmatter
+    create: true
+    identifier_field: titulo
+    media_folder: /public/actualidad
+    public_folder: /actualidad
+    slug:
+      template: "{{fecha_publicacion}}-{{slug}}"
+      editable: [create]
+    summary: "{{fecha_publicacion}} · {{estado}} · {{titulo}}"
+    sortable_fields: [fecha_publicacion, titulo, estado]
+    fields:
+      - { label: Título, name: titulo, widget: string }
+      - { label: Fecha de publicación, name: fecha_publicacion, widget: datetime, type: date }
+      - label: Estado
+        name: estado
+        widget: select
+        default: borrador
+        hint: "Solo «publicado» aparece en el sitio."
+        options: [{ label: Borrador, value: borrador }, { label: En revisión, value: revision }, { label: Publicado, value: publicado }]
+      - { label: Resumen fiel al original, name: resumen, widget: text }
+      - { label: Ponente o autor, name: ponente_o_autor, widget: string, required: false }
+      - { label: Cargo, name: cargo, widget: string, required: false }
+      - { label: Institución, name: institucion, widget: string, required: false }
+      - label: País
+        name: pais
+        widget: select
+        required: false
+        options:
+          - { label: "Argentina", value: AR }
+          - { label: "Bolivia", value: BO }
+          - { label: "Brasil", value: BR }
+          - { label: "Chile", value: CL }
+          - { label: "Colombia", value: CO }
+          - { label: "Ecuador", value: EC }
+          - { label: "Guyana", value: GY }
+          - { label: "Paraguay", value: PY }
+          - { label: "Perú", value: PE }
+          - { label: "Surinam", value: SR }
+          - { label: "Uruguay", value: UY }
+          - { label: "Venezuela", value: VE }
+          - { label: "México", value: MX }
+          - { label: "España", value: ES }
+          - { label: "Italia", value: IT }
+          - { label: "Panamá", value: PA }
+          - { label: "Costa Rica", value: CR }
+          - { label: "Estados Unidos", value: US }
+      - label: Eje temático
+        name: eje_tematico
+        widget: select
+        required: false
+        options:
+          - { label: "Negociación colectiva", value: negociacion-colectiva }
+          - { label: "Seguridad social", value: seguridad-social }
+          - { label: "Trabajo en plataformas digitales", value: plataformas-digitales }
+          - { label: "Género y trabajo", value: genero-y-trabajo }
+      - { label: Imagen, name: imagen, widget: image, required: false, hint: "Solo con permiso de reutilización" }
+      - { label: Texto alternativo, name: texto_alternativo, widget: string, required: false, hint: "Obligatorio si hay imagen. Solo lo que realmente se ve." }
+      - { label: Crédito de la imagen, name: credito, widget: string, required: false, hint: "Obligatorio si hay imagen" }
+      - label: Página de origen
+        name: pagina_fuente
+        widget: select
+        options: [{ label: Observatorio, value: observatorio }, { label: ASDTSS, value: asdtss }]
+      - { label: Enlace a la publicación original, name: url_original, widget: string }
+      - { label: ID de la publicación, name: id_publicacion, widget: string }
+      - { label: Fecha de importación, name: fecha_importacion, widget: datetime, type: date, required: false }
+      - { label: Huella del contenido, name: huella_contenido, widget: string, required: false }
+      - { label: Puntuación (0-10), name: puntuacion, widget: number, value_type: float, min: 0, max: 10, required: false }
+      - { label: Motivo de la decisión, name: motivo_decision, widget: text, required: false }
+      - { label: Contenido de ejemplo, name: ejemplo, widget: boolean, default: false, required: false }
+      - { label: Texto completo, name: body, widget: markdown, required: false }
+
   - name: datos
     label: Cifras del Inicio
     files:

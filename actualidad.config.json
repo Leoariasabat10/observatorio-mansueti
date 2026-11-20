@@ -1,0 +1,13 @@
+{
+  "modo": "borrador",
+  "dry_run": true,
+  "umbral_incluir": 7,
+  "umbral_pendiente": 5,
+  "maximo_posts_por_pagina": 15,
+  "pesos": { "pertinencia": 0.30, "valor": 0.25, "region": 0.15, "fuente": 0.15, "vigencia": 0.15 },
+  "paginas": {
+    "observatorio": { "url": "https://www.facebook.com/profile.php?id=61595918491051", "imagenes": "propia" },
+    "asdtss": { "url": "https://www.facebook.com/ASDTSS", "imagenes": "solo_si_autorizada" }
+  },
+  "registro": "data/actualidad/registro.json"
+}

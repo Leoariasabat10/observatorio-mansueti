@@ -50,3 +50,8 @@ next-env.d.ts
 /video-final/composicion/*/node_modules/
 /video-final/exports/
 /*.mp4
+
+# Actualidad: originales descargados de Facebook (referencia local) y lotes
+/data/actualidad/originales/*
+!/data/actualidad/originales/.gitkeep
+/data/actualidad/lotes/
