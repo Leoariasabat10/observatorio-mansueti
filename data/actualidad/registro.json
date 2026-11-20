@@ -1,104 +1,104 @@
 {
   "procesados": [
     {
-      "id": "obs-20261118-0950",
-      "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
-      "fecha": "2026-11-18",
-      "huella": "30d53cfa3060b670",
-      "decision": "incluido",
-      "motivo": "Puntuación 7.5 ≥ 7.",
-      "procesado": "2026-11-20T04:27:24.527Z"
-    },
-    {
-      "id": "obs-20261109-1505",
-      "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
-      "fecha": "2026-11-09",
-      "huella": "1af01b3056ebd531",
-      "decision": "incluido",
-      "motivo": "Puntuación 7.6 ≥ 7.",
-      "procesado": "2026-11-20T04:27:24.527Z"
-    },
-    {
-      "id": "obs-20261106-1730",
-      "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
-      "fecha": "2026-11-06",
-      "huella": "8afd7731a7910a3f",
-      "decision": "incluido",
-      "motivo": "Puntuación 8.2 ≥ 7.",
-      "procesado": "2026-11-20T04:27:24.527Z"
-    },
-    {
-      "id": "obs-20261106-1658",
-      "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
-      "fecha": "2026-11-06",
-      "huella": "93e813de7cb8cd2c",
-      "decision": "incluido",
-      "motivo": "Puntuación 8.2 ≥ 7.",
-      "procesado": "2026-11-20T04:27:24.527Z"
-    },
-    {
       "id": "obs-20261119-1716",
       "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "url": "https://www.facebook.com/share/p/1A91ih1HRe/",
       "fecha": "2026-11-19",
       "huella": "12a4f61ef1eba5ad",
       "decision": "incluido",
       "motivo": "Puntuación 8.5 ≥ 7.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "procesado": "2026-11-20T05:12:06.205Z"
+    },
+    {
+      "id": "obs-20261118-0950",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/share/v/1JW7MCGDh2/",
+      "fecha": "2026-11-18",
+      "huella": "30d53cfa3060b670",
+      "decision": "incluido",
+      "motivo": "Puntuación 7.5 ≥ 7.",
+      "procesado": "2026-11-20T05:12:06.205Z"
+    },
+    {
+      "id": "obs-20261109-1505",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/share/p/1DfvR6bnmg/",
+      "fecha": "2026-11-09",
+      "huella": "1af01b3056ebd531",
+      "decision": "incluido",
+      "motivo": "Puntuación 7.6 ≥ 7.",
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261109-1457",
       "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "url": "https://www.facebook.com/share/p/1FnYmMzZGv/",
       "fecha": "2026-11-09",
       "huella": "e0f134334b752cda",
       "decision": "pendiente",
-      "motivo": "Marcado para revisión: Facebook marca la publicación como «Contenido de IA» (sin detallar qué parte). La infografía adjunta (no capturada) afirma: «Aprobada, pero aún no vigente… entrada estimada 1 de abril de 2027, pendiente del aval de la Corte Constitucional» y cita la sentencia C-264 de 25 de agosto de 2026; el texto del post no dice eso. Contrastar antes de publicar. Firma del post: «Asociación Suramericana del Trabajo y la Seguridad Social» (sic).",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "motivo": "Marcado para revisión: Texto completo recuperado. Verificación con fuentes oficiales: la Sentencia C-264 de 2026 (Corte Constitucional, 25 de agosto de 2026, exp. D-15989) declara exequible el art. 94 «en el entendido de que las disposiciones declaradas exequibles… entrarán en vigencia a partir del 1° de abril de 2027» y devuelve a la Cámara los artículos con proposiciones válidas no tramitadas (nueve, según su análisis) para subsanar el trámite; ver https://www.corteconstitucional.gov.co/relatoria/2026/C-264-26.htm. La infografía del post dice en su pie que «la Ley 2381 recuperó su vigencia desde el 25 de agosto de 2026», lo que no coincide con la sentencia (la vigencia es desde el 1 de abril de 2027). Además, la Corte aceptó el 15 de octubre de 2026 un incidente de impacto fiscal que podría aplazar un año esa vigencia (reportado por la Presidencia; no se pudo abrir la nota oficial para confirmarlo). Facebook marca el post como «Contenido de IA». Queda en revisión hasta corregir o aclarar con el Observatorio.",
+      "procesado": "2026-11-20T05:12:06.205Z"
+    },
+    {
+      "id": "obs-20261106-1730",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/share/p/1Kf48ZrKjG/",
+      "fecha": "2026-11-06",
+      "huella": "8afd7731a7910a3f",
+      "decision": "incluido",
+      "motivo": "Puntuación 8.2 ≥ 7.",
+      "procesado": "2026-11-20T05:12:06.205Z"
+    },
+    {
+      "id": "obs-20261106-1658",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/share/p/1FACBUJZqj/",
+      "fecha": "2026-11-06",
+      "huella": "93e813de7cb8cd2c",
+      "decision": "incluido",
+      "motivo": "Puntuación 8.2 ≥ 7.",
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261105-1531",
       "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "url": "https://www.facebook.com/share/p/18GfZw496S/",
       "fecha": "2026-11-05",
       "huella": "a399f2c8e41e8481",
       "decision": "incluido",
       "motivo": "Puntuación 8.2 ≥ 7.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261105-1528",
       "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "url": "https://www.facebook.com/share/p/1dqJkpvNut/",
       "fecha": "2026-11-05",
       "huella": "c3aefd04d18dbd16",
       "decision": "incluido",
       "motivo": "Puntuación 8.2 ≥ 7.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261104-1253",
       "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "url": "https://www.facebook.com/share/p/1Kv2APm6Un/",
       "fecha": "2026-11-04",
       "huella": "01f55a28e13295a6",
       "decision": "incluido",
       "motivo": "Puntuación 7.6 ≥ 7.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261104-0917",
       "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "url": "https://www.facebook.com/share/p/19yLj5ZRqB/",
       "fecha": "2026-11-04",
       "huella": "20dd4b03b4238e4a",
       "decision": "incluido",
       "motivo": "Puntuación 8.2 ≥ 7.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261103-1603",
@@ -108,27 +108,27 @@
       "huella": "75c853c947479964",
       "decision": "descartado",
       "motivo": "Puntuación 4.7 < 5.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261103-1414",
       "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "url": "https://www.facebook.com/share/p/19u9y4Uf6d/",
       "fecha": "2026-11-03",
       "huella": "bd013d4888d1256b",
       "decision": "incluido",
       "motivo": "Puntuación 7.8 ≥ 7.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261029-1648",
       "pagina": "observatorio",
-      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "url": "https://www.facebook.com/share/p/1M4CGT9E5x/",
       "fecha": "2026-10-29",
       "huella": "0141e490f8ad55ad",
-      "decision": "incluido",
-      "motivo": "Puntuación 7.9 ≥ 7.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "decision": "pendiente",
+      "motivo": "Marcado para revisión: La única imagen adecuada del post es el retrato de una persona que el texto no identifica (y la bandera de Ecuador es de baja resolución). Falta confirmar con el Observatorio quién es y que se puede reutilizar. Sin imagen mientras tanto.",
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "obs-20261029-1641",
@@ -138,7 +138,7 @@
       "huella": "4a3a714a4f02329a",
       "decision": "pendiente",
       "motivo": "Puntuación 6.3 entre 5 y 7.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "procesado": "2026-11-20T05:12:06.205Z"
     },
     {
       "id": "asdtss-20261105-1854",
@@ -147,8 +147,8 @@
       "fecha": "2026-11-05",
       "huella": "b626663d63171111",
       "decision": "pendiente",
-      "motivo": "Marcado para revisión: Contenido de un tercero compartido en la cronología del perfil ASDTSS: se conserva la atribución original (Universidad Regional de Guatemala) y quién lo compartió. Sin imagen. El evento ya terminó. Decidir si aporta o se descarta.",
-      "procesado": "2026-11-20T04:42:17.928Z"
+      "motivo": "Marcado para revisión: Contenido de un tercero compartido en la cronología del perfil ASDTSS: se conserva la atribución original (Universidad Regional de Guatemala) y quién lo compartió. Sin imagen. El evento ya terminó. Decidir si aporta o se descarta. Enlace permanente del post no obtenido.",
+      "procesado": "2026-11-20T05:12:06.205Z"
     }
   ]
 }

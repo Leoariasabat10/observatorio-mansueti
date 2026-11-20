@@ -1,11 +1,14 @@
 ---
 titulo: "Perú aprueba protocolo para proteger a los trabajadores frente al Fenómeno El Niño"
 fecha_publicacion: "2026-11-05"
-estado: borrador
-resumen: "¿Qué esta pasando en Perú?"
+estado: publicado
+resumen: "PERÚ APRUEBA PROTOCOLO PARA PROTEGER A LOS TRABAJADORES FRENTE AL FENÓMENO EL NIÑO"
 pais: PE
+imagen: /actualidad/obs-20261105-1528.webp
+texto_alternativo: "Infografía «Perú MTPE aprueba protocolo para proteger a los trabajadores ante el Fenómeno del Niño», con el resumen de lo que establece el protocolo"
+credito: "Observatorio ASDTSS, publicación de Facebook del 5 de noviembre de 2026"
 pagina_fuente: observatorio
-url_original: "https://www.facebook.com/profile.php?id=61595918491051"
+url_original: "https://www.facebook.com/share/p/1dqJkpvNut/"
 id_publicacion: "obs-20261105-1528"
 fecha_importacion: "2026-11-20"
 huella_contenido: c3aefd04d18dbd16

@@ -44,8 +44,8 @@ export default function Actualidad() {
                 <li key={n.slug}>
                   <Link href={`/actualidad/${n.slug}`} className="group block">
                     {n.imagen && (
-                      <div className="overflow-hidden rounded-sm border border-rule bg-card">
-                        <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={800} height={800} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw" className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
+                      <div className="aspect-[3/2] overflow-hidden rounded-sm border border-rule bg-card">
+                        <Image src={n.imagen} alt={n.imagenAlt ?? ""} width={800} height={600} sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw" className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
                       </div>
                     )}
                     <p className="mt-5 text-sm text-muted">
@@ -54,6 +54,7 @@ export default function Actualidad() {
                     </p>
                     <h2 className="mt-2 font-serif text-2xl leading-snug text-navy group-hover:underline group-hover:decoration-blue/50 group-hover:underline-offset-4">{n.titulo}</h2>
                     {n.autor && <p className="mt-2 text-sm font-semibold text-navy">{n.autor}</p>}
+                    <p className="mt-2 line-clamp-3 text-[0.9375rem] leading-relaxed text-muted">{n.resumen}</p>
                     <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
                       {n.eje && <EjeTag slug={n.eje} />}
                       {n.ejemplo && <EjemploTag />}

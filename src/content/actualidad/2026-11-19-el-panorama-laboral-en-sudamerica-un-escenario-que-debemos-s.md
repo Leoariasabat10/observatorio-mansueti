@@ -1,13 +1,13 @@
 ---
 titulo: "El panorama laboral en Sudamérica: un escenario que debemos seguir de cerca"
 fecha_publicacion: "2026-11-19"
-estado: borrador
+estado: publicado
 resumen: "Los acontecimientos que se desarrollan en los distintos países de Sudamérica reflejan la importancia de mantenernos informados sobre las transformaciones del mundo del trabajo y la seguridad social."
 imagen: /actualidad/obs-20261119-1716.webp
 texto_alternativo: "Portada «Latitud Sudamericana. Pensamiento jurídico. Actualización de noticias laborales Sudamérica (edición noviembre 2026)» con el logo del Observatorio y un mapa de Sudamérica"
 credito: "Observatorio ASDTSS, publicación de Facebook del 19 de noviembre de 2026"
 pagina_fuente: observatorio
-url_original: "https://www.facebook.com/profile.php?id=61595918491051"
+url_original: "https://www.facebook.com/share/p/1A91ih1HRe/"
 id_publicacion: "obs-20261119-1716"
 fecha_importacion: "2026-11-20"
 huella_contenido: 12a4f61ef1eba5ad

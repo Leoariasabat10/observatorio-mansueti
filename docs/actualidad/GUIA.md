@@ -17,6 +17,11 @@ En Claude Code: *"Usa el skill actualidad-facebook: revisa las novedades de las 
 3. Vista previa local de los borradores en el sitio: en PowerShell, `$env:ACTUALIDAD_VISTA_PREVIA="1"; npm run build`, y sirve la carpeta `out` (python -m http.server 4173 --bind 127.0.0.1). Muestra una franja de aviso y la etiqueta de estado. No lo uses para desplegar.
 4. `npm run build` (sin esa variable) valida todo: un archivo mal formado detiene el build.
 
+## Imágenes y enlaces (cómo se obtienen)
+- **Imágenes:** en este entorno la opción «Descargar» de Facebook no deja el archivo en disco, así que se captura cada foto en el visor de Facebook a pantalla completa (sin botones ni cursor) y se guarda en `data/actualidad/originales/<id>-<descripción>.png`; `optimizar.py` recorta las barras negras y la pasa a WebP (máx. 1200 px, sin ampliar). Si tú descargas el original, ponlo en esa carpeta con el mismo nombre (se prefiere) y vuelve a correr el comando.
+- **Enlaces:** se obtienen con Compartir > Copiar enlace en Facebook (formato `facebook.com/share/p/…`) y se leen del portapapeles.
+- **Publicar:** en el lote, `"aprobado": true` hace que una entrada incluida y con imagen utilizable salga como `publicado`; sin eso queda en borrador.
+
 ## Imágenes
 Solo con permiso: fotos propias del Observatorio, o de la ASDTSS que la Asociación pueda reutilizar. Si es de un tercero o no está claro, la entrada queda en revisión sin imagen. Cada imagen lleva crédito y texto alternativo factual.
 

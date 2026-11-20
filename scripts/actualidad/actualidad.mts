@@ -30,6 +30,7 @@ export type Post = {
   requiere_revision?: boolean;
   notas?: string;
   sintetico?: boolean;
+  aprobado?: boolean; // a person approved publishing this entry (only honored if it is included and its image is usable)
 };
 export type Config = {
   modo: "borrador" | "automatico";
@@ -97,6 +98,7 @@ function imagenEstado(p: Post): Resultado["imagen"] {
 export function estadoFinal(r: Resultado, cfg: Config): "borrador" | "revision" | "publicado" {
   if (r.decision !== "incluido") return "revision";
   if (r.imagen === "pendiente_permiso") return "revision";
+  if (r.post.aprobado === true && r.imagen === "ok") return "publicado";
   if (cfg.modo === "automatico" && cfg.aprobado_automatico === true) return "publicado";
   return "borrador";
 }
@@ -141,7 +143,8 @@ export function entrada(r: Resultado, cfg: Config, imagenWeb?: string, extras: {
 
 /** Faithful excerpt: the original opening, cut at a sentence/word boundary. Never rewritten. */
 export const resumen = (t: string) => {
-  const s = t.trim().split(/\n\s*\n/)[0].replace(/\s+/g, " ").trim(); // first paragraph only: lists stay in the body
+  const paras = t.trim().split(/\n\s*\n/).map((x) => x.replace(/\s+/g, " ").trim());
+  const s = paras.find((x) => x.length >= 60) ?? paras[0]; // first real paragraph (skips short headers); lists stay in the body
   if (s.length <= 280) return s;
   const cut = s.slice(0, 280);
   return `${cut.slice(0, Math.max(cut.lastIndexOf(". ") + 1, cut.lastIndexOf(" ")))}…`;

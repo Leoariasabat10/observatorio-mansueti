@@ -1,11 +1,14 @@
 ---
 titulo: "Colombia ante una nueva etapa del derecho laboral: principales cambios de la reforma laboral y su impacto en el país"
 fecha_publicacion: "2026-11-06"
-estado: borrador
-resumen: "Latitud Sudamericana. Pensamiento jurídico."
+estado: publicado
+resumen: "En Colombia se está hablando de reformas, por esto debemos estar al día: reforma laboral."
 pais: CO
+imagen: /actualidad/obs-20261106-1730.webp
+texto_alternativo: "Infografía «¿Qué cambió con la Ley 2466 de 2025?» con cuatro cambios: contratos a término fijo, trabajo nocturno, trabajo dominical y festivo, y contrato de aprendizaje"
+credito: "Observatorio ASDTSS, publicación de Facebook del 6 de noviembre de 2026"
 pagina_fuente: observatorio
-url_original: "https://www.facebook.com/profile.php?id=61595918491051"
+url_original: "https://www.facebook.com/share/p/1Kf48ZrKjG/"
 id_publicacion: "obs-20261106-1730"
 fecha_importacion: "2026-11-20"
 huella_contenido: 8afd7731a7910a3f

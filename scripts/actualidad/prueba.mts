@@ -30,6 +30,12 @@ assert.equal(estadoFinal(por("SINT-001"), { ...cfg, modo: "automatico" }), "borr
 assert.equal(estadoFinal(por("SINT-001"), { ...cfg, modo: "automatico", aprobado_automatico: true }), "publicado");
 assert.equal(estadoFinal(por("SINT-007"), { ...cfg, modo: "automatico", aprobado_automatico: true }), "revision", "dudosos siempre pendientes");
 
+// Aprobación humana: publica solo si está incluido y con imagen utilizable.
+const ok = { ...por("SINT-001"), post: { ...por("SINT-001").post, aprobado: true, imagen_origen: "x.png", imagen_permiso: "propia" as const }, imagen: "ok" as const };
+assert.equal(estadoFinal(ok, cfg), "publicado");
+assert.equal(estadoFinal({ ...ok, decision: "pendiente" }, cfg), "revision", "aprobado no salta la decisión editorial");
+assert.equal(estadoFinal({ ...ok, imagen: "pendiente_permiso" }, cfg), "revision", "aprobado no salta el permiso de imagen");
+
 // Segunda corrida: lo ya registrado es duplicado.
 const reg = { procesados: [{ id: "SINT-001", pagina: "observatorio", url: "", fecha: "", huella: por("SINT-001").huella, decision: "incluido" as const, motivo: "", procesado: "" }] };
 assert.match(evaluar([posts[0]], cfg, reg)[0].motivo, /Duplicado/);

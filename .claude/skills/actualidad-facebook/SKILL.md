@@ -27,6 +27,11 @@ pertinencia 30 %, valor informativo 25 %, relevancia regional 15 %, calidad de l
 ## 5. Images
 Save the post's own photo through the normal interface into `data/actualidad/originales/<id>.<ext>` (git-ignored, kept as reference). `imagen_permiso`: `propia` (Observatorio page), `autorizada` (ASDTSS image the Association may reuse; the user confirmed it holds that right), `tercero`/`desconocida` → stays pending, no image published. Alt text states only what is visible. Never substitute a generic image for a person; never generate portraits, flags or documentary-looking scenes. A support illustration (e.g. a plain country map) only with verified free provenance, labeled as illustration, and flagged for user approval.
 
+### Captura y enlaces (método verificado)
+- Imágenes: pestaña Fotos de la página → abrir la foto → botón de pantalla completa → mover el cursor fuera de la imagen → `zoom` con `save_to_disk` sobre la región de la imagen (los controles quedan en los márgenes). Nunca capturar el visor normal con botones. «Descargar» de Facebook no llega a disco aquí.
+- Enlace permanente: botón Compartir de la publicación → Copiar enlace (NO «Compartir ahora») → leer el portapapeles. El entorno oculta el identificador de la URL del navegador.
+- Verificar con fuentes oficiales (p. ej. corteconstitucional.gov.co) toda afirmación normativa antes de aprobar.
+
 ## 6. Flow
 `dry-run` → show the user → (approval) `--escribir` → drafts in `src/content/actualidad/` + `docs/actualidad/revision/index.html` → user reviews → user sets `estado: publicado` (or in the CMS) → `npm run build` → commit on the branch → user deploys.
 ```

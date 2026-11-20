@@ -10,7 +10,7 @@ id_publicacion: "asdtss-20261105-1854"
 fecha_importacion: "2026-11-20"
 huella_contenido: b626663d63171111
 puntuacion: 5.9
-motivo_decision: "Marcado para revisión: Contenido de un tercero compartido en la cronología del perfil ASDTSS: se conserva la atribución original (Universidad Regional de Guatemala) y quién lo compartió. Sin imagen. El evento ya terminó. Decidir si aporta o se descarta."
+motivo_decision: "Marcado para revisión: Contenido de un tercero compartido en la cronología del perfil ASDTSS: se conserva la atribución original (Universidad Regional de Guatemala) y quién lo compartió. Sin imagen. El evento ya terminó. Decidir si aporta o se descarta. Enlace permanente del post no obtenido."
 ---
 
 Sigan el 2do día del Primer Congreso de la Universidad Regional de Guatemala y nuestras Asociaciones Aidtss Guillermo Cabanellas, Asociación Guatemalteca de Derecho del Trabajo - ASGUATRA, Asociación Centroamericana y del Caribe de Derecho del Trabajo y Sudamericana Ssdtsshm.
