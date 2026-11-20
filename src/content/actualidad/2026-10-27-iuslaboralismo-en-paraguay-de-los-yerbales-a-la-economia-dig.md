@@ -1,7 +1,7 @@
 ---
 titulo: "Iuslaboralismo en Paraguay: de los yerbales a la economía digital"
 fecha_publicacion: "2026-10-27"
-estado: borrador
+estado: publicado
 resumen: "Ciclo Escuelas Iuslaboralistas de Iberoamérica · CODEX Conocimiento Exponencial"
 pais: PY
 imagen: /actualidad/obs-20261027-0934.webp
@@ -14,6 +14,7 @@ fecha_importacion: "2026-11-20"
 huella_contenido: fe765ae2975d82b6
 puntuacion: 7.2
 motivo_decision: "Puntuación 7.2 ≥ 7."
+evento_realizado: true
 ---
 
 Ciclo Escuelas Iuslaboralistas de Iberoamérica · CODEX Conocimiento Exponencial

@@ -1,7 +1,7 @@
 ---
 titulo: "Perú aprueba protocolo para proteger a los trabajadores frente al Fenómeno El Niño"
 fecha_publicacion: "2026-11-05"
-estado: borrador
+estado: publicado
 resumen: "El Ministerio de Trabajo y Promoción del Empleo de Perú aprobó, mediante la Resolución Ministerial N.° 341-2026-TR, un protocolo nacional de seguridad y salud en el trabajo para prevenir accidentes y proteger la vida de los trabajadores ante los efectos del fenómeno El Niño."
 pais: PE
 imagen: /actualidad/obs-20261105-1528.webp

@@ -37,3 +37,8 @@ export function EjemploTag({ className = "", inverse = false }: { className?: st
     </span>
   );
 }
+
+/** Past event shown in the news archive: never presented as upcoming. */
+export function EventoRealizadoTag() {
+  return <span className="inline-flex items-center rounded-full border border-rule px-2.5 py-0.5 text-xs font-semibold text-muted">Evento realizado</span>;
+}

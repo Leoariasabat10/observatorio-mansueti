@@ -1,7 +1,7 @@
 ---
 titulo: "Bolivia avanza en la actualización de su Código de Seguridad Social: retos jurídicos y perspectivas"
 fecha_publicacion: "2026-10-27"
-estado: borrador
+estado: publicado
 resumen: "La actualización del sistema de seguridad social de corto plazo en Bolivia abre un importante debate sobre la protección de las personas aseguradas, la sostenibilidad institucional y la necesidad de adecuar el marco normativo a los desafíos actuales."
 pais: BO
 eje_tematico: seguridad-social

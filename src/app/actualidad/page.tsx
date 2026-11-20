@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { getActualidad, VISTA_PREVIA } from "@/lib/actualidad";
 import { fechaPublicacion } from "@/lib/categorias";
 import { paises } from "@/lib/paises";
-import { EjemploTag, EjeTag } from "@/components/webinar/Etiquetas";
+import { EjemploTag, EjeTag, EventoRealizadoTag } from "@/components/webinar/Etiquetas";
 
 export const metadata: Metadata = {
   title: "Actualidad",
@@ -57,6 +57,7 @@ export default function Actualidad() {
                     <p className="mt-2 line-clamp-3 text-[0.9375rem] leading-relaxed text-muted">{n.resumen}</p>
                     <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
                       {n.eje && <EjeTag slug={n.eje} />}
+                      {n.eventoRealizado && <EventoRealizadoTag />}
                       {n.ejemplo && <EjemploTag />}
                       {VISTA_PREVIA && n.estado !== "publicado" && <span className="rounded-sm border border-dashed border-heritage/50 px-2 py-0.5 text-[0.6875rem] font-semibold text-heritage uppercase">{n.estado}</span>}
                     </div>

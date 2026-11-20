@@ -1,7 +1,7 @@
 ---
 titulo: "La seguridad y salud en el trabajo frente al cambio climático"
 fecha_publicacion: "2026-11-05"
-estado: borrador
+estado: publicado
 resumen: "El cambio climático y el Fenómeno El Niño representan nuevos desafíos para la seguridad y salud en el trabajo, afectando sectores como la agricultura, pesca, textil y minería, y poniendo en riesgo a miles de trabajadores."
 ponente_o_autor: "Luis Alberto Serrano Díaz"
 pais: PE

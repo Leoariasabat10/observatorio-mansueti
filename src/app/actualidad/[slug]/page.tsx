@@ -8,7 +8,7 @@ import { observatorio } from "@/config/observatorio";
 import { getActualidad, getNovedad, PAGINAS } from "@/lib/actualidad";
 import { fechaPublicacion } from "@/lib/categorias";
 import { paises } from "@/lib/paises";
-import { EjemploTag, EjeTag } from "@/components/webinar/Etiquetas";
+import { EjemploTag, EjeTag, EventoRealizadoTag } from "@/components/webinar/Etiquetas";
 
 export function generateStaticParams() {
   const todas = getActualidad();
@@ -67,6 +67,7 @@ export default async function NovedadPage({ params }: PageProps<"/actualidad/[sl
             )}
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
               {n.eje && <EjeTag slug={n.eje} />}
+              {n.eventoRealizado && <EventoRealizadoTag />}
               {n.ejemplo && <EjemploTag />}
             </div>
             <a href={n.urlOriginal} target="_blank" rel="noopener" className="mt-8 inline-flex items-center gap-2 rounded-sm border border-navy/30 px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:border-navy">

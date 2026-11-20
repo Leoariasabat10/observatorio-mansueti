@@ -1,7 +1,7 @@
 ---
 titulo: "Actualidad laboral en Ecuador: salarios mínimos sectoriales y trabajo decente"
 fecha_publicacion: "2026-10-29"
-estado: borrador
+estado: publicado
 resumen: "La OIT brindará asistencia técnica a Ecuador para revisar los salarios mínimos sectoriales y las estructuras ocupacionales."
 pais: EC
 imagen: /actualidad/obs-20261029-1648.webp

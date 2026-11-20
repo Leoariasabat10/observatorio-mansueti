@@ -1,13 +1,13 @@
 ---
 titulo: "Colombia: la reforma pensional y el futuro de la seguridad social"
 fecha_publicacion: "2026-11-09"
-estado: borrador
+estado: publicado
 resumen: "La Ley 2381 de 2024 plantea una transformación estructural del sistema pensional colombiano. Su principal diferencia frente al modelo anterior es que busca pasar de un sistema basado en la competencia entre Colpensiones y los fondos privados a un modelo integrado de cuatro…"
 pais: CO
 eje_tematico: seguridad-social
 imagen: /actualidad/obs-20261109-1457.webp
-texto_alternativo: "Infografía «Reforma pensional en Colombia, Ley 2381 de 2024. Aprobada, pero aún no vigente», con los cuatro pilares, edades de pensión, semanas de cotización y transición"
-credito: "Observatorio ASDTSS, publicación de Facebook del 9 de noviembre de 2026"
+texto_alternativo: "Pieza editorial con la decisión de la Sentencia C-264 de 2026 sobre la Ley 2381 de 2024: decide la Corte Constitucional el 25 de agosto de 2026; vigencia de las disposiciones exequibles el 1 de abril de 2027; artículos devueltos a la Cámara de Representantes"
+credito: "Pieza editorial del Observatorio ASDTSS, basada en la Sentencia C-264 de 2026 (Corte Constitucional). Reemplaza la infografía de la publicación original en Facebook."
 pagina_fuente: observatorio
 url_original: "https://www.facebook.com/share/p/1FnYmMzZGv/"
 id_publicacion: "obs-20261109-1457"

@@ -28,6 +28,7 @@ export type Actualidad = {
   idPublicacion: string;
   estado: Estado;
   ejemplo: boolean;
+  eventoRealizado: boolean;
   html: string;
 };
 
@@ -76,6 +77,7 @@ function parse(file: string): Actualidad {
     idPublicacion: str("id_publicacion", true)!,
     estado,
     ejemplo: d.ejemplo === true,
+    eventoRealizado: d.evento_realizado === true,
     html: html(),
   };
 }

@@ -30,6 +30,7 @@ export type Post = {
   requiere_revision?: boolean;
   notas?: string;
   sintetico?: boolean;
+  evento_realizado?: boolean; // past event: the site shows "Evento realizado"
   descartar?: string; // editorial reason to discard (duplicate, not institutional...); wins over the score
   aprobado?: boolean; // a person approved publishing this entry (only honored if it is included and its image is usable)
 };
@@ -133,6 +134,7 @@ export function entrada(r: Resultado, cfg: Config, imagenWeb?: string, extras: {
     `huella_contenido: ${r.huella}`,
     r.puntuacion != null && `puntuacion: ${r.puntuacion}`,
     `motivo_decision: ${yaml(motivo)}`,
+    p.evento_realizado && "evento_realizado: true",
     p.sintetico && "ejemplo: true",
     "---",
     "",

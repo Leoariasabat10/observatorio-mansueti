@@ -1,7 +1,7 @@
 ---
 titulo: "Hoy en Paraguay: crisis de Ueno Bank y la protección de los derechos de sus trabajadores"
 fecha_publicacion: "2026-11-04"
-estado: borrador
+estado: publicado
 resumen: "La crisis de una entidad financiera no puede significar el desconocimiento de los derechos de sus trabajadores."
 pais: PY
 imagen: /actualidad/obs-20261104-1253.webp

@@ -1,7 +1,7 @@
 ---
 titulo: "Colombia ante una nueva etapa del derecho laboral: principales cambios de la reforma laboral y su impacto en el país"
 fecha_publicacion: "2026-11-06"
-estado: borrador
+estado: publicado
 resumen: "En Colombia se está hablando de reformas, por esto debemos estar al día: reforma laboral."
 pais: CO
 imagen: /actualidad/obs-20261106-1730.webp

@@ -1,7 +1,7 @@
 ---
 titulo: "ASGUATRA invita al Primer Congreso Internacional de Derecho del Trabajo (Guatemala, 4 a 6 de noviembre de 2026)"
 fecha_publicacion: "2026-10-29"
-estado: borrador
+estado: publicado
 resumen: "La Asociación Guatemalteca de Derecho del Trabajo (ASGUATRA), en conjunto con la AIDTSS y la ACCDTSS, te invita a participar en este importante encuentro académico internacional."
 pais: GT
 imagen: /actualidad/obs-20261029-1641.webp
@@ -14,6 +14,7 @@ fecha_importacion: "2026-11-20"
 huella_contenido: 933026be5af5b428
 puntuacion: 7
 motivo_decision: "Puntuación 7 ≥ 7."
+evento_realizado: true
 ---
 
 La Asociación Guatemalteca de Derecho del Trabajo (ASGUATRA), en conjunto con la AIDTSS y la ACCDTSS, te invita a participar en este importante encuentro académico internacional.
