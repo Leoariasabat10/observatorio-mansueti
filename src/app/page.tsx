@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ChartLine, Mail, MessageCircle, Scale, Users } from "lucide-react";
 import ambitos from "@/content/ambitos.json";
 import { siteConfig } from "@site";
-import { asociacion, contact, observatorio, social } from "@/config/observatorio";
+import { asociacion, contact, observatorio, social, vicepresidenta } from "@/config/observatorio";
 import { categoriaPorSlug, fechaPublicacion } from "@/lib/categorias";
 import { cifrasInicio } from "@/lib/cifras";
 import { BUILD_NOW, resumenes } from "@/lib/content";
@@ -137,6 +137,33 @@ export default function Inicio() {
                 ))}
               </div>
             </details>
+          </div>
+        </div>
+      </section>
+
+      {/* Vice presidency: portrait + name, nothing invented beyond the role */}
+      <section aria-labelledby="vicepresidencia" className="border-b border-rule bg-paper">
+        <div className="mx-auto grid max-w-7xl items-center gap-x-14 gap-y-10 px-5 py-20 sm:py-28 lg:grid-cols-12 lg:px-8">
+          <div className="revelar lg:col-span-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={vicepresidenta.photoSm}
+              srcSet={`${vicepresidenta.photoSm} 427w, ${vicepresidenta.photo} 854w`}
+              sizes="(min-width:1024px) 30vw, 90vw"
+              width={854}
+              height={1280}
+              loading="lazy"
+              decoding="async"
+              alt={`Retrato de ${vicepresidenta.title} ${vicepresidenta.name}, ${vicepresidenta.role}`}
+              className="sombra-larga aspect-[4/5] w-full max-w-sm object-cover object-top"
+            />
+          </div>
+          <div className="revelar lg:col-span-7 lg:col-start-6">
+            <p className="text-sm font-semibold tracking-wide text-blue uppercase">{vicepresidenta.role}</p>
+            <h2 id="vicepresidencia" className="mt-5 font-display text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.02] text-balance text-navy">
+              {vicepresidenta.title} {vicepresidenta.name}
+            </h2>
+            <span className="mt-8 block h-px w-16 bg-gold" aria-hidden="true" />
           </div>
         </div>
       </section>

@@ -38,6 +38,14 @@ export const social = [
   { id: "facebook", label: "Facebook del Observatorio", href: "https://www.facebook.com/profile.php?id=61595918491051" },
 ] as const;
 
+export const vicepresidenta = {
+  name: "Juana María Montenegro Cantillo",
+  title: "Dra.",
+  role: "Vicepresidenta del Observatorio",
+  photo: "/equipo/juana-montenegro.webp",
+  photoSm: "/equipo/juana-montenegro-sm.webp",
+};
+
 // PENDIENTE — research team.
 export const team = [
   { name: "Dra. Juana Montenegro", role: PENDING },
