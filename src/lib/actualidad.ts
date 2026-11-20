@@ -29,8 +29,11 @@ export type Actualidad = {
   estado: Estado;
   ejemplo: boolean;
   eventoRealizado: boolean;
+  extracto: string; // card excerpt: never repeats the title
   html: string;
 };
+
+export type ActualidadResumen = Omit<Actualidad, "html">;
 
 const DIR = "src/content/actualidad";
 
@@ -59,9 +62,21 @@ function parse(file: string): Actualidad {
   const punt = d.puntuacion;
   if (punt != null && !(Number(punt) >= 0 && Number(punt) <= 10)) fail(`"puntuacion" debe estar entre 0 y 10`);
 
+  const titulo = str("titulo", true)!;
+  const cuerpo = html();
+  const norm = (t: string) => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const nt = norm(titulo);
+  const parrafos = [str("resumen", true)!, ...[...cuerpo.matchAll(/<p>([\s\S]*?)<\/p>/g)].map((m) => m[1].replace(/<[^>]+>/g, "").trim())];
+  const repite = (t: string) => {
+    const n = norm(t);
+    return !n || nt.includes(n.slice(0, 40)) || n.includes(nt.slice(0, 40));
+  };
+  const extracto = parrafos.find((t) => t.length >= 50 && !repite(t) && t !== t.toUpperCase()) ?? parrafos[0];
+
   return {
     slug,
-    titulo: str("titulo", true)!,
+    titulo,
+    extracto,
     fecha: f,
     resumen: str("resumen", true)!,
     autor: str("ponente_o_autor"),
@@ -78,7 +93,7 @@ function parse(file: string): Actualidad {
     estado,
     ejemplo: d.ejemplo === true,
     eventoRealizado: d.evento_realizado === true,
-    html: html(),
+    html: cuerpo,
   };
 }
 
@@ -99,4 +114,6 @@ export const VISTA_PREVIA = process.env.ACTUALIDAD_VISTA_PREVIA === "1";
 
 /** Only what is public (or everything, in the local preview build). */
 export const getActualidad = (): Actualidad[] => todas().filter((a) => VISTA_PREVIA || a.estado === "publicado");
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const resumenesActualidad = (): ActualidadResumen[] => getActualidad().map(({ html, ...n }) => n);
 export const getNovedad = (slug: string) => getActualidad().find((a) => a.slug === slug);
