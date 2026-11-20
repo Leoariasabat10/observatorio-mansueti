@@ -1,1 +1,74 @@
-{ "procesados": [] }
+{
+  "procesados": [
+    {
+      "id": "obs-20261119-1716",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-19",
+      "huella": "0e0bc2ddd0d6099a",
+      "decision": "pendiente",
+      "motivo": "Marcado para revisión: El valor informativo está en las 5 imágenes del carrusel «Latitud Sudamericana: actualización de noticias laborales, edición noviembre» (Argentina, Bolivia, Paraguay…); aún no capturadas. El texto es introductorio.",
+      "procesado": "2026-11-20T04:27:24.527Z"
+    },
+    {
+      "id": "obs-20261118-0950",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-18",
+      "huella": "30d53cfa3060b670",
+      "decision": "incluido",
+      "motivo": "Puntuación 7.5 ≥ 7.",
+      "procesado": "2026-11-20T04:27:24.527Z"
+    },
+    {
+      "id": "obs-20261109-1505",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-09",
+      "huella": "1af01b3056ebd531",
+      "decision": "incluido",
+      "motivo": "Puntuación 7.6 ≥ 7.",
+      "procesado": "2026-11-20T04:27:24.527Z"
+    },
+    {
+      "id": "obs-20261109-1457",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-09",
+      "huella": "55ed1de6787dd0a7",
+      "decision": "pendiente",
+      "motivo": "Marcado para revisión: Facebook marca la publicación como «Contenido de IA». Texto truncado: falta leerlo completo. Revisar antes de reutilizar texto o imagen.",
+      "procesado": "2026-11-20T04:27:24.527Z"
+    },
+    {
+      "id": "obs-20261106-1730",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-06",
+      "huella": "8afd7731a7910a3f",
+      "decision": "incluido",
+      "motivo": "Puntuación 8.2 ≥ 7.",
+      "procesado": "2026-11-20T04:27:24.527Z"
+    },
+    {
+      "id": "obs-20261106-1658",
+      "pagina": "observatorio",
+      "url": "https://www.facebook.com/profile.php?id=61595918491051",
+      "fecha": "2026-11-06",
+      "huella": "93e813de7cb8cd2c",
+      "decision": "incluido",
+      "motivo": "Puntuación 8.2 ≥ 7.",
+      "procesado": "2026-11-20T04:27:24.527Z"
+    },
+    {
+      "id": "asdtss-20261105-1854",
+      "pagina": "asdtss",
+      "url": "https://www.facebook.com/ASDTSS",
+      "fecha": "2026-11-05",
+      "huella": "778141c63fe0c483",
+      "decision": "pendiente",
+      "motivo": "Marcado para revisión: Publicación compartida de un tercero (transmisión en vivo de la Universidad Regional de Guatemala, 2:16:56 h). No es contenido propio: sin imagen. Texto truncado. «GT» no está en src/lib/paises.ts: añadir Guatemala o dejar sin país.",
+      "procesado": "2026-11-20T04:27:24.527Z"
+    }
+  ]
+}

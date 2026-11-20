@@ -139,7 +139,7 @@ export function entrada(r: Resultado, cfg: Config, imagenWeb?: string) {
 
 /** Faithful excerpt: the original opening, cut at a sentence/word boundary. Never rewritten. */
 export const resumen = (t: string) => {
-  const s = t.replace(/\s+/g, " ").trim();
+  const s = t.trim().split(/\n\s*\n/)[0].replace(/\s+/g, " ").trim(); // first paragraph only: lists stay in the body
   if (s.length <= 280) return s;
   const cut = s.slice(0, 280);
   return `${cut.slice(0, Math.max(cut.lastIndexOf(". ") + 1, cut.lastIndexOf(" ")))}…`;
