@@ -1,7 +1,7 @@
 ---
 titulo: "Colombia: la reforma pensional y el futuro de la seguridad social"
 fecha_publicacion: "2026-11-09"
-estado: revision
+estado: borrador
 resumen: "La Ley 2381 de 2024 plantea una transformación estructural del sistema pensional colombiano. Su principal diferencia frente al modelo anterior es que busca pasar de un sistema basado en la competencia entre Colpensiones y los fondos privados a un modelo integrado de cuatro…"
 pais: CO
 eje_tematico: seguridad-social
@@ -12,9 +12,9 @@ pagina_fuente: observatorio
 url_original: "https://www.facebook.com/share/p/1FnYmMzZGv/"
 id_publicacion: "obs-20261109-1457"
 fecha_importacion: "2026-11-20"
-huella_contenido: e0f134334b752cda
+huella_contenido: 0362555e76852f1b
 puntuacion: 7.5
-motivo_decision: "Marcado para revisión: Texto completo recuperado. Verificación con fuentes oficiales: la Sentencia C-264 de 2026 (Corte Constitucional, 25 de agosto de 2026, exp. D-15989) declara exequible el art. 94 «en el entendido de que las disposiciones declaradas exequibles… entrarán en vigencia a partir del 1° de abril de 2027» y devuelve a la Cámara los artículos con proposiciones válidas no tramitadas (nueve, según su análisis) para subsanar el trámite; ver https://www.corteconstitucional.gov.co/relatoria/2026/C-264-26.htm. La infografía del post dice en su pie que «la Ley 2381 recuperó su vigencia desde el 25 de agosto de 2026», lo que no coincide con la sentencia (la vigencia es desde el 1 de abril de 2027). Además, la Corte aceptó el 15 de octubre de 2026 un incidente de impacto fiscal que podría aplazar un año esa vigencia (reportado por la Presidencia; no se pudo abrir la nota oficial para confirmarlo). Facebook marca el post como «Contenido de IA». Queda en revisión hasta corregir o aclarar con el Observatorio."
+motivo_decision: "Puntuación 7.5 ≥ 7."
 ---
 
 La Ley 2381 de 2024 plantea una transformación estructural del sistema pensional colombiano. Su principal diferencia frente al modelo anterior es que busca pasar de un sistema basado en la competencia entre Colpensiones y los fondos privados a un modelo integrado de cuatro pilares: solidario, semicontributivo, contributivo y voluntario.
@@ -39,3 +39,5 @@ La seguridad social no es solamente un mecanismo de ahorro para la vejez; es un 
 Desde el derecho del trabajo y la seguridad social, Colombia enfrenta el reto de construir un sistema pensional que combine cobertura, equidad, sostenibilidad y protección efectiva.
 
 ASOCIACIÓN SURAMERICANA DEL TRABAJO Y LA SEGURIDAD SOCIAL
+
+**Nota de verificación.** La vigencia de la Ley 2381 de 2024 se verificó con la Sentencia C-264 de 2026 de la Corte Constitucional (25 de agosto de 2026): declaró exequible el artículo 94 «en el entendido de que las disposiciones declaradas exequibles… entrarán en vigencia a partir del 1° de abril de 2027»; los artículos con proposiciones válidas no tramitadas se devolvieron a la Cámara de Representantes para subsanar el trámite, y su exequibilidad y vigencia quedan condicionadas a ese procedimiento. Fuente: [Sentencia C-264 de 2026](https://www.corteconstitucional.gov.co/relatoria/2026/C-264-26.htm). Según la [Presidencia de la República](https://www.presidencia.gov.co/prensa/Paginas/Corte-Constitucional-acepto-abrir-incidente-de-impacto-fiscal-sobre-la-Reforma-Pensional-261015.aspx) (15 de octubre de 2026), la Corte aceptó abrir un incidente de impacto fiscal que podría aplazar esa vigencia; consulte la decisión definitiva en la Corte Constitucional.

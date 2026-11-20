@@ -1,7 +1,7 @@
 ---
 titulo: "Paraguay avanza en la formalización laboral: un paso hacia el trabajo decente y la protección social"
 fecha_publicacion: "2026-11-04"
-estado: publicado
+estado: borrador
 resumen: "Los recientes indicadores del mercado laboral paraguayo reflejan una evolución positiva: la tasa de formalización pasó del 41,5 % al 46 % en los últimos tres años, evidenciando avances en la incorporación de trabajadores al empleo formal."
 pais: PY
 imagen: /actualidad/obs-20261104-0917.webp

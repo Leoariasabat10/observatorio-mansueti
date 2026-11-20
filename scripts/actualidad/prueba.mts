@@ -36,6 +36,9 @@ assert.equal(estadoFinal(ok, cfg), "publicado");
 assert.equal(estadoFinal({ ...ok, decision: "pendiente" }, cfg), "revision", "aprobado no salta la decisión editorial");
 assert.equal(estadoFinal({ ...ok, imagen: "pendiente_permiso" }, cfg), "revision", "aprobado no salta el permiso de imagen");
 
+// Descarte editorial explícito gana sobre la puntuación.
+assert.equal(evaluar([{ ...posts[0], id_publicacion: "SINT-D", descartar: "duplicado" }], cfg, { procesados: [] })[0].decision, "descartado");
+
 // Segunda corrida: lo ya registrado es duplicado.
 const reg = { procesados: [{ id: "SINT-001", pagina: "observatorio", url: "", fecha: "", huella: por("SINT-001").huella, decision: "incluido" as const, motivo: "", procesado: "" }] };
 assert.match(evaluar([posts[0]], cfg, reg)[0].motivo, /Duplicado/);

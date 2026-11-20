@@ -30,6 +30,7 @@ export type Post = {
   requiere_revision?: boolean;
   notas?: string;
   sintetico?: boolean;
+  descartar?: string; // editorial reason to discard (duplicate, not institutional...); wins over the score
   aprobado?: boolean; // a person approved publishing this entry (only honored if it is included and its image is usable)
 };
 export type Config = {
@@ -73,6 +74,7 @@ export function evaluar(posts: Post[], cfg: Config, reg: Registro): Resultado[] 
     if (vistos.has(post.id_publicacion) || vistos.has(h)) return r("descartado", "Duplicado: ya está en el registro de procesados.");
     vistos.add(post.id_publicacion).add(h);
 
+    if (post.descartar) return r("descartado", post.descartar);
     if (INYECCION.test(`${post.texto} ${post.titulo ?? ""} ${post.notas ?? ""}`)) {
       alertas.push("Posible inyección de instrucciones: el texto se trata como dato y se reporta.");
       return r("pendiente", "El texto contiene órdenes dirigidas a una IA; requiere revisión humana.");
@@ -144,7 +146,7 @@ export function entrada(r: Resultado, cfg: Config, imagenWeb?: string, extras: {
 /** Faithful excerpt: the original opening, cut at a sentence/word boundary. Never rewritten. */
 export const resumen = (t: string) => {
   const paras = t.trim().split(/\n\s*\n/).map((x) => x.replace(/\s+/g, " ").trim());
-  const s = paras.find((x) => x.length >= 60) ?? paras[0]; // first real paragraph (skips short headers); lists stay in the body
+  const s = paras.find((x) => x.length >= 60 && x !== x.toUpperCase()) ?? paras.find((x) => x.length >= 60) ?? paras[0]; // first real paragraph (skips short headers); lists stay in the body
   if (s.length <= 280) return s;
   const cut = s.slice(0, 280);
   return `${cut.slice(0, Math.max(cut.lastIndexOf(". ") + 1, cut.lastIndexOf(" ")))}…`;
@@ -160,21 +162,28 @@ function informe(rs: Resultado[], escribio: boolean) {
   return `${out.join("\n")}\n\n${escribio ? "Escrito en la rama de trabajo." : "DRY-RUN: no se escribió ningún archivo."}`;
 }
 
-function paginaRevision(rs: Resultado[]) {
-  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
-  const color = { incluido: "#1a7f37", pendiente: "#b36b00", descartado: "#8a1c1c" };
-  const cards = rs
-    .map((r) => {
-      const p = r.post;
-      const img = r.imagen === "ok" && p.imagen_origen ? `<img src="../../../public/actualidad/${esc(p.id_publicacion)}.webp" alt="${esc(p.texto_alternativo ?? "")}" width="240">` : `<div class="sin">${r.imagen === "pendiente_permiso" ? "Imagen sin permiso claro" : "Sin imagen"}</div>`;
-      return `<article><div>${img}</div><div><b style="color:${color[r.decision]}">${r.decision.toUpperCase()} · ${r.puntuacion ?? "-"}</b>${p.sintetico ? " <i>(sintético)</i>" : ""}<h2>${esc(p.titulo ?? "(sin título)")}</h2><p class="m">${esc([p.ponente_o_autor, p.cargo, p.institucion, p.pais, p.fecha_publicacion].filter(Boolean).join(" · "))}</p><p>${esc(resumen(p.texto))}</p><p class="m">${esc(r.motivo)}</p>${r.alertas.map((a) => `<p class="a">⚠ ${esc(a)}</p>`).join("")}<a href="${esc(p.url_original)}">publicación original</a></div></article>`;
-    })
-    .join("");
-  return `<!doctype html><meta charset="utf-8"><title>Revisión Actualidad</title><style>body{font:16px system-ui;max-width:980px;margin:2rem auto;padding:0 1rem;color:#062265}article{display:grid;grid-template-columns:240px 1fr;gap:1.5rem;padding:1.5rem 0;border-top:1px solid #ccd}h2{margin:.3rem 0;font-family:Georgia,serif}.m{color:#556;font-size:.9rem}.a{color:#8a1c1c;font-weight:600}.sin{background:#eef;height:150px;display:grid;place-items:center;color:#556}</style><h1>Bandeja de revisión · Actualidad</h1><p>Generada ${new Date().toISOString()}. Nada de esto está publicado.</p>${cards}`;
+/** Review tray built from every entry on disk (all batches), with the registry's discarded items listed at the end. */
+async function bandeja() {
+  const { default: matter } = await import("gray-matter");
+  const dir = path.join(ROOT, "src/content/actualidad");
+  const reg = leer<Registro>("data/actualidad/registro.json");
+  const esc = (t: string) => String(t ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+  const items = fs.readdirSync(dir).filter((f) => f.endsWith(".md")).map((f) => matter(fs.readFileSync(path.join(dir, f), "utf8")).data as Record<string, string>).sort((a, b) => String(b.fecha_publicacion).localeCompare(String(a.fecha_publicacion)));
+  const color: Record<string, string> = { borrador: "#b36b00", revision: "#8a1c1c", publicado: "#1a7f37" };
+  const cards = items.map((d) => {
+    const img = d.imagen ? `<img src="../../../public${esc(d.imagen)}" alt="${esc(d.texto_alternativo)}" width="240">` : `<div class="sin">Sin imagen</div>`;
+    return `<article><div>${img}<p class="m">${esc(d.credito)}</p></div><div><b style="color:${color[d.estado] ?? "#333"}">${esc(d.estado).toUpperCase()} · ${esc(d.puntuacion)}</b><h2>${esc(d.titulo)}</h2><p class="m">${esc([d.ponente_o_autor, d.pais, String(d.fecha_publicacion).slice(0, 10)].filter(Boolean).join(" · "))}</p><p>${esc(d.resumen)}</p><p class="m">${esc(d.motivo_decision)}</p><p><a href="${esc(d.url_original)}">publicación original (Facebook)</a></p></div></article>`;
+  }).join("");
+  const desc = reg.procesados.filter((p) => p.decision === "descartado").map((p) => `<li><b>${esc(p.id)}</b> (${esc(p.fecha)}): ${esc(p.motivo)}</li>`).join("");
+  const html = `<!doctype html><meta charset="utf-8"><title>Revisión Actualidad</title><style>body{font:16px system-ui;max-width:1000px;margin:2rem auto;padding:0 1rem;color:#062265}article{display:grid;grid-template-columns:240px 1fr;gap:1.5rem;padding:1.5rem 0;border-top:1px solid #ccd}h2{margin:.3rem 0;font-family:Georgia,serif}.m{color:#556;font-size:.85rem}.sin{background:#eef;height:150px;display:grid;place-items:center;color:#556}img{max-width:100%;height:auto;border:1px solid #ccd}</style><h1>Bandeja de revisión · Actualidad</h1><p>Generada ${new Date().toISOString()} · ${items.length} entradas (nada está en producción).</p>${cards}<h2>Descartadas</h2><ul>${desc}</ul>`;
+  fs.mkdirSync(path.join(ROOT, "docs/actualidad/revision"), { recursive: true });
+  fs.writeFileSync(path.join(ROOT, "docs/actualidad/revision/index.html"), html);
+  console.log(`Bandeja: ${items.length} entradas, ${reg.procesados.filter((p) => p.decision === "descartado").length} descartadas.`);
 }
 
 async function main() {
   const [cmd, archivo, ...flags] = process.argv.slice(2);
+  if (cmd === "bandeja") return bandeja();
   if (cmd !== "revisar" || !archivo) throw new Error("Uso: actualidad.mts revisar <entrada.json> [--escribir]");
   const cfg = leer<Config>("actualidad.config.json");
   if (cfg.modo === "automatico" && !cfg.aprobado_automatico) throw new Error('modo "automatico" bloqueado: falta "aprobado_automatico": true (solo tras aprobar la primera tanda).');
@@ -208,9 +217,8 @@ async function main() {
     reg.procesados.push({ id: r.post.id_publicacion, pagina: r.post.pagina_fuente, url: r.post.url_original, fecha: r.post.fecha_publicacion, huella: r.huella, decision: r.decision, motivo: r.motivo, procesado: hoy });
   }
   fs.writeFileSync(path.join(ROOT, cfg.registro), `${JSON.stringify(reg, null, 2)}\n`);
-  fs.mkdirSync(path.join(ROOT, "docs/actualidad/revision"), { recursive: true });
-  fs.writeFileSync(path.join(ROOT, "docs/actualidad/revision/index.html"), paginaRevision(rs));
   console.log(informe(rs, true));
+  await bandeja();
 }
 
 if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1]))) await main();

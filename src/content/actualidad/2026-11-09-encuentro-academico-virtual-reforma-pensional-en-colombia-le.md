@@ -1,7 +1,7 @@
 ---
 titulo: "Encuentro académico virtual: Reforma pensional en Colombia. Ley 2381 de 2024: alcances y desafíos"
 fecha_publicacion: "2026-11-09"
-estado: publicado
+estado: borrador
 resumen: "La reforma pensional representa uno de los cambios más importantes para el futuro del sistema de protección social en Colombia. Por ello, abrimos este espacio de encuentro académico para analizar, debatir y reflexionar sobre sus principales alcances, desafíos jurídicos,…"
 pais: CO
 eje_tematico: seguridad-social

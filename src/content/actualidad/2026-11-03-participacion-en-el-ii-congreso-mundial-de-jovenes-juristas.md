@@ -1,7 +1,7 @@
 ---
 titulo: "Participación en el II Congreso Mundial de Jóvenes Juristas"
 fecha_publicacion: "2026-11-03"
-estado: publicado
+estado: borrador
 resumen: "El presidente de la Asociación, Dr. Mauricio César Arese, participó en el marco del II Congreso Mundial de Jóvenes Juristas, organizado en el ámbito de la Sociedad Internacional de Derecho del Trabajo y de la Seguridad Social."
 ponente_o_autor: "Dr. Mauricio César Arese"
 cargo: "Presidente de la Asociación"

@@ -1,7 +1,7 @@
 ---
 titulo: "Colombia: ¿qué cambió con la reforma laboral?"
 fecha_publicacion: "2026-11-06"
-estado: publicado
+estado: borrador
 resumen: "Con la expedición de la Ley 2466 del 25 de junio de 2025, Colombia introdujo importantes modificaciones al Código Sustantivo del Trabajo. Entre los principales cambios se destacan:"
 pais: CO
 imagen: /actualidad/obs-20261106-1658.webp
