@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteConfig.url}/`, priority: 1 },
     { url: `${siteConfig.url}/programa-academico`, priority: 0.9 },
+    { url: `${siteConfig.url}/trayectoria`, priority: 0.8 },
     { url: `${siteConfig.url}/actualidad`, priority: 0.8 },
     { url: `${siteConfig.url}/publicaciones`, priority: 0.8 },
     ...getActualidad()
