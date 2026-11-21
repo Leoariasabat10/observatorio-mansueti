@@ -61,6 +61,12 @@ export const nav = [
   { label: "Contacto", href: "#contacto" },
 ] as const;
 
+// The two editorial sections. Names are exact (client brief 2026-11-21). They get their own row in the desktop header: they are too long for the main row.
+export const navSecciones = [
+  { label: "Voces del Derecho del Trabajo Sudamérica", href: "/voces" },
+  { label: "Latitud Sudamericana: Pensamiento Jurídico", href: "/latitud-sudamericana" },
+] as const;
+
 export const legal = {
   disclaimer:
     "El Observatorio es una iniciativa académica. Sus análisis tienen fines de investigación y difusión y no constituyen asesoría jurídica.",

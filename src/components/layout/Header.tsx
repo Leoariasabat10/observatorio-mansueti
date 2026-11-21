@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, MessageCircle, X } from "lucide-react";
-import { asociacion, contact, nav, observatorio } from "@/config/observatorio";
+import { asociacion, contact, nav, navSecciones, observatorio } from "@/config/observatorio";
 import { Mark } from "@/components/brand/Mark";
 
 export function Header() {
@@ -78,9 +78,21 @@ export function Header() {
           </button>
         </div>
 
+        <nav aria-label="Secciones editoriales" className="hidden border-t border-rule bg-paper lg:block">
+          <ul className="mx-auto flex max-w-7xl items-center gap-10 px-8 whitespace-nowrap">
+            {navSecciones.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} aria-current={current(item.href)} className="nav-link inline-block py-2.5 text-[0.9rem]">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <nav id="menu-movil" aria-label="Menú móvil" hidden={!open} className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-rule bg-card lg:hidden">
           <ul className="mx-auto max-w-7xl px-5">
-            {nav.map((item) => (
+            {[...nav, ...navSecciones].map((item) => (
               <li key={item.href} className="border-b border-rule">
                 <Link href={item.href} aria-current={current(item.href)} className="block py-4 font-display text-3xl text-navy aria-[current=page]:text-blue">
                   {item.label}

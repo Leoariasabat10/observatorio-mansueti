@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@site";
-import { asociacion, contact, legal, nav, observatorio, social } from "@/config/observatorio";
+import { asociacion, contact, legal, nav, navSecciones, observatorio, social } from "@/config/observatorio";
 import { ejes } from "@/lib/ejes";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 
@@ -41,7 +41,7 @@ export function Footer() {
         <nav aria-label="Observatorio" className="lg:col-span-2">
           <h2 className={heading}>Observatorio</h2>
           <ul className="mt-5 space-y-3">
-            {nav.map((item) => (
+            {[...nav, ...navSecciones].map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className={link}>
                   {item.label}

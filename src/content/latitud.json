@@ -1,0 +1,21 @@
+{
+  "ediciones": [
+    {
+      "slug": "noviembre-2026",
+      "etiqueta": "Edición noviembre 2026",
+      "titulo": "Actualización de noticias laborales Sudamérica",
+      "portada": "/latitud/2026-11/portada.webp",
+      "portadaW": 930,
+      "portadaH": 598,
+      "articulos": [
+        { "pais": "AR", "titulo": "Reforma laboral de amplio alcance y reglamentación", "imagen": "/latitud/2026-11/argentina.webp" },
+        { "pais": "BO", "titulo": "Instructivo sobre el pago del aguinaldo", "imagen": "/latitud/2026-11/bolivia.webp" },
+        { "pais": "BR", "titulo": "Empleos formales, fin del modelo 6x1 y rescate de trabajadores", "imagen": "/latitud/2026-11/brasil.webp" },
+        { "pais": "CO", "titulo": "Prevención y atención en el ámbito laboral", "imagen": "/latitud/2026-11/colombia.webp" },
+        { "pais": "EC", "titulo": "Normativa para proteger a servidores públicos con enfermedades catastróficas", "imagen": "/latitud/2026-11/ecuador.webp" },
+        { "pais": "PY", "titulo": "Protocolos, documentación digital y cumplimiento salarial", "imagen": "/latitud/2026-11/paraguay.webp" },
+        { "pais": "PE", "titulo": "Subsidio extraordinario para preservar el empleo formal", "imagen": "/latitud/2026-11/peru.webp" }
+      ]
+    }
+  ]
+}

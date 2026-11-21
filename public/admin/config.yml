@@ -238,3 +238,64 @@ collections:
               - { label: Valor, name: valor, widget: number, value_type: int, required: false, hint: "Vacío = se muestra «Dato pendiente»" }
               - { label: Fuente, name: fuente, widget: string, required: false, hint: "Obligatoria si hay valor. Ej.: registros de Zoom" }
               - { label: Fecha del dato, name: fecha, widget: datetime, type: date, required: false }
+
+  - name: voces
+    label: Voces del Derecho del Trabajo Sudamérica
+    files:
+      - name: videos
+        label: Videos
+        file: /src/content/voces.json
+        format: json
+        fields:
+          - label: Videos
+            name: videos
+            widget: list
+            summary: "{{pais}} · {{persona}}: {{titulo}}"
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Persona participante, name: persona, widget: string }
+              - label: País
+                name: pais
+                widget: select
+                options: [{ label: Argentina, value: AR }, { label: Bolivia, value: BO }, { label: Brasil, value: BR }, { label: Chile, value: CL }, { label: Colombia, value: CO }, { label: Ecuador, value: EC }, { label: Guyana, value: GY }, { label: Paraguay, value: PY }, { label: Perú, value: PE }, { label: Surinam, value: SR }, { label: Uruguay, value: UY }, { label: Venezuela, value: VE }]
+              - label: Tipo
+                name: tipo
+                widget: select
+                options: [{ label: Exposición, value: exposicion }, { label: Entrevista, value: entrevista }, { label: Aporte, value: aporte }]
+              - { label: Descripción, name: descripcion, widget: text }
+              - { label: Enlace o archivo de video, name: url, widget: string, hint: "https://… (YouTube, Vimeo…) o /voces/archivo.mp4 si el archivo está en public/voces/" }
+              - { label: Miniatura, name: miniatura, widget: string, required: false, hint: "Ruta de una imagen en public/voces/, por ejemplo /voces/miniatura.webp" }
+              - { label: Fecha, name: fecha, widget: string, required: false, hint: "AAAA-MM-DD" }
+              - { label: Destacado, name: destacado, widget: boolean, default: false, required: false }
+
+  - name: latitud
+    label: Latitud Sudamericana
+    files:
+      - name: ediciones
+        label: Ediciones
+        file: /src/content/latitud.json
+        format: json
+        fields:
+          - label: Ediciones (la más reciente primero)
+            name: ediciones
+            widget: list
+            summary: "{{etiqueta}}"
+            fields:
+              - { label: Identificador (URL), name: slug, widget: string, hint: "Sin tildes ni espacios, p. ej. noviembre-2026" }
+              - { label: Etiqueta de la edición, name: etiqueta, widget: string, hint: "Edición noviembre 2026" }
+              - { label: Título, name: titulo, widget: string }
+              - { label: Fecha de publicación, name: fecha, widget: string, required: false, hint: "AAAA-MM-DD, solo si hay una fecha exacta" }
+              - { label: Portada, name: portada, widget: string, hint: "/latitud/<carpeta>/portada.webp" }
+              - { label: Ancho de la portada (px), name: portadaW, widget: number, value_type: int }
+              - { label: Alto de la portada (px), name: portadaH, widget: number, value_type: int }
+              - label: Artículos
+                name: articulos
+                widget: list
+                summary: "{{pais}}: {{titulo}}"
+                fields:
+                  - { label: País (código ISO), name: pais, widget: string, hint: "AR, BO, BR, CO, EC, PY, PE…" }
+                  - { label: Título, name: titulo, widget: string }
+                  - { label: Imagen o lámina, name: imagen, widget: string, hint: "/latitud/<carpeta>/archivo.webp" }
+                  - { label: Autoría, name: autor, widget: string, required: false, hint: "Solo si la fuente la indica" }
+                  - { label: Resumen, name: resumen, widget: text, required: false }
+                  - { label: Enlace al artículo completo, name: enlace, widget: string, required: false, hint: "https://…" }
