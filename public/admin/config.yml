@@ -299,3 +299,38 @@ collections:
                   - { label: Autoría, name: autor, widget: string, required: false, hint: "Solo si la fuente la indica" }
                   - { label: Resumen, name: resumen, widget: text, required: false }
                   - { label: Enlace al artículo completo, name: enlace, widget: string, required: false, hint: "https://…" }
+
+  - name: agenda
+    label: Agenda Laboral Internacional
+    files:
+      - name: eventos
+        label: Eventos
+        file: /src/content/agenda.json
+        format: json
+        fields:
+          - label: Eventos
+            name: eventos
+            widget: list
+            summary: "{{fecha}} · {{nombre}}"
+            fields:
+              - { label: Nombre del evento, name: nombre, widget: string }
+              - { label: Fecha (primer día), name: fecha, widget: string, hint: "AAAA-MM-DD" }
+              - { label: Fecha de cierre, name: fechaFin, widget: string, required: false, hint: "AAAA-MM-DD, solo si dura varios días" }
+              - { label: Hora, name: hora, widget: string, required: false, hint: "HH:MM en 24 h" }
+              - { label: Zona horaria, name: zona, widget: string, required: false, hint: "Obligatoria si hay hora. Ej.: hora de Colombia (UTC−5)" }
+              - label: Modalidad
+                name: modalidad
+                widget: select
+                options: [{ label: Presencial, value: presencial }, { label: Virtual, value: virtual }, { label: Híbrida, value: hibrida }]
+              - label: País
+                name: pais
+                widget: select
+                required: false
+                hint: Obligatorio si es presencial o híbrido
+                options: [{ label: Argentina, value: AR }, { label: Bolivia, value: BO }, { label: Brasil, value: BR }, { label: Chile, value: CL }, { label: Colombia, value: CO }, { label: Ecuador, value: EC }, { label: España, value: ES }, { label: Guatemala, value: GT }, { label: Guyana, value: GY }, { label: Italia, value: IT }, { label: México, value: MX }, { label: Panamá, value: PA }, { label: Paraguay, value: PY }, { label: Perú, value: PE }, { label: Surinam, value: SR }, { label: Uruguay, value: UY }, { label: Venezuela, value: VE }]
+              - { label: Ciudad, name: ciudad, widget: string, required: false }
+              - { label: Institución organizadora, name: organizador, widget: string }
+              - { label: Tema o descripción breve, name: descripcion, widget: text }
+              - { label: Enlace oficial, name: enlace, widget: string, hint: "https://… información o inscripción" }
+              - { label: Imagen, name: imagen, widget: string, required: false, hint: "/agenda/archivo.webp (en public/agenda/)" }
+              - { label: Texto alternativo de la imagen, name: imagenAlt, widget: string, required: false, hint: "Obligatorio si hay imagen" }

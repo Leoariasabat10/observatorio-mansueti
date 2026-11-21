@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/`, priority: 1 },
     { url: `${siteConfig.url}/programa-academico`, priority: 0.9 },
     { url: `${siteConfig.url}/trayectoria`, priority: 0.8 },
+    { url: `${siteConfig.url}/agenda-laboral-internacional`, priority: 0.8 },
     { url: `${siteConfig.url}/voces`, priority: 0.8 },
     { url: `${siteConfig.url}/latitud-sudamericana`, priority: 0.8 },
     ...getEdiciones().map((e) => ({ url: `${siteConfig.url}/latitud-sudamericana/${e.slug}`, priority: 0.6 })),

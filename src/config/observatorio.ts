@@ -46,6 +46,15 @@ export const vicepresidenta = {
   photoSm: "/equipo/juana-montenegro-sm.webp",
 };
 
+// Vice president for Brazil, as indicated by the team (2026-11-21). Photo: PRIMER VICE.jfif.
+// No title, institution or bio on purpose: none was provided. The acta lists him as Vicepresidente (Brasil) of the ASDTSS Junta Ejecutiva 2026-2028; that is a separate, documented role.
+export const vicepresidente = {
+  name: "Domingos Savios Zainaghi",
+  role: "Vicepresidente del Observatorio por Brasil",
+  photo: "/equipo/domingos-zainaghi.webp",
+  photoSm: "/equipo/domingos-zainaghi-sm.webp",
+};
+
 // PENDIENTE — research team.
 export const team = [
   { name: "Dra. Juana Montenegro", role: PENDING },
@@ -65,6 +74,7 @@ export const nav = [
 export const navSecciones = [
   { label: "Voces del Derecho del Trabajo Sudamérica", href: "/voces" },
   { label: "Latitud Sudamericana: Pensamiento Jurídico", href: "/latitud-sudamericana" },
+  { label: "Agenda Laboral Internacional", href: "/agenda-laboral-internacional" },
 ] as const;
 
 export const legal = {
