@@ -41,7 +41,7 @@ export function ProximaObservacion({ webinars, buildNow }: { webinars: WebinarRe
         <span className="tnum font-display text-5xl leading-[0.8] font-medium">{fechaDia(w.start)}</span>
         <span className="text-sm leading-tight text-paper/80">
           {fechaMes(w.start)} {anio(w.start)}
-          <span className="tnum block">{horaBogota(w.start)} h, Bogotá</span>
+          <span className="block">{horaBogota(w.start)}, Bogotá</span>
         </span>
       </time>
       <span className="col-span-2 min-w-0 lg:col-span-1">

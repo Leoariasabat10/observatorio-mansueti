@@ -57,7 +57,7 @@ export function Afiche({ w, size = "full", priority = false, className = "" }: P
           <span className="text-[30cqi] leading-[0.8]">{fechaDia(w.start)}</span>
           <span className="text-[7cqi]">{fechaMes(w.start)}</span>
         </p>
-        <p className="mt-[2cqi] text-[max(0.6875rem,3.6cqi)] font-semibold text-blue tnum">{horaBogota(w.start)} hora de Bogotá</p>
+        <p className="mt-[2cqi] text-[max(0.6875rem,3.6cqi)] font-semibold text-blue">{horaBogota(w.start)}, hora de Bogotá</p>
         <p className="mt-[5cqi] line-clamp-3 font-serif text-[6.2cqi] leading-snug text-balance text-navy">{w.titulo}</p>
         <div className="mt-[6cqi] h-[3px] w-full" style={{ background: `linear-gradient(to right, ${ejes.map((e, i) => `${e.color} ${(i / ejes.length) * 100}% ${((i + 1) / ejes.length) * 100}%`).join(", ")})` }} />
       </div>

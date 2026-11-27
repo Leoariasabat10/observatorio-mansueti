@@ -6,10 +6,12 @@ import { CalendarPlus, ChevronLeft, Share2 } from "lucide-react";
 import { siteConfig } from "@site";
 import { observatorio } from "@/config/observatorio";
 import { BUILD_NOW, getWebinar, getWebinars, type Webinar } from "@/lib/content";
+import { esModeracion } from "@/lib/webinar-time";
 import { ejePorSlug } from "@/lib/ejes";
 import { paises } from "@/lib/paises";
 import { fechaDia, fechaLarga, fechaMes, horaBogota, ics, modalidadTexto } from "@/lib/webinar-time";
 import { Afiche } from "@/components/webinar/Afiche";
+import { CopiarEnlace } from "@/components/webinar/CopiarEnlace";
 import { EjemploTag, EjeTag } from "@/components/webinar/Etiquetas";
 import { HoraLocal } from "@/components/webinar/HoraLocal";
 import { PanelEstado } from "@/components/webinar/PanelEstado";
@@ -35,7 +37,7 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 function jsonLd(w: Webinar) {
   const url = `${siteConfig.url}/programa-academico/${w.slug}`;
-  const virtual = { "@type": "VirtualLocation", url: w.inscripcion ?? w.grabacion ?? url };
+  const virtual = { "@type": "VirtualLocation", url: w.reunion ?? w.inscripcion ?? w.grabacion ?? url };
   const fisico = {
     "@type": "Place",
     name: w.lugar ?? "Colombia",
@@ -65,7 +67,10 @@ export default async function WebinarPage({ params }: PageProps<"/programa-acade
   if (!w) notFound();
   const { html, ...resumen } = w;
   const url = `${siteConfig.url}/programa-academico/${w.slug}`;
-  const calendario = `data:text/calendar;charset=utf-8,${encodeURIComponent(ics({ ...w, url, lugar: w.lugar }))}`;
+  const ponentes = w.ponentes.filter((p) => !esModeracion(p));
+  const moderacion = w.ponentes.filter(esModeracion);
+  const mismoPais = moderacion.length > 1 && moderacion.every((p) => p.pais === moderacion[0].pais);
+  const calendario = `data:text/calendar;charset=utf-8,${encodeURIComponent(ics({ ...w, url, lugar: w.reunion ?? w.lugar ?? w.plataforma, descripcion: [w.resumen, w.reunion && `Unirse: ${w.reunion}`, `Detalles: ${url}`].filter(Boolean).join("\n\n") }))}`;
   const compartir = `https://wa.me/?text=${encodeURIComponent(`${w.titulo}, ${fechaLarga(w.start)} a las ${horaBogota(w.start)} (hora de Bogotá). ${url}`)}`;
   const otros = getWebinars()
     .filter((o) => o.slug !== w.slug && o.ejes.some((e) => w.ejes.includes(e)))
@@ -104,7 +109,7 @@ export default async function WebinarPage({ params }: PageProps<"/programa-acade
                   <time dateTime={new Date(w.start).toISOString()}>
                     {cap(fechaLarga(w.start))}
                     <span className="block font-semibold">
-                      <span className="tnum">{horaBogota(w.start)}</span> hora de Bogotá, {w.duracionMin} minutos
+                      {horaBogota(w.start)}, hora de Bogotá, {w.duracionMin} minutos
                     </span>
                   </time>
                 </p>
@@ -122,39 +127,55 @@ export default async function WebinarPage({ params }: PageProps<"/programa-acade
                 <Share2 className="size-4" aria-hidden />
                 Compartir por WhatsApp
               </a>
+              <CopiarEnlace url={url} className="inline-flex items-center gap-2 rounded-sm border border-navy/30 px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:border-navy" />
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 lg:col-span-5">
+          <div className="lg:col-span-5">
             <PanelEstado w={resumen} buildNow={BUILD_NOW} />
-            <ViewTransition name={`afiche-${w.slug}`} share="morph" default="none">
-              <Afiche w={w} priority className="sombra-larga max-lg:max-w-sm" />
-            </ViewTransition>
           </div>
         </div>
       </header>
 
       <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 lg:grid-cols-12 lg:px-8">
         <section aria-labelledby="sobre" className="lg:col-span-7">
-          <h2 id="sobre" className="eyebrow text-blue">
-            Sobre el webinar
+          <h2 id="sobre" className="text-sm font-semibold text-blue">
+            Sobre la sesión
           </h2>
           <div className="prosa mt-6 max-w-[38em]" dangerouslySetInnerHTML={{ __html: html }} />
         </section>
 
         <section aria-labelledby="ponentes" className="lg:col-span-5">
-          <h2 id="ponentes" className="eyebrow text-blue">
-            {w.ponentes.length === 1 ? "Ponente" : "Ponentes"}
+          <ViewTransition name={`afiche-${w.slug}`} share="morph" default="none">
+            <Afiche w={w} className="sombra-larga mb-14 max-w-sm" />
+          </ViewTransition>
+          <h2 id="ponentes" className="text-sm font-semibold text-blue">
+            {ponentes.length === 1 ? "Ponente" : "Ponentes"}
           </h2>
           <ul className="mt-6 border-t border-rule">
-            {w.ponentes.map((p) => (
+            {ponentes.map((p) => (
               <li key={p.nombre} className="border-b border-rule py-5">
                 <p className="font-serif text-xl text-navy">{p.nombre}</p>
-                <p className="mt-1 text-sm text-muted">{[p.rol, p.cargo, p.institucion].filter(Boolean).join(", ")}</p>
+                {(p.cargo || p.institucion) && <p className="mt-1 text-sm text-muted">{[p.cargo, p.institucion].filter(Boolean).join(", ")}</p>}
                 <p className="mt-1 text-xs font-semibold text-navy">{paises[p.pais]?.nombre}</p>
               </li>
             ))}
           </ul>
+          {moderacion.length > 0 && (
+            <>
+              <h3 className="mt-12 text-sm font-semibold text-blue">
+                Moderación{mismoPais && `, ${paises[moderacion[0].pais]?.nombre}`}
+              </h3>
+              <ul className="mt-4 border-t border-rule">
+                {moderacion.map((p) => (
+                  <li key={p.nombre} className="flex items-baseline justify-between gap-4 border-b border-rule py-4">
+                    <span className="font-serif text-lg text-navy">{p.nombre}</span>
+                    {!mismoPais && <span className="text-xs font-semibold text-navy">{paises[p.pais]?.nombre}</span>}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </section>
       </div>
 
@@ -169,7 +190,7 @@ export default async function WebinarPage({ params }: PageProps<"/programa-acade
                 <li key={o.slug} className="bg-card">
                   <Link href={`/programa-academico/${o.slug}`} className="group flex h-full flex-col gap-4 p-6 transition-colors hover:bg-paper">
                     <span className="tnum text-sm font-semibold text-muted">
-                      {fechaDia(o.start)} {fechaMes(o.start)}, {horaBogota(o.start)} h
+                      {fechaDia(o.start)} {fechaMes(o.start)}, {horaBogota(o.start)}
                     </span>
                     <span className="font-serif text-xl leading-snug text-navy group-hover:underline group-hover:decoration-blue/50 group-hover:underline-offset-4">
                       {o.titulo}

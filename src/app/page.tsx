@@ -272,7 +272,7 @@ export default function Inicio() {
           <div className="mt-14 grid gap-6 lg:grid-cols-12">
             <div className="revelar min-w-0 rounded-sm border border-rule bg-card p-6 sm:p-8 lg:col-span-12">
               <h3 className="text-sm font-semibold text-navy">Línea de tiempo</h3>
-              <p className="mt-1 text-xs text-muted">Cada punto es un webinar: relleno si ya se realizó, con anillo si está por venir. Seleccione uno para abrirlo.</p>
+              <p className="mt-1 text-xs text-muted">Cada punto es una sesión: relleno si ya se realizó, con anillo si está por venir. Seleccione uno para abrirlo.</p>
               <div className="mt-8">
                 <LineaDeTiempo webinars={webinars} buildNow={BUILD_NOW} />
               </div>
@@ -280,7 +280,7 @@ export default function Inicio() {
 
             <div className="revelar min-w-0 rounded-sm border border-rule bg-card p-6 sm:p-8 lg:col-span-5">
               <h3 className="text-sm font-semibold text-navy">Actividad por eje</h3>
-              <p className="mt-1 mb-8 text-xs text-muted">Webinars y publicaciones que tratan cada eje.</p>
+              <p className="mt-1 mb-8 text-xs text-muted">Sesiones y publicaciones que tratan cada eje.</p>
               <BarrasEjes items={[...webinars, ...publicaciones]} />
             </div>
 
@@ -318,7 +318,7 @@ export default function Inicio() {
                 Colombia, y los registra en una bitácora abierta.
               </p>
               <p className="text-muted">
-                Su programa académico reúne a especialistas de distintos países en webinars periódicos. Sus publicaciones ordenan el análisis por ejes
+                Su programa académico reúne a especialistas de distintos países en sesiones académicas periódicas. Sus publicaciones ordenan el análisis por ejes
                 temáticos.
               </p>
               <p className="text-muted">
@@ -335,7 +335,7 @@ export default function Inicio() {
                     <span aria-hidden className="size-2.5 shrink-0 rounded-full" style={{ background: e.color }} />
                     <span className="font-serif text-xl text-navy">{e.nombre}</span>
                     <span className="ml-auto inline-flex items-center gap-1.5 text-sm text-blue transition-transform duration-200 group-hover:translate-x-0.5">
-                      Ver webinars
+                      Ver sesiones
                       <ArrowRight className="size-3.5" aria-hidden />
                     </span>
                   </Link>
@@ -388,8 +388,9 @@ export default function Inicio() {
           ) : (
             <div className="graticula mt-6 rounded-sm border border-rule bg-card p-7">
               <p className="font-serif text-xl leading-snug text-navy">Los primeros boletines y documentos de trabajo se publicarán aquí.</p>
-              <Link href="/publicaciones" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blue hover:underline">
-                Ir a Publicaciones y Boletines
+              <p className="mt-3 text-sm leading-relaxed text-muted">Mientras tanto, la edición de noviembre de 2026 de Latitud Sudamericana reúne la actualidad laboral de siete países.</p>
+              <Link href="/latitud-sudamericana/noviembre-2026" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blue hover:underline">
+                Leer Latitud Sudamericana
                 <ArrowRight className="size-3.5" aria-hidden />
               </Link>
             </div>

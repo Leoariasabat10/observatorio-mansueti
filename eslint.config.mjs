@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Working material outside the site (flyers, video edits): not part of the build.
+    "flyer/**",
+    "flyer orden/**",
+    "flyers_conversatorios/**",
+    "video-final/**",
+    "TRAYECTORIA/**",
   ]),
 ]);
 

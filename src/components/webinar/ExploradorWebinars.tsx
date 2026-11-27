@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, PlayCircle } from "lucide-react";
 import type { WebinarResumen } from "@/lib/content";
+import { accionPrincipal, esModeracion } from "@/lib/webinar-time";
 import { ejePorSlug, ejes } from "@/lib/ejes";
 import { estadoDe, fechaDia, fechaMes, fechaMesAnio, horaBogota, modalidadTexto, type Estado } from "@/lib/webinar-time";
 import { useFiltrosUrl } from "@/components/ui/useFiltrosUrl";
@@ -66,7 +67,7 @@ export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarRe
         <div>
           <p className="eyebrow text-blue">Bitácora del programa</p>
           <h2 id="explorador-titulo" className="titular mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] leading-[1.05] text-navy">
-            Todos los webinars
+            Todas las sesiones
           </h2>
         </div>
 
@@ -97,7 +98,7 @@ export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarRe
           </div>
 
           <div role="group" aria-label="Filtrar por eje temático" className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0">
-            {[{ slug: null, nombre: "Todos los ejes", color: "" }, ...ejes].map((e) => {
+            {[{ slug: null, nombre: "Todos los ejes", color: "" }, ...ejes.filter((x) => webinars.some((w) => w.ejes.includes(x.slug)))].map((e) => {
               const on = eje === e.slug;
               return (
                 <button
@@ -119,12 +120,12 @@ export function ExploradorWebinars({ webinars, buildNow }: { webinars: WebinarRe
       </div>
 
       <p aria-live="polite" className="sr-only">
-        {visibles.length === 1 ? "1 webinar" : `${visibles.length} webinars`}
+        {visibles.length === 1 ? "1 sesión" : `${visibles.length} sesiones`}
       </p>
 
       {grupos.length === 0 ? (
         <div className="mt-12 border-t border-rule pt-10">
-          <p className="font-serif text-2xl text-navy">No hay webinars {eje ? `de ${ejePorSlug(eje)?.nombre}` : ""} en esta vista.</p>
+          <p className="font-serif text-2xl text-navy">No hay sesiones {eje ? `de ${ejePorSlug(eje)?.nombre}` : ""} en esta vista.</p>
           <div className="mt-5 flex flex-wrap gap-3">
             <button type="button" onClick={() => actualizar("todos", eje)} className="rounded-sm border border-navy/30 px-4 py-2 text-sm font-semibold text-navy hover:border-navy">
               Ver todos los estados
@@ -163,6 +164,7 @@ type Vista = ReturnType<typeof useVistaPrevia>;
 function FilaWebinar({ w, estado, fila, titulo }: { w: WebinarResumen; estado: Estado; fila: Vista["fila"]; titulo: Vista["titulo"] }) {
   const href = `/programa-academico/${w.slug}`;
   const pasado = estado === "pasado";
+  const accion = accionPrincipal(w, estado);
   return (
     <li
       {...fila(w.slug)}
@@ -172,7 +174,7 @@ function FilaWebinar({ w, estado, fila, titulo }: { w: WebinarResumen; estado: E
       <time dateTime={new Date(w.start).toISOString()} className={`flex flex-col ${pasado ? "text-muted" : "text-navy"}`}>
         <span className="tnum font-display text-5xl leading-[0.82] lg:text-7xl">{fechaDia(w.start)}</span>
         <span className="mt-2 text-sm font-semibold">{fechaMes(w.start)}</span>
-        <span className="tnum text-xs text-muted">{horaBogota(w.start)} h</span>
+        <span className="text-xs text-muted">{horaBogota(w.start)}</span>
       </time>
 
       <div className="min-w-0">
@@ -187,7 +189,7 @@ function FilaWebinar({ w, estado, fila, titulo }: { w: WebinarResumen; estado: E
             {w.titulo}
           </Link>
         </h4>
-        <p className="mt-2 text-sm text-muted">{w.ponentes.map((p) => p.nombre).join(", ")}</p>
+        <p className="mt-2 max-w-[70ch] text-sm text-muted">{w.ponentes.filter((p) => !esModeracion(p)).map((p) => p.nombre).join(", ")}</p>
         <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
           {modalidadTexto(w)}
           {w.ejemplo && <EjemploTag />}
@@ -196,9 +198,9 @@ function FilaWebinar({ w, estado, fila, titulo }: { w: WebinarResumen; estado: E
 
 
       <div className="col-start-2 mt-5 flex flex-wrap gap-2 lg:col-start-auto lg:mt-0 lg:flex-col lg:justify-center">
-        {!pasado && w.inscripcion && (
-          <a href={w.inscripcion} target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-1.5 rounded-sm bg-navy px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue">
-            {estado === "en-vivo" ? "Entrar ahora" : "Inscribirme"}
+        {!pasado && accion && (
+          <a href={accion.href} target="_blank" rel="noopener" className="inline-flex items-center justify-center gap-1.5 rounded-sm bg-navy px-4 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue">
+            {accion.label}
             <ArrowUpRight className="size-3.5" aria-hidden />
             <span className="sr-only">en {w.titulo}</span>
           </a>

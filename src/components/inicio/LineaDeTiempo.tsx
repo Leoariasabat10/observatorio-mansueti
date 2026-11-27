@@ -59,7 +59,7 @@ export function LineaDeTiempo({ webinars, buildNow }: { webinars: WebinarResumen
     <figure className="ldt">
       <div ref={scroller} className="-mx-5 overflow-x-auto px-5 lg:mx-0 lg:px-0" tabIndex={0} role="region" aria-label="Línea de tiempo del programa, desplazable">
         <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[640px]" aria-labelledby="ldt-titulo">
-          <title id="ldt-titulo">Línea de tiempo de los webinars del programa académico</title>
+          <title id="ldt-titulo">Línea de tiempo de las sesiones del programa académico</title>
           <line x1={PAD} x2={W - PAD} y1={AXIS} y2={AXIS} stroke="#062265" strokeOpacity=".25" />
           {meses.map((m, i) => (
             <g key={m}>
@@ -85,7 +85,7 @@ export function LineaDeTiempo({ webinars, buildNow }: { webinars: WebinarResumen
             const cy = AXIS - 26 - (filas.get(w.slug) ?? 0) * 26;
             return (
               <Link key={w.slug} href={`/programa-academico/${w.slug}`} className="ldt-punto" style={{ "--i": i } as React.CSSProperties} aria-label={`${w.titulo}, ${fechaDia(w.start)} ${fechaMes(w.start)}`}>
-                <title>{`${w.titulo} (${fechaDia(w.start)} ${fechaMes(w.start)}, ${horaBogota(w.start)} h)`}</title>
+                <title>{`${w.titulo} (${fechaDia(w.start)} ${fechaMes(w.start)}, ${horaBogota(w.start)})`}</title>
                 <line x1={x(w.start)} x2={x(w.start)} y1={cy + 8} y2={AXIS} stroke={eje.color} strokeOpacity=".5" />
                 <circle cx={x(w.start)} cy={cy} r={14} fill="transparent" />
                 <circle cx={x(w.start)} cy={cy} r={7} fill={pasado ? eje.color : "#fff"} stroke={pasado ? "#fff" : eje.color} strokeWidth={2} />

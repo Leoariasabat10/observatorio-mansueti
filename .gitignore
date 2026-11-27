@@ -55,3 +55,15 @@ next-env.d.ts
 /data/actualidad/originales/*
 !/data/actualidad/originales/.gitkeep
 /data/actualidad/lotes/
+
+# Material privado o de trabajo en la raíz: nunca al repositorio ni al despliegue
+/*recovery-codes*
+/*.txt
+/*.xlsx
+/*.docx
+/*.zip
+/*.jfif
+/flyer/
+/flyer orden/
+/flyers_conversatorios/
+/TRAYECTORIA/

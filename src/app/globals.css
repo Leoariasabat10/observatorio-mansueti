@@ -40,6 +40,12 @@
     outline: 2px solid var(--color-blue);
     outline-offset: 3px;
   }
+  /* Blue on navy is 2.9:1, under the 3:1 a focus ring needs: dark surfaces use gold (9.4:1). */
+  .noche :focus-visible,
+  .bg-navy :focus-visible,
+  footer :focus-visible {
+    outline-color: var(--color-gold);
+  }
 }
 
 /* Section label: sentence case, preceded by a short gold rule (the rules in the logo). */
@@ -115,6 +121,7 @@
 
 .nav-link {
   position: relative;
+  padding-block: 0.8rem; /* 44px hit area; the underline below is offset to match */
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-muted);
@@ -125,7 +132,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -0.35rem;
+  bottom: 0.45rem;
   height: 2px;
   background: var(--color-blue);
   transform: scaleX(0);

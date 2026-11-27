@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { horaBogota, horaEn, TZ } from "@/lib/webinar-time";
+import { diaEn, horaBogota, horaEn, TZ } from "@/lib/webinar-time";
 
 const sinCambios = () => () => {};
 const zonaVisitante = () => Intl.DateTimeFormat().resolvedOptions().timeZone || TZ;
@@ -12,9 +12,11 @@ export function HoraLocal({ start, className = "" }: { start: number; className?
   if (tz === TZ) return null;
   const hora = horaEn(start, tz);
   if (hora === horaBogota(start)) return null;
+  const dia = diaEn(start, tz);
+  const otroDia = dia !== diaEn(start, TZ); // e.g. Madrid: already Saturday
   return (
     <span className={className}>
-      En tu zona ({tz.split("/").pop()!.replace(/_/g, " ")}): <span className="tnum">{hora}</span>
+      En su zona ({tz.split("/").pop()!.replace(/_/g, " ")}): {otroDia ? `${dia}, ${hora}` : hora}
     </span>
   );
 }

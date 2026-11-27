@@ -11,7 +11,9 @@ import { getPublicacion, getPublicaciones, type Publicacion } from "@/lib/public
 import { EjemploTag, EjeTag } from "@/components/webinar/Etiquetas";
 
 export function generateStaticParams() {
-  return getPublicaciones().map((p) => ({ slug: p.slug }));
+  const slugs = getPublicaciones().map((p) => ({ slug: p.slug }));
+  // ponytail: static export refuses an empty list; with no publications yet, one placeholder path renders the 404 page.
+  return slugs.length ? slugs : [{ slug: "sin-publicaciones" }];
 }
 
 export async function generateMetadata({ params }: PageProps<"/publicaciones/[slug]">): Promise<Metadata> {

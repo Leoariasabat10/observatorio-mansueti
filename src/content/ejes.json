@@ -1,6 +1,7 @@
 [
-  { "slug": "negociacion-colectiva", "nombre": "Negociación colectiva", "color": "#C25E00" },
-  { "slug": "seguridad-social", "nombre": "Seguridad social", "color": "#0189B4" },
-  { "slug": "plataformas-digitales", "nombre": "Trabajo en plataformas digitales", "color": "#4F8A0B" },
-  { "slug": "genero-y-trabajo", "nombre": "Género y trabajo", "color": "#8E2B14" }
+  {"slug": "legislacion-laboral", "nombre": "Legislación laboral", "color": "#5B3FA0"},
+  {"slug": "negociacion-colectiva", "nombre": "Negociación colectiva", "color": "#C25E00"},
+  {"slug": "seguridad-social", "nombre": "Seguridad social", "color": "#0189B4"},
+  {"slug": "plataformas-digitales", "nombre": "Trabajo en plataformas digitales", "color": "#4F8A0B"},
+  {"slug": "genero-y-trabajo", "nombre": "Género y trabajo", "color": "#8E2B14"}
 ]

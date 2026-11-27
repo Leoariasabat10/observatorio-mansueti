@@ -23,7 +23,7 @@ export function AgendaBreve({ webinars, buildNow }: { webinars: WebinarResumen[]
               <time dateTime={new Date(w.start).toISOString()} className={estado === "pasado" ? "text-muted" : "text-navy"}>
                 <span className="tnum block font-display text-[2.6rem] leading-[0.85] sm:text-5xl">{fechaDia(w.start)}</span>
                 <span className="mt-1 block text-sm font-semibold">{fechaMes(w.start)}</span>
-                <span className="tnum block text-xs text-muted">{horaBogota(w.start)} h</span>
+                <span className="block text-xs text-muted">{horaBogota(w.start)}</span>
               </time>
               <span className="min-w-0">
                 <span className="flex flex-wrap items-center gap-x-3 gap-y-1.5">

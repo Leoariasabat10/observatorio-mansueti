@@ -9,7 +9,7 @@ import { WebinarDestacado } from "@/components/webinar/WebinarDestacado";
 export const metadata: Metadata = {
   title: "Programa académico",
   description:
-    "Webinars del Observatorio ASDTSS sobre Derecho del Trabajo y de la Seguridad Social: próximas sesiones, inscripciones y grabaciones, en hora de Bogotá.",
+    "Sesiones académicas del Observatorio ASDTSS sobre Derecho del Trabajo y de la Seguridad Social: próximas sesiones, ponentes y grabaciones, en hora de Bogotá.",
   alternates: { canonical: "/programa-academico" },
 };
 
@@ -23,9 +23,8 @@ export default function ProgramaAcademico() {
       <section aria-labelledby="programa-titulo" className="border-b border-rule bg-card">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-16 pb-14 sm:pt-24 lg:grid-cols-12 lg:gap-10 lg:px-8 lg:pt-32 lg:pb-20">
           <div className="lg:col-span-8">
-            <p className="eyebrow text-blue">Programa académico</p>
-            <h1 id="programa-titulo" className="mt-8 font-display text-[clamp(3rem,8.6vw,8.25rem)] leading-[0.9] tracking-[-0.025em] text-balance text-navy">
-              Webinars del Observatorio
+            <h1 id="programa-titulo" className="font-display text-[clamp(3rem,8.6vw,6rem)] leading-[0.9] tracking-[-0.025em] text-balance text-navy">
+              Sesiones del Observatorio
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
               Sesiones en línea sobre Derecho del Trabajo y de la Seguridad Social, con ponentes de distintos países de Sudamérica. Cada sesión queda
@@ -56,7 +55,8 @@ export default function ProgramaAcademico() {
       </section>
 
       <WebinarDestacado webinars={webinars} buildNow={buildNow} />
-      <ExploradorWebinars webinars={webinars} buildNow={buildNow} />
+      {/* The logbook and its filters start to pay off from the second session; with one, the featured block is the program. */}
+      {webinars.length > 1 && <ExploradorWebinars webinars={webinars} buildNow={buildNow} />}
       <ProgramaEnCifras webinars={webinars} />
 
       <section aria-labelledby="proponer-titulo" className="revelar mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:px-8">

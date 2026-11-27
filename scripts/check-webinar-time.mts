@@ -4,7 +4,7 @@ import { estadoDe, fechaLarga, horaBogota, restante, startMs } from "../src/lib/
 
 const s = startMs("2026-11-12", "18:00");
 assert.equal(new Date(s).toISOString(), "2026-11-12T23:00:00.000Z"); // 18:00 Bogotá = 23:00 UTC
-assert.equal(horaBogota(s), "18:00");
+assert.equal(horaBogota(s).replace(/\s/g, " "), "6:00 p. m."); // 12-hour, as in the official posters
 assert.match(fechaLarga(s), /jueves, 12 de noviembre de 2026/);
 assert.equal(estadoDe(s, 90, s - 1), "proximo");
 assert.equal(estadoDe(s, 90, s), "en-vivo");

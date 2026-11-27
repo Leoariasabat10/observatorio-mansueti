@@ -28,6 +28,8 @@ export type Webinar = {
   afiche?: string;
   aficheAlt?: string;
   inscripcion?: string;
+  reunion?: string; // direct join link (Teams, Zoom, Meet), shown as "Unirse"
+  acceso?: string; // how to join when there is no public link
   grabacion?: string;
   ejemplo: boolean;
   html: string;
@@ -103,6 +105,8 @@ function parse(file: string): Webinar {
     afiche,
     aficheAlt: str("aficheAlt"),
     inscripcion: str("inscripcion"),
+    reunion: str("reunion"),
+    acceso: str("acceso"),
     grabacion: str("grabacion"),
     ejemplo: d.ejemplo === true,
     html: html(),

@@ -54,7 +54,7 @@ export default function Trayectoria() {
     <>
       <section aria-labelledby="trayectoria-titulo" className="graticula border-b border-rule bg-card">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 pt-14 pb-12 sm:pt-20 lg:grid-cols-12 lg:items-end lg:gap-10 lg:px-8 lg:pt-24 lg:pb-16">
-          <h1 id="trayectoria-titulo" className="font-display text-[clamp(3rem,8.6vw,8.25rem)] leading-[0.9] tracking-[-0.025em] text-balance text-navy lg:col-span-8">
+          <h1 id="trayectoria-titulo" className="font-display text-[clamp(3rem,8.6vw,6rem)] leading-[0.9] tracking-[-0.025em] text-balance text-navy lg:col-span-8">
             Trayectoria
           </h1>
           <div className="lg:col-span-4 lg:border-l lg:border-rule lg:pl-8">

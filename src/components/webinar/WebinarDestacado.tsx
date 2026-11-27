@@ -4,9 +4,11 @@ import Link from "next/link";
 import { ViewTransition } from "react";
 import { ArrowUpRight, CalendarPlus } from "lucide-react";
 import type { WebinarResumen } from "@/lib/content";
+import { esModeracion } from "@/lib/webinar-time";
 import { paises } from "@/lib/paises";
-import { estadoDe, fechaLarga, horaBogota } from "@/lib/webinar-time";
+import { accionPrincipal, estadoDe, fechaLarga, horaBogota } from "@/lib/webinar-time";
 import { Reticula } from "@/components/brand/Reticula";
+import { Acceso } from "./Acceso";
 import { Afiche } from "./Afiche";
 import { CuentaRegresiva } from "./CuentaRegresiva";
 import { EjemploTag, EjeTag, EstadoBadge } from "./Etiquetas";
@@ -30,8 +32,11 @@ export function WebinarDestacado({ webinars, buildNow }: { webinars: WebinarResu
   if (!w) return null;
 
   const estado = estadoDe(w.start, w.duracionMin, now);
-  const titulo = { proximo: "Próximo webinar", "en-vivo": "Transmitiendo ahora", pasado: "Último webinar realizado" }[estado];
+  const accion = accionPrincipal(w, estado);
+  const titulo = { proximo: "Próxima sesión", "en-vivo": "Transmitiendo ahora", pasado: "Última sesión realizada" }[estado];
   const href = `/programa-academico/${w.slug}`;
+  const ponentes = w.ponentes.filter((p) => !esModeracion(p));
+  const moderacion = w.ponentes.filter(esModeracion);
 
   return (
     <section aria-labelledby="destacado-titulo" className="noche grano relative overflow-hidden text-paper">
@@ -61,7 +66,7 @@ export function WebinarDestacado({ webinars, buildNow }: { webinars: WebinarResu
 
           <p className="mt-5 text-lg text-paper/90">
             <time dateTime={new Date(w.start).toISOString()}>
-              {cap(fechaLarga(w.start))}, <span className="tnum">{horaBogota(w.start)}</span> hora de Bogotá
+              {cap(fechaLarga(w.start))}, {horaBogota(w.start)}, hora de Bogotá
             </time>
             <HoraLocal start={w.start} className="mt-1 block text-sm text-sky" />
           </p>
@@ -73,26 +78,34 @@ export function WebinarDestacado({ webinars, buildNow }: { webinars: WebinarResu
             </div>
           )}
 
-          <ul className="mt-9 grid gap-x-8 gap-y-3 border-t border-paper/15 pt-6 sm:grid-cols-2">
-            {w.ponentes.map((p) => (
-              <li key={p.nombre} className="leading-snug">
-                <span className="block text-base font-semibold">{p.nombre}</span>
-                <span className="text-sm text-paper/70">
-                  {[p.rol, p.institucion, paises[p.pais]?.nombre].filter(Boolean).join(", ")}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-9 border-t border-paper/15 pt-6">
+            <h3 className="text-sm text-paper/70">{ponentes.length === 1 ? "Ponente" : `${ponentes.length} ponentes`}</h3>
+            <ul className="mt-3 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+              {ponentes.map((p) => (
+                <li key={p.nombre} className="leading-snug">
+                  <span className="block text-base font-semibold">{p.nombre}</span>
+                  <span className="text-sm text-paper/70">{[p.cargo ?? p.institucion, paises[p.pais]?.nombre].filter((x, i, l) => x && !(i === 1 && l[0]?.includes(x))).join(", ")}</span>
+                </li>
+              ))}
+            </ul>
+            {moderacion.length > 0 && (
+              <p className="mt-5 text-sm leading-relaxed text-paper/70">
+                <span className="font-semibold text-paper">Moderación:</span> {moderacion.map((p) => p.nombre).join(", ")}
+              </p>
+            )}
+          </div>
+
+          {estado !== "pasado" && !accion && <Acceso w={w} vivo={estado === "en-vivo"} className="mt-8 border-l border-gold/60 pl-4 text-paper" />}
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            {estado !== "pasado" && w.inscripcion && (
+            {estado !== "pasado" && accion && (
               <a
-                href={w.inscripcion}
+                href={accion.href}
                 target="_blank"
                 rel="noopener"
                 className="inline-flex items-center justify-center gap-2 rounded-sm bg-gold px-6 py-3.5 text-sm font-semibold text-navy transition-[background-color,transform] duration-200 hover:bg-white active:scale-[0.98]"
               >
-                {estado === "en-vivo" ? "Entrar a la transmisión" : "Inscribirme"}
+                {accion.label}
                 <ArrowUpRight className="size-4" aria-hidden />
               </a>
             )}

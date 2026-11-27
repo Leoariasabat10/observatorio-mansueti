@@ -36,5 +36,13 @@ Colores de eje temático: `src/content/ejes.json`, siempre con el nombre del eje
 - Las notas de verificación se escriben como cita (`> **Nota de verificación.** …`) y se muestran en recuadro.
 - Imágenes: capturas del visor de Facebook (no son archivos originales), nunca ampliadas; ilustraciones editoriales (mapas, piezas con datos verificados) siempre rotuladas.
 
+## Lenguaje (acordado 2026-11-27)
+- El programa académico habla de «sesiones» (sirve para webinars, conversatorios y encuentros), no de «webinars».
+- Horas en formato de 12 horas, como en los afiches oficiales: «7:00 p. m.» (`horaBogota` en `src/lib/webinar-time.ts`).
+- Trato de «usted» en todo el sitio.
+- Títulos de portada de sección (h1) con tope de 6rem y sin eyebrow encima; los eyebrows existentes en secciones internas se conservan.
+- Con enlace de reunión (campo `reunion`) el botón sólido es «Unirse en <plataforma>» y en vivo «Entrar ahora». Sin enlace público, «Cómo participar» ofrece WhatsApp, correo y afiche; en vivo, pedir el enlace pasa a ser el botón sólido.
+- Las moderadoras se listan aparte y no cuentan como ponentes en cifras ni en el mapa (`esModeracion`).
+
 ## Prohibido (acordado)
 Eyebrow o kicker sobre títulos nuevos, bordes laterales gruesos, texto con degradado, tarjetas anidadas, sombras duras, fotos genéricas o retratos inventados.

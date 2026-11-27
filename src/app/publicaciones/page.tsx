@@ -25,7 +25,7 @@ export default function Publicaciones() {
         <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-14 pb-12 sm:pt-20 lg:grid-cols-12 lg:gap-10 lg:px-8 lg:pt-24 lg:pb-16">
           <div className="lg:col-span-7">
             <p className="eyebrow text-blue">Publicaciones y Boletines</p>
-            <h1 id="publicaciones-titulo" className="mt-8 font-display text-[clamp(3rem,8.6vw,8.25rem)] leading-[0.9] tracking-[-0.025em] text-balance text-navy">
+            <h1 id="publicaciones-titulo" className="mt-8 font-display text-[clamp(3rem,8.6vw,6rem)] leading-[0.9] tracking-[-0.025em] text-balance text-navy">
               Lo que el Observatorio publica
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
@@ -40,7 +40,7 @@ export default function Publicaciones() {
                     {c.nombre}
                   </Link>
                 </dt>
-                <dd className="tnum text-sm font-semibold text-muted">{publicaciones.filter((p) => p.categoria === c.slug).length}</dd>
+                <dd className="tnum text-sm font-semibold text-muted">{publicaciones.length > 0 && publicaciones.filter((p) => p.categoria === c.slug).length}</dd>
                 <dd className="col-span-2 mt-0.5 text-sm text-muted">{c.descripcion}</dd>
               </div>
             ))}
@@ -98,7 +98,30 @@ export default function Publicaciones() {
         </section>
       )}
 
-      <CatalogoPublicaciones publicaciones={publicaciones} />
+      {publicaciones.length ? (
+        <CatalogoPublicaciones publicaciones={publicaciones} />
+      ) : (
+        <section aria-labelledby="sin-publicaciones" className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8">
+          <h2 id="sin-publicaciones" className="max-w-2xl font-serif text-2xl leading-snug text-navy">
+            El primer boletín y los primeros documentos de trabajo están en preparación.
+          </h2>
+          <p className="mt-4 max-w-xl text-muted">Cada publicación se anunciará aquí con su fecha, eje temático, autoría y archivo descargable. Mientras tanto:</p>
+          <ul className="mt-8 grid max-w-3xl gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-2">
+            <li className="bg-card">
+              <Link href="/latitud-sudamericana/noviembre-2026" className="group block p-6">
+                <span className="text-xs font-semibold text-blue">Latitud Sudamericana: Pensamiento Jurídico</span>
+                <span className="mt-2 block font-semibold text-navy decoration-blue/40 underline-offset-4 group-hover:underline">Edición de noviembre de 2026: actualidad laboral de siete países</span>
+              </Link>
+            </li>
+            <li className="bg-card">
+              <Link href="/actualidad" className="group block p-6">
+                <span className="text-xs font-semibold text-blue">Actualidad</span>
+                <span className="mt-2 block font-semibold text-navy decoration-blue/40 underline-offset-4 group-hover:underline">Novedades laborales de la región, con su fuente original</span>
+              </Link>
+            </li>
+          </ul>
+        </section>
+      )}
 
       <section aria-labelledby="recibir-titulo" className="border-t border-rule bg-paper">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:px-8">

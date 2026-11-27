@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { useSyncExternalStore } from "react";
-import { ArrowUpRight, Globe, MapPin, Video } from "lucide-react";
+import { ArrowUpRight, MapPin, Video } from "lucide-react";
 import { useFiltrosUrl } from "@/components/ui/useFiltrosUrl";
 import { paises } from "@/lib/paises";
 import { MODALIDADES, type EventoAgenda } from "@/lib/agenda-tipos";
 
-const MENSAJE = "Próximamente encontrarás aquí encuentros y actividades laborales de nuestra región y del mundo.";
+const MENSAJE = "Próximamente encontrará aquí encuentros y actividades laborales de nuestra región y del mundo.";
 const fmt = (f: string, opts: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat("es-CO", { ...opts, timeZone: "UTC" }).format(new Date(`${f}T12:00:00Z`));
 const fechaLarga = (e: EventoAgenda) => {
   if (!e.fechaFin || e.fechaFin === e.fecha) return fmt(e.fecha, { day: "numeric", month: "long", year: "numeric" });
@@ -79,8 +79,7 @@ export function ListaAgenda({ eventos, hoyBuild }: { eventos: EventoAgenda[]; ho
     <div className="mx-auto max-w-7xl px-5 py-14 sm:py-20 lg:px-8">
       {eventos.length === 0 ? (
         <div className="max-w-xl">
-          <Globe className="size-8 text-blue" strokeWidth={1.5} aria-hidden />
-          <p className="mt-6 border-l border-gold pl-5 font-display text-3xl leading-tight text-navy">{MENSAJE}</p>
+          <p className="border-l border-gold pl-5 font-display text-3xl leading-tight text-navy">{MENSAJE}</p>
         </div>
       ) : (
         <>

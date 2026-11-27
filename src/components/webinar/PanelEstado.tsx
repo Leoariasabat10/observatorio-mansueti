@@ -2,7 +2,8 @@
 
 import { ArrowUpRight, PlayCircle } from "lucide-react";
 import type { WebinarResumen } from "@/lib/content";
-import { estadoDe } from "@/lib/webinar-time";
+import { accionPrincipal, estadoDe } from "@/lib/webinar-time";
+import { Acceso } from "./Acceso";
 import { CuentaRegresiva } from "./CuentaRegresiva";
 import { EstadoBadge } from "./Etiquetas";
 import { useAhora } from "./useAhora";
@@ -11,6 +12,7 @@ import { useAhora } from "./useAhora";
 export function PanelEstado({ w, buildNow }: { w: WebinarResumen; buildNow: number }) {
   const now = useAhora(buildNow);
   const estado = estadoDe(w.start, w.duracionMin, now);
+  const accion = accionPrincipal(w, estado);
   const boton =
     "inline-flex w-full items-center justify-center gap-2 rounded-sm bg-gold px-6 py-3.5 text-sm font-semibold text-navy transition-colors duration-200 hover:bg-white";
 
@@ -29,12 +31,13 @@ export function PanelEstado({ w, buildNow }: { w: WebinarResumen; buildNow: numb
       )}
 
       <div className="mt-8">
-        {estado !== "pasado" && w.inscripcion && (
-          <a href={w.inscripcion} target="_blank" rel="noopener" className={boton}>
-            {estado === "en-vivo" ? "Entrar a la transmisión" : "Inscribirme"}
+        {estado !== "pasado" && accion && (
+          <a href={accion.href} target="_blank" rel="noopener" className={boton}>
+            {accion.label}
             <ArrowUpRight className="size-4" aria-hidden />
           </a>
         )}
+        {estado !== "pasado" && !accion && <Acceso w={w} vivo={estado === "en-vivo"} className="text-paper" />}
         {estado === "pasado" && w.grabacion && (
           <a href={w.grabacion} target="_blank" rel="noopener" className={boton}>
             <PlayCircle className="size-4" aria-hidden />
