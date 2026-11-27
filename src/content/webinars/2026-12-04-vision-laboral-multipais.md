@@ -1,5 +1,6 @@
 ---
 titulo: "Visión laboral multipaís: aguinaldo, gratificación y prima navideña"
+formato: "Conversatorio de fin de año"
 fecha: 2026-12-04
 hora: "19:00"
 duracionMin: 210

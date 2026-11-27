@@ -14,6 +14,7 @@ export type Modalidad = "virtual" | "presencial" | "hibrida";
 export type Webinar = {
   slug: string;
   titulo: string;
+  formato?: string; // e.g. "Conversatorio de fin de año"
   fecha: string; // YYYY-MM-DD, Bogotá
   hora: string; // HH:MM, Bogotá
   start: number;
@@ -91,6 +92,7 @@ function parse(file: string): Webinar {
   return {
     slug,
     titulo: str("titulo", true)!,
+    formato: str("formato"),
     fecha,
     hora,
     start,

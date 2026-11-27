@@ -85,6 +85,7 @@ collections:
               - { label: "Estados Unidos", value: US }
       - { label: Afiche, name: afiche, widget: image, required: false, hint: "Proporción 4:5, mínimo 800×1000 px" }
       - { label: Descripción del afiche, name: aficheAlt, widget: string, required: false, hint: Obligatoria si hay afiche (para lectores de pantalla) }
+      - { label: Formato, name: formato, widget: string, required: false, hint: "Ej.: Conversatorio de fin de año, Webinar, Conferencia" }
       - { label: Enlace de inscripción, name: inscripcion, widget: string, required: false }
       - { label: Enlace para unirse a la reunión (Teams, Zoom, Meet), name: reunion, widget: string, required: false }
       - { label: Cómo participar (sin enlace de inscripción), name: acceso, widget: string, required: false, hint: "Ej.: El enlace de la reunión está en el código QR del afiche oficial." }

@@ -14,7 +14,7 @@ import { BarrasEjes } from "@/components/inicio/BarrasEjes";
 import { LineaDeTiempo } from "@/components/inicio/LineaDeTiempo";
 import { MapaPonentes } from "@/components/mapa/MapaPonentes";
 import { Globo } from "@/components/inicio/Globo";
-import { ProximaObservacion } from "@/components/inicio/ProximaObservacion";
+import { SesionPortada } from "@/components/inicio/SesionPortada";
 import { Contador } from "@/components/ui/Contador";
 import { VideoMensaje } from "@/components/inicio/VideoMensaje";
 import mensaje from "@/content/video-mensaje.json";
@@ -69,6 +69,9 @@ export default function Inicio() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizacion).replace(/</g, "\\u003c") }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoMensaje).replace(/</g, "\\u003c") }} />
 
+      {/* While a session is upcoming or live, it is the first thing a visitor sees (join, share). */}
+      <SesionPortada webinars={webinars} buildNow={BUILD_NOW} />
+
       {/* Hero: the one signature moment of the page */}
       <section aria-labelledby="inicio-titulo" className="noche grano relative overflow-hidden text-paper">
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
@@ -94,11 +97,6 @@ export default function Inicio() {
           </div>
         </div>
 
-        <div className="relative z-10 border-t border-paper/15">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <ProximaObservacion webinars={webinars} buildNow={BUILD_NOW} />
-          </div>
-        </div>
       </section>
 
       {/* Institutional message: video of the first president, quiet frame around it */}

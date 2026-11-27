@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { notFound } from "next/navigation";
-import { CalendarPlus, ChevronLeft, Share2 } from "lucide-react";
+import { CalendarPlus, ChevronLeft } from "lucide-react";
 import { siteConfig } from "@site";
 import { observatorio } from "@/config/observatorio";
 import { BUILD_NOW, getWebinar, getWebinars, type Webinar } from "@/lib/content";
@@ -11,6 +11,7 @@ import { ejePorSlug } from "@/lib/ejes";
 import { paises } from "@/lib/paises";
 import { fechaDia, fechaLarga, fechaMes, horaBogota, ics, modalidadTexto } from "@/lib/webinar-time";
 import { Afiche } from "@/components/webinar/Afiche";
+import { CompartirSesion } from "@/components/webinar/CompartirSesion";
 import { CopiarEnlace } from "@/components/webinar/CopiarEnlace";
 import { EjemploTag, EjeTag } from "@/components/webinar/Etiquetas";
 import { HoraLocal } from "@/components/webinar/HoraLocal";
@@ -71,7 +72,6 @@ export default async function WebinarPage({ params }: PageProps<"/programa-acade
   const moderacion = w.ponentes.filter(esModeracion);
   const mismoPais = moderacion.length > 1 && moderacion.every((p) => p.pais === moderacion[0].pais);
   const calendario = `data:text/calendar;charset=utf-8,${encodeURIComponent(ics({ ...w, url, lugar: w.reunion ?? w.lugar ?? w.plataforma, descripcion: [w.resumen, w.reunion && `Unirse: ${w.reunion}`, `Detalles: ${url}`].filter(Boolean).join("\n\n") }))}`;
-  const compartir = `https://wa.me/?text=${encodeURIComponent(`${w.titulo}, ${fechaLarga(w.start)} a las ${horaBogota(w.start)} (hora de Bogotá). ${url}`)}`;
   const otros = getWebinars()
     .filter((o) => o.slug !== w.slug && o.ejes.some((e) => w.ejes.includes(e)))
     .slice(-3)
@@ -123,10 +123,12 @@ export default async function WebinarPage({ params }: PageProps<"/programa-acade
                 <CalendarPlus className="size-4" aria-hidden />
                 Agregar a mi calendario
               </a>
-              <a href={compartir} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-sm border border-navy/30 px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:border-navy">
-                <Share2 className="size-4" aria-hidden />
-                Compartir por WhatsApp
-              </a>
+              <CompartirSesion
+                titulo={w.titulo}
+                texto={`${w.formato ? `${w.formato}: ` : ""}«${w.titulo}». ${fechaLarga(w.start)}, ${horaBogota(w.start)} (hora de Bogotá).`}
+                url={url}
+                className="inline-flex items-center gap-2 rounded-sm border border-navy/30 px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:border-navy"
+              />
               <CopiarEnlace url={url} className="inline-flex items-center gap-2 rounded-sm border border-navy/30 px-4 py-2.5 text-sm font-semibold text-navy transition-colors hover:border-navy" />
             </div>
           </div>
